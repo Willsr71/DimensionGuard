@@ -6,9 +6,9 @@ author: Willsr71
 website: http://willsr71.net/
 commands:
   bcp:
-    description: Core command for BungeeChatPlus
-    usage: /bcp <command> <args>
-    aliases: [bcp, bungeechatplus]
+    description: Core command for MystcraftUtils
+    usage: /myst <command> <args>
+    aliases: [myst, mystutils]
 permissions:
   bungeechatplus.reload:
     desfault: op

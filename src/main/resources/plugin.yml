@@ -1,0 +1,15 @@
+name: MystcraftUtils
+main: net.willsr71.mystcraftutils.MystcraftUtils
+version: 1.0
+description: Something something edit this please
+author: Willsr71
+website: http://willsr71.net/
+commands:
+  bcp:
+    description: Core command for BungeeChatPlus
+    usage: /bcp <command> <args>
+    aliases: [bcp, bungeechatplus]
+permissions:
+  bungeechatplus.reload:
+    desfault: op
+    description: The ability to reload plugin configs

@@ -1,3 +1,13 @@
 ###################################
-##### Bungee Chat Plus Config #####
+#####  MystcraftUtils Config  #####
 ###################################
+spawnWorld: "LandOfWarfare"
+blacklistedDimensions:
+ - "Overworld"
+ - "Overworld_the_End"
+onClaim:
+  message: "You have successfully claimed dimension %dimension%"
+  commands:
+    - "/rg -w %dimension% addowner __global__ %player%"
+    - "/rg -w %dimension% flag __global__ entry DENY"
+    - "/rg -w %dimension% flag __global__ entry-deny-message This dimension has been claimed by %player%"

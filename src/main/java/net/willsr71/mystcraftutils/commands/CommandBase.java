@@ -23,12 +23,24 @@ public class CommandBase extends Command implements CommandExecutor {
     }
 
     public boolean run(CommandSender cs, String command, String[] args){
-        String argsc = "";
-        for(String arg : args){
-            argsc = (argsc + " " + arg).trim();
+        if(args.length < 1){
+            CommandHelp.run(cs);
+            return true;
         }
-        cs.sendMessage(cs.getName() + " issued command " + command + " with arguments \"" + argsc + "\"");
+        String subcommand = args[0];
 
-        return false;
+        String[] argsToSend = new String[args.length-1];
+        String argsToString = "";
+        for(int x = 0; x < args.length; x++){
+            if(x!=0) argsToSend[x-1] = args[x];
+            argsToString = (argsToString + " " + args[x]).trim();
+        }
+        if(plugin.debug) cs.sendMessage(cs.getName() + " issued command " + command + " with arguments \"" + argsToString + "\"");
+
+        if(!command.equals("myst")) return false;
+        if(subcommand.equals("help")) CommandHelp.run(cs);
+        if(subcommand.equals("id")) CommandID.run(cs, argsToSend);
+        if(subcommand.equals("spawn")) CommandSpawn.run(cs, argsToSend);
+        return true;
     }
 }

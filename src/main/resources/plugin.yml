@@ -5,11 +5,24 @@ description: Something something edit this please
 author: Willsr71
 website: http://willsr71.net/
 commands:
-  bcp:
+  myst:
     description: Core command for MystcraftUtils
     usage: /myst <command> <args>
-    aliases: [myst, mystutils]
+    aliases: [myst]
 permissions:
-  bungeechatplus.reload:
+  mystcraftutils.*:
+    default: op
+    description: Give access to all of everything
+    children:
+      mystcraftutils.reload: true
+      mystcraftutils.tp.others: true
+      mystcraftutils.lightning: true
+  mystcraftutils.reload:
     desfault: op
     description: The ability to reload plugin configs
+  mystcraftutils.tp.others:
+    default: op
+    description: The ability to teleport others to spawn
+  mystcraftutils.lightning:
+    default: all
+    description: Fancy(ish) lightning effects on teleportation

@@ -18,21 +18,33 @@ public class ConfigManager {
         this.configName = configName;
         dataFolder = plugin.getDataFolder();
         if(!dataFolder.exists()) dataFolder.mkdirs();
-        getFile();
+        openConfig();
     }
 
     public Configuration getConfig(){
         return YamlConfiguration.loadConfiguration(configFile);
     }
 
-    private void getFile(){
+    public void replaceConfig(){
+        deleteConfig();
+        createConfig();
+        openConfig();
+    }
+
+    private void openConfig(){
         configFile = new File(dataFolder, configName);
-        if(!configFile.exists()){
-            try {
-                Files.copy(plugin.getResource(configName), configFile.toPath());
-            }catch (IOException e) {
-                e.printStackTrace();
-            }
+        if(!configFile.exists()) createConfig();
+    }
+
+    private void createConfig(){
+        try {
+            Files.copy(plugin.getResource(configName), configFile.toPath());
+        }catch (IOException e){
+            e.printStackTrace();
         }
+    }
+
+    private void deleteConfig(){
+        configFile.delete();
     }
 }

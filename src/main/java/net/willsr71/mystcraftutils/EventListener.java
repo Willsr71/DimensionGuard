@@ -1,6 +1,5 @@
 package net.willsr71.mystcraftutils;
 
-import net.willsr71.mystcraftutils.commands.CommandSpawn;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -16,16 +15,16 @@ public class EventListener implements Listener{
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event){
-        if(plugin.config.getBoolean("autoSpawnLogout")) CommandSpawn.sendToSpawn(event.getPlayer());
+        if(plugin.config.getBoolean("autoSpawnLogout")) PlayerManager.sendToSpawn(event.getPlayer());
     }
 
     @EventHandler
     public void onKick(PlayerKickEvent event){
-        if(plugin.config.getBoolean("autoSpawnLogout")) CommandSpawn.sendToSpawn(event.getPlayer());
+        if(plugin.config.getBoolean("autoSpawnLogout")) PlayerManager.sendToSpawn(event.getPlayer());
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
-        if(plugin.config.getBoolean("autoSpawnLogin")) CommandSpawn.sendToSpawn(event.getPlayer());
+        if(plugin.config.getBoolean("autoSpawnLogin")) PlayerManager.sendToSpawn(event.getPlayer());
     }
 }

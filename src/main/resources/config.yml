@@ -20,48 +20,54 @@ autoSpawnLogout: true
 ###################################
 
 # Called when someone claims a dimension
-claim:
-  senderMessage: "You have successfully claimed dimension %dimension%"
-  commands:
-    - "/rg -w %dimension% addowner __global__ %player%"
-    - "/rg -w %dimension% flag __global__ entry DENY"
-    - "/rg -w %dimension% flag __global__ entry-deny-message This dimension has been claimed by %player%"
+claimcommands:
+  - "/rg -w %dimension% addowner __global__ %player%"
+  - "/rg -w %dimension% flag __global__ entry DENY"
+  - "/rg -w %dimension% flag __global__ entry-deny-message This dimension has been claimed by %player%"
 
 # Called when an owner is added to a dimension
-addowner:
-  senderMessage: "%player% has been granted 'owner' for dimension %dimension%"
-  recieverMessage: "You have been granted 'owner' for dimension %dimension%"
-  commands:
-    - "/rg -w %dimension% addowner __global__ %player%"
+addownercommands:
+  - "/rg -w %dimension% addowner __global__ %player%"
 
 # Called when an owner is removed from a dimension
-removeowner:
-  senderMessage: "%player has been revoked 'owner' for dimension %dimension%"
-  recieverMessage: "You have been revoked 'owner' for dimension %dimension%"
-  commands:
-    - "/rg -w %dimension% removeowner __global__ %player%"
+removeownercommands:
+  - "/rg -w %dimension% removeowner __global__ %player%"
 
 # Called when a member is added to a dimension
-addmember:
-  senderMessage: "%player% has been granted 'member' for dimension %dimension%"
-  recieverMessage: "You have been granted 'member' for dimension %dimension%"
-  commands:
-    - "/rg -w %dimension% addmember __global__ %player%"
+addmembercommands:
+  - "/rg -w %dimension% addmember __global__ %player%"
 
 # Called when a member is removed from a dimension
-removemember:
-  senderMessage: "%player has been revoked 'member' for dimension %dimension%"
-  recieverMessage: "You have been revoked 'member' for dimension %dimension%"
-  commands:
-    - "/rg -w %dimension% removemember __global__ %player%"
+removemembercommands:
+  - "/rg -w %dimension% removemember __global__ %player%"
 
-# Called when a player is kicked out of a dimension
-kick:
-  senderMessage: "%player% has been kicked from dimension %dimension%"
-  recieverMessage: "You have been kicked from dimension %dimension%"
+###################################
+#####        Messages         #####
+###################################
 
-# Called when an age is deleted
-ageDeletion:
-  senderMessage: "Dimension %dimension% has been deleted"
-  commands:
-   - "/rg"
+noPermission: "&cYou don't have permission"
+
+idMessage: "&7Dimension name: %dimension%"
+claimMessage: "&7You have successfully claimed dimension %dimension%"
+deleteMessage: "&7Dimension %dimension% has been deleted"
+spawnMessage: "&7You have been sent to spawn from %dimension%"
+spawnCancelledMessage: "&7Blacklisted dimension. Sending to spawn cancelled"
+reloadMessage: "&7Config has been reloaded"
+
+sendOwnerAddMessage: "&7%player% has been granted 'owner' for dimension %dimension%"
+recvOwnerAddMessage: "&7You have been granted 'owner' for dimension %dimension%"
+sendOwnerRemoveMessage: "&7%player has been revoked 'owner' for dimension %dimension%"
+recvOwnerRemoveMessage: "&7You have been revoked 'owner' for dimension %dimension%"
+sendMemberAddMessage: "&7%player% has been granted 'member' for dimension %dimension%"
+recvMemberAddMessage: "&7You have been granted 'member' for dimension %dimension%"
+sendMemberRemoveMessage: "&7%player has been revoked 'member' for dimension %dimension%"
+recvMemberRemoveMessage: "&7You have been revoked 'member' for dimension %dimension%"
+sendKickMessage: "&7%player% has been kicked from dimension %dimension%"
+recvKickMessage: "&7You have been kicked from dimension %dimension%"
+
+###################################
+#####       No Touchie        #####
+###################################
+dontTouch:
+  version:
+    seriouslyThisWillEraseYourConfig: 1.0

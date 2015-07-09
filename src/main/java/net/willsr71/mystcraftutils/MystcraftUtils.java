@@ -12,10 +12,9 @@ public class MystcraftUtils extends JavaPlugin {
     public CommandBase commandBase;
     public ConfigManager configManager;
     public ConfigManager dimensionConfigManager;
-
     public Configuration config;
     public Configuration dimensionConfig;
-    public boolean debug;
+
     public HashMap<String, DimensionData> dimensions = new HashMap<>();
 
     public void onEnable(){
@@ -23,14 +22,20 @@ public class MystcraftUtils extends JavaPlugin {
         configManager = new ConfigManager(this, "config.yml");
         dimensionConfigManager = new ConfigManager(this, "dimensions.yml");
         commandBase = new CommandBase(this, "myst");
-
-        config = configManager.getConfig();
-        dimensionConfig = dimensionConfigManager.getConfig();
-
-        debug = config.getBoolean("debug");
+        reload();
 
         this.getCommand("myst").setExecutor(commandBase);
 
         Bukkit.getPluginManager().registerEvents(new EventListener(this), this);
+    }
+
+    public void reload(){
+        config = configManager.getConfig();
+        dimensionConfig = dimensionConfigManager.getConfig();
+        String version = config.getString("dontTouch.version.seriouslyThisWillEraseYourConfig");
+        if(version == null || !version.equals("1.0")){
+            configManager.replaceConfig();
+            config = configManager.getConfig();
+        }
     }
 }

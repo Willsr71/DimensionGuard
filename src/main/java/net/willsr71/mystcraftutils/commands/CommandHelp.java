@@ -1,14 +1,17 @@
 package net.willsr71.mystcraftutils.commands;
 
+import net.willsr71.mystcraftutils.ChatUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 public class CommandHelp {
 
     public static void run(CommandSender cs){
-        cs.sendMessage(ChatColor.GREEN + "===================");
-        cs.sendMessage(ChatColor.GREEN + "MystcraftUtils Help");
-        cs.sendMessage(ChatColor.GREEN + "===================");
-        cs.sendMessage(ChatColor.GREEN + "/myst id");
+        cs.sendMessage(ChatUtils.parse("&aMystcraftUtils Help"));
+        cs.sendMessage(ChatUtils.parse("&a/myst help"));
+        cs.sendMessage(ChatUtils.parse("&a/myst id"));
+        cs.sendMessage(ChatUtils.parse("&a/myst kick <player>"));
+        cs.sendMessage(ChatUtils.parse("&a/myst reload"));
+        cs.sendMessage(ChatUtils.parse("&a/myst spawn"));
     }
 }

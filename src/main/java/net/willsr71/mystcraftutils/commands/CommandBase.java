@@ -39,8 +39,10 @@ public class CommandBase extends Command implements CommandExecutor {
         }
 
         if(!command.equals("myst")) return false;
-        if(subcommand.equals("id")) CommandID.run(cs, argsToSend);
+        if(subcommand.equals("reload")) CommandReload.run(cs);
+        else if(subcommand.equals("id")) CommandID.run(cs, argsToSend);
         else if(subcommand.equals("spawn")) CommandSpawn.run(cs, argsToSend);
+        else if(subcommand.equals("kick")) CommandKick.run(cs, argsToSend);
         else CommandHelp.run(cs);
         return true;
     }

@@ -17,12 +17,16 @@ permissions:
       mystcraftutils.reload: true
       mystcraftutils.tp.others: true
       mystcraftutils.lightning: true
+      mystcraftutils.kick: true
   mystcraftutils.reload:
     desfault: op
     description: The ability to reload plugin configs
   mystcraftutils.tp.others:
     default: op
     description: The ability to teleport others to spawn
+  mystcraft.kick:
+    default: op
+    description: The ability to kick players from a dimension
   mystcraftutils.lightning:
     default: true
     description: Fancy(ish) lightning effects on teleportation

@@ -3,8 +3,9 @@ package net.willsr71.mystcraftutils;
 import java.util.ArrayList;
 
 public class DimensionData {
-    public ArrayList<String> owners = new ArrayList<>();
-    public ArrayList<String> members = new ArrayList<>();
+    private ArrayList<String> owners = new ArrayList<>();
+    private ArrayList<String> members = new ArrayList<>();
+    public String name;
     public boolean claimed;
 
     public void addOwner(String player){

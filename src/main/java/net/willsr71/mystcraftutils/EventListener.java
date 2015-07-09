@@ -16,16 +16,16 @@ public class EventListener implements Listener{
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event){
-        CommandSpawn.sendToSpawn(event.getPlayer());
+        if(plugin.config.getBoolean("autoSpawnLogout")) CommandSpawn.sendToSpawn(event.getPlayer());
     }
 
     @EventHandler
     public void onKick(PlayerKickEvent event){
-        CommandSpawn.sendToSpawn(event.getPlayer());
+        if(plugin.config.getBoolean("autoSpawnLogout")) CommandSpawn.sendToSpawn(event.getPlayer());
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
-        CommandSpawn.sendToSpawn(event.getPlayer());
+        if(plugin.config.getBoolean("autoSpawnLogin")) CommandSpawn.sendToSpawn(event.getPlayer());
     }
 }

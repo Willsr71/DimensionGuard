@@ -8,18 +8,20 @@ import org.bukkit.command.CommandSender;
 public class CommandBase extends Command implements CommandExecutor {
     private MystcraftUtils plugin;
 
-    public CommandBase(String name) {
+    public CommandBase(MystcraftUtils plugin, String name) {
         super(name);
-    }
-
-    @Override
-    public boolean execute(CommandSender cs, String command, String[] args) {
-        return run(cs, command, args);
+        this.plugin = plugin;
     }
 
     @Override
     public boolean onCommand(CommandSender cs, Command cmd, String command, String[] args) {
         return run(cs, command, args);
+    }
+
+    @Override
+    public boolean execute(CommandSender cs, String command, String[] args) {
+        //return run(cs, command, args);
+        return false;
     }
 
     public boolean run(CommandSender cs, String command, String[] args){
@@ -35,12 +37,11 @@ public class CommandBase extends Command implements CommandExecutor {
             if(x!=0) argsToSend[x-1] = args[x];
             argsToString = (argsToString + " " + args[x]).trim();
         }
-        if(plugin.debug) cs.sendMessage(cs.getName() + " issued command " + command + " with arguments \"" + argsToString + "\"");
 
         if(!command.equals("myst")) return false;
-        if(subcommand.equals("help")) CommandHelp.run(cs);
         if(subcommand.equals("id")) CommandID.run(cs, argsToSend);
-        if(subcommand.equals("spawn")) CommandSpawn.run(cs, argsToSend);
+        else if(subcommand.equals("spawn")) CommandSpawn.run(cs, argsToSend);
+        else CommandHelp.run(cs);
         return true;
     }
 }

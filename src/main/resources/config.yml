@@ -1,13 +1,67 @@
 ###################################
 #####  MystcraftUtils Config  #####
 ###################################
+
+# World that players spawn in. Most often the overworld
 spawnWorld: "LandOfWarfare"
+
+# Dimensions that players cannot claim and will not be auto-teleported in
 blacklistedDimensions:
  - "Overworld"
  - "Overworld_the_End"
-onClaim:
-  message: "You have successfully claimed dimension %dimension%"
+ - "LandOfWarfare"
+
+# Whether players will get auto-teleported to spawn on logout
+autoSpawnLogin: false
+autoSpawnLogout: true
+
+###################################
+#####         Events          #####
+###################################
+
+# Called when someone claims a dimension
+claim:
+  senderMessage: "You have successfully claimed dimension %dimension%"
   commands:
     - "/rg -w %dimension% addowner __global__ %player%"
     - "/rg -w %dimension% flag __global__ entry DENY"
     - "/rg -w %dimension% flag __global__ entry-deny-message This dimension has been claimed by %player%"
+
+# Called when an owner is added to a dimension
+addowner:
+  senderMessage: "%player% has been granted 'owner' for dimension %dimension%"
+  recieverMessage: "You have been granted 'owner' for dimension %dimension%"
+  commands:
+    - "/rg -w %dimension% addowner __global__ %player%"
+
+# Called when an owner is removed from a dimension
+removeowner:
+  senderMessage: "%player has been revoked 'owner' for dimension %dimension%"
+  recieverMessage: "You have been revoked 'owner' for dimension %dimension%"
+  commands:
+    - "/rg -w %dimension% removeowner __global__ %player%"
+
+# Called when a member is added to a dimension
+addmember:
+  senderMessage: "%player% has been granted 'member' for dimension %dimension%"
+  recieverMessage: "You have been granted 'member' for dimension %dimension%"
+  commands:
+    - "/rg -w %dimension% addmember __global__ %player%"
+
+# Called when a member is removed from a dimension
+removemember:
+  senderMessage: "%player has been revoked 'member' for dimension %dimension%"
+  recieverMessage: "You have been revoked 'member' for dimension %dimension%"
+  commands:
+    - "/rg -w %dimension% removemember __global__ %player%"
+
+# Called when a player is kicked out of a dimension
+kick:
+  senderMessage: "%player% has been kicked from dimension %dimension%"
+  recieverMessage: "You have been kicked from dimension %dimension%"
+
+# Called when an age is deleted
+ageDeletion:
+  senderMessage: "Dimension %dimension% has been deleted"
+  commands:
+   - "/rg"

@@ -1,6 +1,7 @@
 *.class
 dependency-reduced-pom.xml
 
+/.idea
 /target/classes
 /target/generated-sources
 /target/maven-archiver

@@ -6,8 +6,8 @@ import org.bukkit.command.CommandSender;
 
 public class CommandReload {
 
-    public static void run(CommandSender cs){
+    public static void run(CommandSender cs, String[] args){
         MystcraftUtils.instance.reload();
-        cs.sendMessage(ChatUtils.parse(MystcraftUtils.instance.config.getString("reloadMessage")));
+        cs.sendMessage(ChatUtils.getString("reloadMessage"));
     }
 }

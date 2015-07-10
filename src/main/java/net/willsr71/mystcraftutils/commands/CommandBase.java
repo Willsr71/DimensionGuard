@@ -29,7 +29,7 @@ public class CommandBase extends Command implements CommandExecutor {
             CommandHelp.run(cs);
             return true;
         }
-        String subcommand = args[0];
+        String subcommand = args[0].toLowerCase();
 
         String[] argsToSend = new String[args.length-1];
         String argsToString = "";
@@ -37,12 +37,15 @@ public class CommandBase extends Command implements CommandExecutor {
             if(x!=0) argsToSend[x-1] = args[x];
             argsToString = (argsToString + " " + args[x]).trim();
         }
-
         if(!command.equals("myst")) return false;
-        if(subcommand.equals("reload")) CommandReload.run(cs);
+
+        if(subcommand.equals("claim")) CommandClaim.run(cs, argsToSend);
+        else if(subcommand.equals("delete")) CommandDelete.run(cs, argsToSend);
+        else if(subcommand.equals("dimlist")) CommandDimList.run(cs, argsToSend);
         else if(subcommand.equals("id")) CommandID.run(cs, argsToSend);
-        else if(subcommand.equals("spawn")) CommandSpawn.run(cs, argsToSend);
         else if(subcommand.equals("kick")) CommandKick.run(cs, argsToSend);
+        else if(subcommand.equals("reload")) CommandReload.run(cs, argsToSend);
+        else if(subcommand.equals("spawn")) CommandSpawn.run(cs, argsToSend);
         else CommandHelp.run(cs);
         return true;
     }

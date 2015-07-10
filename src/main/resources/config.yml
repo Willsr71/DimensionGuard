@@ -20,25 +20,25 @@ autoSpawnLogout: true
 ###################################
 
 # Called when someone claims a dimension
-claimcommands:
+onClaim:
   - "/rg -w %dimension% addowner __global__ %player%"
   - "/rg -w %dimension% flag __global__ entry DENY"
   - "/rg -w %dimension% flag __global__ entry-deny-message This dimension has been claimed by %player%"
 
 # Called when an owner is added to a dimension
-addownercommands:
+onAddOwner:
   - "/rg -w %dimension% addowner __global__ %player%"
 
 # Called when an owner is removed from a dimension
-removeownercommands:
+onRemoveOwner:
   - "/rg -w %dimension% removeowner __global__ %player%"
 
 # Called when a member is added to a dimension
-addmembercommands:
+onAddMember:
   - "/rg -w %dimension% addmember __global__ %player%"
 
 # Called when a member is removed from a dimension
-removemembercommands:
+onRemoveMember:
   - "/rg -w %dimension% removemember __global__ %player%"
 
 ###################################
@@ -47,23 +47,26 @@ removemembercommands:
 
 noPermission: "&cYou don't have permission"
 
-idMessage: "&7Dimension name: %dimension%"
-claimMessage: "&7You have successfully claimed dimension %dimension%"
-deleteMessage: "&7Dimension %dimension% has been deleted"
+idMessage: "&7Dimension name: &6%dimension%"
+claimMessage: "&7You have successfully claimed dimension &6%dimension%"
+alreadyClaimedMessage: "&7Dimension %dimension% is already claimed by %player%"
+deleteMessage: "&7Dimension &6%dimension%&6 has been deleted"
 spawnMessage: "&7You have been sent to spawn from %dimension%"
-spawnCancelledMessage: "&7Blacklisted dimension. Sending to spawn cancelled"
+blacklistMessage: "&7Blacklisted dimension. Event cancelled"
 reloadMessage: "&7Config has been reloaded"
+noConsoleMessage: "&7Only players can preform this command"
+notRegisteredMessage: "&7The dimension &6%dimension% &7is not registered"
 
-sendOwnerAddMessage: "&7%player% has been granted 'owner' for dimension %dimension%"
-recvOwnerAddMessage: "&7You have been granted 'owner' for dimension %dimension%"
-sendOwnerRemoveMessage: "&7%player has been revoked 'owner' for dimension %dimension%"
-recvOwnerRemoveMessage: "&7You have been revoked 'owner' for dimension %dimension%"
-sendMemberAddMessage: "&7%player% has been granted 'member' for dimension %dimension%"
-recvMemberAddMessage: "&7You have been granted 'member' for dimension %dimension%"
-sendMemberRemoveMessage: "&7%player has been revoked 'member' for dimension %dimension%"
-recvMemberRemoveMessage: "&7You have been revoked 'member' for dimension %dimension%"
-sendKickMessage: "&7%player% has been kicked from dimension %dimension%"
-recvKickMessage: "&7You have been kicked from dimension %dimension%"
+sendOwnerAddMessage: "&6%player% &7has been granted '&6owner&7' for dimension &6%dimension%"
+recvOwnerAddMessage: "&7You have been granted '&6owner&7' for dimension &6%dimension%"
+sendOwnerRemoveMessage: "&7%player has been revoked '&6owner&7' for dimension &6%dimension%"
+recvOwnerRemoveMessage: "&7You have been revoked '&6owner&7' for dimension &6%dimension%"
+sendMemberAddMessage: "&6%player% &7has been granted '&6member&7' for dimension &6%dimension%"
+recvMemberAddMessage: "&7You have been granted '&6member&7' for dimension &6%dimension%"
+sendMemberRemoveMessage: "&6%player% &7has been revoked '&6member&7' for dimension &6%dimension%"
+recvMemberRemoveMessage: "&7You have been revoked '&6member&7' for dimension &6%dimension%"
+sendKickMessage: "&6%player% &7has been kicked from dimension &6%dimension%"
+recvKickMessage: "&7You have been kicked from dimension &6%dimension%"
 
 ###################################
 #####       No Touchie        #####

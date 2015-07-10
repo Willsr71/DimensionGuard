@@ -1,12 +1,30 @@
 package net.willsr71.mystcraftutils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DimensionData {
     private ArrayList<String> owners = new ArrayList<>();
     private ArrayList<String> members = new ArrayList<>();
     public String name;
-    public boolean claimed;
+
+    public DimensionData(String name, List<String> owners, List<String> members){
+        this.name = name;
+        addOwners(owners);
+        addMembers(members);
+    }
+
+    public void addOwners(List<String> players){
+        for(String player : players){
+            addOwner(player);
+        }
+    }
+
+    public void addMembers(List<String> players){
+        for(String player : players){
+            addMember(player);
+        }
+    }
 
     public void addOwner(String player){
         owners.add(player);

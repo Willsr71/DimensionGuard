@@ -9,7 +9,7 @@ public class PlayerManager {
 
     public static void sendToSpawn(Player player){
         if(MystcraftUtils.instance.config.getStringList("blacklistedDimensions").contains(player.getWorld().getName())){
-            player.sendMessage(ChatUtils.parse(MystcraftUtils.instance.config.getString("spawnCancelledMessage")));
+            player.sendMessage(ChatUtils.getString("blacklistMessage"));
             return;
         }
         String olddimension = player.getWorld().getName();
@@ -17,7 +17,7 @@ public class PlayerManager {
         Location spawn = spawnWorld.getSpawnLocation();
         tpPos(player, spawn);
 
-        player.sendMessage(ChatUtils.parse(MystcraftUtils.instance.config.getString("spawnMessage"), olddimension));
+        player.sendMessage(ChatUtils.replaceDim(ChatUtils.getString("spawnMessage"), olddimension));
 
         if(player.hasPermission("mystcraftutils.lightning")) lightningEffect(spawnWorld, spawnWorld.getSpawnLocation());
     }

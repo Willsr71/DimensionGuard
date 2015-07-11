@@ -19,7 +19,8 @@ public class CommandInfo {
 
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
-        if(!plugin.commandUtils.doesDimensionExist(cs, dimension, "notRegisteredMessage")) return;
+        if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
+        if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
 
         HashMap<String, DimensionData> dimensions = (HashMap) plugin.dimensions.clone();
 

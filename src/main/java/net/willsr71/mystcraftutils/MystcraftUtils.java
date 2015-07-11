@@ -49,6 +49,7 @@ public class MystcraftUtils extends JavaPlugin {
 
     public void save(){
         Set<String> dims = dimensions.keySet();
+        getLogger().info("Saving " + dims.size() + " dimensions...");
         for (String dim : dims) {
             DimensionData dimData = dimensions.get(dim);
 
@@ -57,6 +58,7 @@ public class MystcraftUtils extends JavaPlugin {
             dimensionConfig.set(dim + ".members", dimData.getMembers());
         }
         dimensionConfigManager.saveConfig();
+        getLogger().info("Done");
     }
 
     public void reload(){
@@ -64,13 +66,7 @@ public class MystcraftUtils extends JavaPlugin {
         dimensionConfigManager.reloadConfig();
         config = configManager.getConfig();
         dimensionConfig = dimensionConfigManager.getConfig();
-        String configVersion = config.getString("dontTouch.version.seriouslyThisWillEraseYourConfig");
-        boolean manualOverwrite = config.getBoolean("dontTouch.manualConfigReset");
-        if(configVersion == null || !configVersion.equals(version) || manualOverwrite){
-            configManager.replaceConfig();
-            config = configManager.getConfig();
-            reload();
-        }
+        replaceConfig(0);
 
         Set<String> dims = dimensionConfig.getKeys(false);
         getLogger().info("Loading " + dims.size() + " dimensions...");
@@ -81,5 +77,16 @@ public class MystcraftUtils extends JavaPlugin {
             dimensions.put(dim, dimData);
         }
         getLogger().info("Done");
+    }
+
+    private void replaceConfig(int r){
+        String configVersion = config.getString("dontTouch.version.seriouslyThisWillEraseYourConfig");
+
+        // Try reloading the config up to 25 times, giving a chance to whatever is holding open the files to let go. If this fails then skip replacing them.
+        if(r < 25 && (configVersion == null || !configVersion.equals(version))){
+            configManager.replaceConfig();
+            config = configManager.getConfig();
+            replaceConfig(r + 1);
+        }
     }
 }

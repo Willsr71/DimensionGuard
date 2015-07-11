@@ -17,11 +17,11 @@ public class CommandDelete {
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
         if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
+        if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
+        if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
 
-        if(!plugin.commandUtils.doesDimensionExist(cs, dimension, "notRegisteredMessage")) return;
-
-        MystcraftUtils.instance.dimensions.remove(dimension);
-        MystcraftUtils.instance.save();
+        plugin.dimensions.remove(dimension);
+        plugin.save();
 
         plugin.commandDispatcher.sendFromConfig("delete.commands", player.getName(), dimension);
 

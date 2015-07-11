@@ -13,15 +13,20 @@ public class PlayerManager {
     }
 
     public void sendToWorldSpawn(Player player, String worldName){
-        World world = Bukkit.getWorld(worldName);
-        if(world == null || world.getName() == null){
+        String modifiedWorldName;
+        if(isValidDimension(worldName)) modifiedWorldName = worldName;
+        else if(isValidDimension("DIM" + worldName)) modifiedWorldName = "DIM" + worldName;
+        else if(isValidDimension("DIM_MYST" + worldName)) modifiedWorldName = "DIM_MYST" + worldName;
+        else{
             player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("invalidWorld"), worldName));
             return;
         }
+
+        World world = Bukkit.getWorld(modifiedWorldName);
         Location spawn = world.getSpawnLocation();
         tpPos(player, spawn);
 
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("teleportSuccess"), worldName));
+        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("teleportSuccess"), modifiedWorldName));
 
         if(player.hasPermission("mystcraftutils.lightning")) lightningEffect(world, world.getSpawnLocation());
     }
@@ -38,6 +43,10 @@ public class PlayerManager {
         loc.setX(loc.getX() + 0.5D);
         loc.setZ(loc.getZ() + 0.5D);
         player.teleport(loc);
+    }
+
+    public boolean isValidDimension(String worldName){
+        return Bukkit.getWorld(worldName) != null;
     }
 
     public void lightningEffect(World world, Location loc){

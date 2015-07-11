@@ -7,5 +7,6 @@ dependency-reduced-pom.xml
 /target/maven-archiver
 /target/maven-status
 /target/status
+/target/surefire
 /target/original-*
 /target/*-shaded.jar

@@ -21,10 +21,20 @@ public class CommandRemoveOwner {
         Player csPlayer = (Player) cs;
         String dimension = csPlayer.getWorld().getName();
         if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
-        if(!plugin.commandUtils.doesDimensionExist(cs, dimension, "notRegisteredMessage")) return;
-        if(!plugin.commandUtils.isOwner(cs, dimension, cs.getName(), "noDimPermission")) return;
-        if(!plugin.commandUtils.isOwner(cs, dimension, args[0], "removeOwner.messages.notFound")) return;
+        if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
+        if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
+        if(!plugin.commandUtils.isOwner(cs, dimension, args[0])){
+            plugin.commandUtils.sendMessage(cs.getName(), "removeOwner.messages.notFound", args[0], dimension);
+            return;
+        }
+        if(cs.getName().equals(args[0])){
+            cs.sendMessage(plugin.chatUtils.getString("errSelf"));
+            return;
+        }
 
         plugin.dimensions.get(dimension).removeOwner(args[0]);
+        plugin.save();
+
+        cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("removeOwner.messages.success"), dimension), args[0]));
     }
 }

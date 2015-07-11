@@ -1,6 +1,7 @@
 package net.willsr71.mystcraftutils;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
@@ -13,17 +14,17 @@ public class EventListener implements Listener{
         this.plugin = plugin;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void onQuit(PlayerQuitEvent event){
         if(plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.sendToSpawn(event.getPlayer());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void onKick(PlayerKickEvent event){
         if(plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.sendToSpawn(event.getPlayer());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void onJoin(PlayerJoinEvent event){
         if(plugin.config.getBoolean("autoSpawnLogin")) plugin.playerManager.sendToSpawn(event.getPlayer());
     }

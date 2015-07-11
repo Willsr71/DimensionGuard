@@ -22,14 +22,14 @@ public class CommandClaim {
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
         if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
-        if(plugin.commandUtils.doesDimensionExist(cs, dimension, "claim.messages.alreadyClaimed")) return;
+        if(plugin.commandUtils.isDimensionClaimed(cs, dimension)) return;
 
         List<String> owners = new ArrayList<>();
         List<String> members = new ArrayList<>();
         owners.add(player.getName());
 
-        MystcraftUtils.instance.dimensions.put(dimension, new DimensionData(dimension, owners, members));
-        MystcraftUtils.instance.save();
+        plugin.dimensions.put(dimension, new DimensionData(dimension, owners, members));
+        plugin.save();
 
         plugin.commandDispatcher.sendFromConfig("claim.commands", player.getName(), dimension);
 

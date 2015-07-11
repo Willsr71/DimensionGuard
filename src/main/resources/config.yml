@@ -29,7 +29,7 @@ debugCommands: false
 claim:
   messages:
     success: "&7You have successfully claimed dimension &6%dimension%"
-    alreadyClaimed: "&7Dimension &6%dimension%&7 is already claimed by %player%"
+    alreadyClaimed: "&7Dimension &6%dimension%&7 is already claimed by &6%player%"
   commands:
     - "/rg addowner -w %dimension% __global__ %player%"
     - "/rg flag -w %dimension% __global__ passthrough DENY"
@@ -44,6 +44,9 @@ delete:
   commands:
     - "/rg removeowner -w %dimension% __global__ -a"
     - "/rg removemember -w %dimension% __global__ -a"
+    - "/rg flag -w %dimension% __global__ passthrough"
+    - "/rg flag -w %dimension% __global__ build"
+    - "/rg flag -w %dimension% __global__ interact"
 
 # Called when an owner is added to a dimension
 addOwner:
@@ -58,8 +61,7 @@ addOwner:
 # Called when an owner is removed from a dimension
 removeOwner:
   messages:
-    toSender: "&7%player has been revoked '&6owner&7' for dimension &6%dimension%"
-    tpReceiver: "&7You have been revoked '&6owner&7' for dimension &6%dimension%"
+    success: "&7%player has been revoked '&6owner&7' for dimension &6%dimension%"
     notFound: "&6%player% &7is not an owner"
   commands:
     - "/rg removeowner -w %dimension% __global__ %player%"
@@ -77,8 +79,7 @@ addMember:
 # Called when a member is removed from a dimension
 removeMember:
   messages:
-    toSender: "&6%player% &7has been revoked '&6member&7' for dimension &6%dimension%"
-    toReceiver: "&7You have been revoked '&6member&7' for dimension &6%dimension%"
+    success: "&6%player% &7has been revoked '&6member&7' for dimension &6%dimension%"
     notFound: "&6%player% &7is not a member"
   commands:
     - "/rg removemember -w %dimension% __global__ %player%"
@@ -100,6 +101,7 @@ noDimPermission: "&4ERR: &cYou don't have permission in this dimension"
 noConsoleMessage: "&4ERR: &cOnly players can preform this command"
 invalidWorld: "&4ERR: &cThe specified world &6%dimension% &cis invalid"
 playerNotFound: "&4ERR: &cThe specified player could not be found"
+errSelf: "&4ERR: &cYou cannot preform this action on yourself"
 blacklistMessage: "&eWARNING: &7Blacklisted dimension. Event cancelled"
 notRegisteredMessage: "&7The dimension &6%dimension% &7is not registered. Have you tried claiming it?"
 teleportSuccess: "&7You have been teleported to dimension &6%dimension%"
@@ -108,6 +110,5 @@ teleportSuccess: "&7You have been teleported to dimension &6%dimension%"
 #####       No Touchie        #####
 ###################################
 dontTouch:
-  manualConfigReset: false
   version:
     seriouslyThisWillEraseYourConfig: 1.0

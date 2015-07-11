@@ -7,20 +7,58 @@ website: http://willsr71.net/
 commands:
   myst:
     description: Core command for MystcraftUtils
-    usage: /myst <command> <args>
+    usage: /myst
     aliases: [myst]
+  mystclaim:
+    usage: /myst claim
+  mystdelete:
+    usage: /myst delete
+  mystinfo:
+    usage: /myst info
+  mystkick:
+    usage: /myst kick <player>
+  mystlist:
+    usage: /myst list
+  mystlistown:
+    usage: /myst listown
+  mystspawn:
+    usage: /myst spawn
+  mysttpx:
+    usage: /myst tpx <dimension>
+  mystaddowner:
+    usage: /myst addowner <player>
+  mystaddmember:
+    usage: /myst addmember <player>
+  mystremoveowner:
+    usage: /myst removeowner <player>
+  mystremovemember:
+    usage: /myst removemember <player>
+  mystreload:
+    usage: /myst reload
 permissions:
   mystcraftutils.*:
     default: op
     description: Give access to all of everything
     children:
+      mystcraftutils.overrideowner: true
+      mystcraftutils.overridemember: false
       mystcraftutils.reload: true
+      mystcraftutils.tpx: true
       mystcraftutils.tp.others: true
       mystcraftutils.lightning: true
       mystcraftutils.kick: true
+  mystcraftutils.overrideowner:
+    default: op
+    description: Override dimension owner
+  mystcraftutils.overridemember:
+    default: false
+    description: Override dimension member
   mystcraftutils.reload:
     desfault: op
     description: The ability to reload plugin configs
+  mystcraft.tpx:
+      default: op
+      description: The ability to teleport to dimensions
   mystcraftutils.tp.others:
     default: op
     description: The ability to teleport others to spawn

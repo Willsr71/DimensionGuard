@@ -11,6 +11,13 @@ public class CommandUtils {
         this.plugin = plugin;
     }
 
+    public void sendMessage(String target, String configEntry, String player, String dimension){
+        String message = plugin.chatUtils.getString(configEntry);
+        message = plugin.chatUtils.replacePlayer(message, player);
+        message = plugin.chatUtils.replaceDim(message, dimension);
+        Bukkit.getPlayer(target).sendMessage(message);
+    }
+
     public boolean isConsoleSender(CommandSender cs){
         if(!(cs instanceof Player)) {
             cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
@@ -44,27 +51,50 @@ public class CommandUtils {
         return false;
     }
 
-    public boolean doesDimensionExist(CommandSender cs, String dimension, String message){
+    public boolean doesDimensionExist(CommandSender cs, String dimension){
         if(plugin.dimensions.containsKey(dimension)){
             return true;
         }
-        cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString(message), dimension), cs.getName()));
+        cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("notRegisteredMessage"), dimension));
         return false;
     }
 
-    public boolean isOwner(CommandSender cs, String dimension, String player, String message){
+    public boolean isDimensionClaimed(CommandSender cs, String dimension){
+        if(plugin.dimensions.containsKey(dimension)){
+            String owner = plugin.dimensions.get(dimension).getOwners().get(0);
+            cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("claim.messages.alreadyClaimed"), dimension), owner));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isOwner(CommandSender cs, String dimension, String player){
+        cs.sendMessage(player + " = " + plugin.dimensions.get(dimension).isOwner(player));
         if(plugin.dimensions.get(dimension).isOwner(player)){
             return true;
         }
-        cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString(message), dimension));
         return false;
     }
 
-    public boolean isMember(CommandSender cs, String dimension, String player, String message){
+    public boolean hasOwnerPermission(CommandSender cs, String dimension, String player){
+        if(hasPermission(cs, "mystcraftutils.overrideowner")) return true;
+        boolean owner = isOwner(cs, dimension, player);
+        if(!owner) sendMessage(cs.getName(), "noDimPermission", player, dimension);
+        return owner;
+    }
+
+    public boolean isMember(CommandSender cs, String dimension, String player){
+        cs.sendMessage(player + " = " + plugin.dimensions.get(dimension).isMember(player));
         if(plugin.dimensions.get(dimension).isMember(player)){
             return true;
         }
-        cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString(message), dimension));
         return false;
+    }
+
+    public boolean hasMemberPermission(CommandSender cs, String dimension, String player){
+        if(hasPermission(cs, "mystcraftutils.overridemember")) return true;
+        boolean member = isMember(cs, dimension, player);
+        if(!member) sendMessage(cs.getName(), "noDimPermission", player, dimension);
+        return member;
     }
 }

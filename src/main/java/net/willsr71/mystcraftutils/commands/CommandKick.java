@@ -13,11 +13,14 @@ public class CommandKick {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(!plugin.commandUtils.hasPermission(cs, "mystcraftutils.kick")) return;
+        if(plugin.commandUtils.isConsoleSender(cs)) return;
         if(args.length < 1){
             cs.sendMessage(plugin.chatUtils.parse("/myst kick <player>"));
             return;
         }
+
+        Player csPlayer= (Player) cs;
+        if(!(plugin.commandUtils.hasOwnerPermission(cs, csPlayer.getWorld().getName(), cs.getName()) || plugin.commandUtils.hasPermission(cs, "mystcraftutils.kick"))) return;
 
         Player player = Bukkit.getPlayer(args[0]);
         String dimension = player.getWorld().getName();

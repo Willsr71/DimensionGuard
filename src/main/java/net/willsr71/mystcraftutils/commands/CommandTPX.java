@@ -13,6 +13,7 @@ public class CommandTPX {
 
     public void run(CommandSender cs, String[] args){
         if(plugin.commandUtils.isConsoleSender(cs)) return;
+        if(!plugin.commandUtils.hasPermission(cs, "mystcraftutils.tpx")) return;
         if(args.length != 1){
             cs.sendMessage("/tpx <dimension>");
             return;

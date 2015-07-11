@@ -17,11 +17,18 @@ public class CommandClaim {
 
     public void run(CommandSender cs, String[] args){
         if(plugin.commandUtils.isConsoleSender(cs)) return;
-
         Player player = (Player) cs;
+        claim(player);
+    }
+
+    public void claim(Player player){
         String dimension = player.getWorld().getName();
-        if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
-        if(plugin.commandUtils.isDimensionClaimed(cs, dimension)) return;
+        if(plugin.commandUtils.isBlacklistedDimension(player, dimension)) return;
+        if(plugin.commandUtils.isDimensionClaimed(player, dimension)) return;
+        if(plugin.commandUtils.isAnyOwner(player)){
+            plugin.commandUtils.sendMessage(player.getName(), "dimensionMaxExceeded", player.getName(), dimension);
+            return;
+        }
 
         List<String> owners = new ArrayList<>();
         List<String> members = new ArrayList<>();
@@ -32,6 +39,6 @@ public class CommandClaim {
 
         plugin.commandDispatcher.sendFromConfig("claim.commands", player.getName(), dimension);
 
-        cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("claim.messages.success"), dimension));
+        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("claim.messages.success"), dimension));
     }
 }

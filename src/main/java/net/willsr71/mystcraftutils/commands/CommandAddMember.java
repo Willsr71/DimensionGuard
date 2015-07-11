@@ -27,11 +27,11 @@ public class CommandAddMember {
 
         Player player = Bukkit.getPlayer(args[0]);
         if(!plugin.commandUtils.isPlayer(cs, args[0])) return;
-        if(plugin.commandUtils.isOwner(cs, dimension, args[0])){
+        if(plugin.commandUtils.isOwner(dimension, args[0])){
             plugin.commandUtils.sendMessage(cs.getName(), "addMember.messages.alreadyOwner", args[0], dimension);
             return;
         }
-        if(plugin.commandUtils.isMember(cs, dimension, args[0])){
+        if(plugin.commandUtils.isMember(dimension, args[0])){
             plugin.commandUtils.sendMessage(cs.getName(), "addMember.messages.alreadyMember", args[0], dimension);
         }
 

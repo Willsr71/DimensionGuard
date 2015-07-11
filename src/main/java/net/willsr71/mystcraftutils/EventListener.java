@@ -3,6 +3,7 @@ package net.willsr71.mystcraftutils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -27,5 +28,11 @@ public class EventListener implements Listener{
     @EventHandler(priority = EventPriority.HIGH)
     public void onJoin(PlayerJoinEvent event){
         if(plugin.config.getBoolean("autoSpawnLogin")) plugin.playerManager.sendToSpawn(event.getPlayer());
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onDimensionChange(PlayerChangedWorldEvent event){
+        plugin.commandBase.commandClaim.claim(event.getPlayer());
+        plugin.playerManager.autoKick(event.getPlayer());
     }
 }

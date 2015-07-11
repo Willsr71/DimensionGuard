@@ -2,7 +2,7 @@
 #####  MystcraftUtils Config  #####
 ###################################
 
-# World that players spawn in. Most often the overworld
+# World that players spawn in. This will be the same as the world location in server.properties
 spawnWorld: "world"
 
 # Dimensions that players cannot claim and will not be auto-teleported in
@@ -10,6 +10,7 @@ blacklistedDimensions:
  - "world"
  - "Overworld"
  - "DIM1"
+ - "DIM-1"
 
 # Whether players will get auto-teleported to spawn on logout
 autoSpawnLogin: true
@@ -39,11 +40,11 @@ claim:
 
 # Called when a claim (and the dimension along with it) is deleted
 delete:
-  # Number of letters of the UID a player must type in before they can delete a world. The longer the less chance of accidential deletion
+  # Number of letters of the UID a player must enter before they can delete a world. The longer the less chance of accidential deletion
   uidchars: 8
   messages:
     success: "&7Dimension &6%dimension%&7 has been deleted"
-    confirm: "&eWARNING: &cYou are about to delete this age.\nType '/myst delete confirm <age_name> %uid%' to delete this age."
+    confirm: "&eWARNING: &cYou are about to delete this age. Type\n'/myst delete confirm <age_name> %uid%' to delete this age."
   commands:
     - "/rg removeowner -w %dimension% __global__ -a"
     - "/rg removemember -w %dimension% __global__ -a"
@@ -53,18 +54,22 @@ delete:
 
 # Called when an owner is added to a dimension
 addOwner:
+  # Number of letters of the UID a player must type enter before they can add an owner.
+  uidchars: 6
   messages:
     toSender: "&6%player% &7has been granted '&6owner&7' for dimension &6%dimension%"
     toReceiver: "&7You have been granted '&6owner&7' for dimension &6%dimension%"
     alreadyOwner: "&6%player% &7is already an owner"
     alreadyMember: "&6%player% &7is already a member. Removing player as a member"
+    alreadyOwnerOtherDim: "&6%player% &7has exceeded their maximum number of dimensions. Cannot promote to owner"
+    confirm: "&eWARNING: &cOwners have the ability to delete ages. Type\n'/myst addowner <player> confirm <age_name> %uid%' to add an owner."
   commands:
     - "/rg addowner -w %dimension% __global__ %player%"
 
 # Called when an owner is removed from a dimension
 removeOwner:
   messages:
-    success: "&7%player has been revoked '&6owner&7' for dimension &6%dimension%"
+    success: "&7%player% &7has been revoked '&6owner&7' for dimension &6%dimension%"
     notFound: "&6%player% &7is not an owner"
   commands:
     - "/rg removeowner -w %dimension% __global__ %player%"
@@ -99,10 +104,11 @@ kick:
 #####      Misc Messages      #####
 ###################################
 
-noPermission: "&4ERR: &cYou don't have permission to execute this command"
+noPermission: "&4ERR: &cYou don't have permission"
 noDimPermission: "&4ERR: &cYou don't have permission in this dimension"
 noConsoleMessage: "&4ERR: &cOnly players can preform this command"
 invalidWorld: "&4ERR: &cThe specified world &6%dimension% &cis invalid"
+dimensionMaxExceeded: "&4ERR: &cYou have exceeded your maximum number of dimensions"
 playerNotFound: "&4ERR: &cThe specified player could not be found"
 errSelf: "&4ERR: &cYou cannot preform this action on yourself"
 blacklistMessage: "&eWARNING: &7Blacklisted dimension. Event cancelled"

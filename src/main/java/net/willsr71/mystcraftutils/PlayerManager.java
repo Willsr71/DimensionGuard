@@ -24,11 +24,11 @@ public class PlayerManager {
             return;
         }
 
+        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("teleportSuccess"), modifiedWorldName));
+
         World world = Bukkit.getWorld(modifiedWorldName);
         Location spawn = world.getSpawnLocation();
         tpPos(player, spawn);
-
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("teleportSuccess"), modifiedWorldName));
 
         if(player.hasPermission("mystcraftutils.lightning")) lightningEffect(world, world.getSpawnLocation());
     }
@@ -45,6 +45,14 @@ public class PlayerManager {
         World world = Bukkit.getWorld(dimension);
         List<Player> players = world.getPlayers();
         for(Player player : players){
+            sendToSpawn(player);
+        }
+    }
+
+    public void autoKick(Player player){
+        String world = player.getWorld().getName();
+        String name = player.getName();
+        if(!(plugin.commandUtils.hasOwnerPermission(player, world, name) || plugin.commandUtils.hasMemberPermission(player, world, name))){
             sendToSpawn(player);
         }
     }

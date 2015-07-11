@@ -68,8 +68,15 @@ public class CommandUtils {
         return false;
     }
 
-    public boolean isOwner(CommandSender cs, String dimension, String player){
-        cs.sendMessage(player + " = " + plugin.dimensions.get(dimension).isOwner(player));
+    public boolean isAnyOwner(Player player){
+        for(String dim : plugin.dimensions.keySet()){
+            if(plugin.dimensions.get(dim).isOwner(player.getName())) return true;
+        }
+        return false;
+    }
+
+    public boolean isOwner(String dimension, String player){
+        if(plugin.dimensions.get(dimension) == null) return false;
         if(plugin.dimensions.get(dimension).isOwner(player)){
             return true;
         }
@@ -78,13 +85,13 @@ public class CommandUtils {
 
     public boolean hasOwnerPermission(CommandSender cs, String dimension, String player){
         if(hasPermission(cs, "mystcraftutils.overrideowner")) return true;
-        boolean owner = isOwner(cs, dimension, player);
+        boolean owner = isOwner(dimension, player);
         if(!owner) sendMessage(cs.getName(), "noDimPermission", player, dimension);
         return owner;
     }
 
-    public boolean isMember(CommandSender cs, String dimension, String player){
-        cs.sendMessage(player + " = " + plugin.dimensions.get(dimension).isMember(player));
+    public boolean isMember(String dimension, String player){
+        if(plugin.dimensions.get(dimension) == null) return false;
         if(plugin.dimensions.get(dimension).isMember(player)){
             return true;
         }
@@ -93,7 +100,7 @@ public class CommandUtils {
 
     public boolean hasMemberPermission(CommandSender cs, String dimension, String player){
         if(hasPermission(cs, "mystcraftutils.overridemember")) return true;
-        boolean member = isMember(cs, dimension, player);
+        boolean member = isMember(dimension, player);
         if(!member) sendMessage(cs.getName(), "noDimPermission", player, dimension);
         return member;
     }

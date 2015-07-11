@@ -5,8 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-
 public class CommandDelete {
     private MystcraftUtils plugin;
 
@@ -34,14 +32,14 @@ public class CommandDelete {
             return;
         }
 
-        plugin.playerManager.sendAllToSpawn(dimension);
-        plugin.dimensions.remove(dimension);
-        plugin.save();
-
-        Bukkit.unloadWorld(dimension, true);
+        for(Player p : Bukkit.getOnlinePlayers()){
+            p.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("delete.messages.success"), dimension));
+        }
 
         plugin.commandDispatcher.sendFromConfig("delete.commands", player.getName(), dimension);
-
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("delete.messages.success"), dimension));
+        plugin.playerManager.sendAllToSpawn(dimension);
+        plugin.dimensions.remove(dimension);
+        plugin.worldManager.deleteWorld(dimension);
+        plugin.save();
     }
 }

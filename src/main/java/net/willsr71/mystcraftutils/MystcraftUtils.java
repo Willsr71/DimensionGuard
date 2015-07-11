@@ -20,6 +20,7 @@ public class MystcraftUtils extends JavaPlugin {
     public CommandUtils commandUtils;
     public PlayerManager playerManager;
     public CommandDispatcher commandDispatcher;
+    public WorldManager worldManager;
 
     public static String version = "1.0";
     public HashMap<String, DimensionData> dimensions = new HashMap<>();
@@ -33,6 +34,7 @@ public class MystcraftUtils extends JavaPlugin {
         commandUtils = new CommandUtils(this);
         playerManager = new PlayerManager(this);
         commandDispatcher = new CommandDispatcher(this);
+        worldManager = new WorldManager(this);
         reload();
 
         this.getCommand("myst").setExecutor(commandBase);

@@ -23,7 +23,7 @@ public class CommandRemoveOwner {
         if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
         if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
         if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
-        if(!plugin.commandUtils.isOwner(cs, dimension, args[0])){
+        if(!plugin.commandUtils.isOwner(dimension, args[0])){
             plugin.commandUtils.sendMessage(cs.getName(), "removeOwner.messages.notFound", args[0], dimension);
             return;
         }

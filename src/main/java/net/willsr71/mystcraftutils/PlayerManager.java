@@ -5,6 +5,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
 public class PlayerManager {
     private MystcraftUtils plugin;
 
@@ -37,6 +39,14 @@ public class PlayerManager {
             return;
         }
         sendToWorldSpawn(player, plugin.config.getString("spawnWorld"));
+    }
+
+    public void sendAllToSpawn(String dimension){
+        World world = Bukkit.getWorld(dimension);
+        List<Player> players = world.getPlayers();
+        for(Player player : players){
+            sendToSpawn(player);
+        }
     }
 
     public void tpPos(Player player, Location loc){

@@ -2,7 +2,6 @@ package net.willsr71.mystcraftutils.commands;
 
 import net.willsr71.mystcraftutils.DimensionData;
 import net.willsr71.mystcraftutils.MystcraftUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 

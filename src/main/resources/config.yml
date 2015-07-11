@@ -39,8 +39,11 @@ claim:
 
 # Called when a claim (and the dimension along with it) is deleted
 delete:
+  # Number of letters of the UID a player must type in before they can delete a world. The longer the less chance of accidential deletion
+  uidchars: 8
   messages:
     success: "&7Dimension &6%dimension%&7 has been deleted"
+    confirm: "&eWARNING: &cYou are about to delete this age.\nType '/myst delete confirm <age_name> %uid%' to delete this age."
   commands:
     - "/rg removeowner -w %dimension% __global__ -a"
     - "/rg removemember -w %dimension% __global__ -a"

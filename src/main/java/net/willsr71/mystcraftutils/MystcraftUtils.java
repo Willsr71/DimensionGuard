@@ -50,6 +50,10 @@ public class MystcraftUtils extends JavaPlugin {
     public void save(){
         Set<String> dims = dimensions.keySet();
         getLogger().info("Saving " + dims.size() + " dimensions...");
+        for (String dim : dimensionConfig.getKeys(false)){
+            dimensionConfig.set(dim, null);
+        }
+
         for (String dim : dims) {
             DimensionData dimData = dimensions.get(dim);
 

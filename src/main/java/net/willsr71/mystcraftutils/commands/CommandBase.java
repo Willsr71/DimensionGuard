@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 
 public class CommandBase extends Command implements CommandExecutor {
     private MystcraftUtils plugin;
+    public CommandAddMember commandAddMember;
+    public CommandAddOwner commandAddOwner;
     public CommandClaim commandClaim;
     public CommandDelete commandDelete;
     public CommandHelp commandHelp;
@@ -15,11 +17,16 @@ public class CommandBase extends Command implements CommandExecutor {
     public CommandList commandList;
     public CommandListOwn commandListOwn;
     public CommandReload commandReload;
+    public CommandRemoveMember commandRemoveMember;
+    public CommandRemoveOwner commandRemoveOwner;
     public CommandSpawn commandSpawn;
+    public CommandTPX commandTPX;
 
     public CommandBase(MystcraftUtils plugin, String name) {
         super(name);
         this.plugin = plugin;
+        commandAddMember = new CommandAddMember(plugin);
+        commandAddOwner = new CommandAddOwner(plugin);
         commandClaim = new CommandClaim(plugin);
         commandDelete = new CommandDelete(plugin);
         commandHelp = new CommandHelp(plugin);
@@ -28,7 +35,10 @@ public class CommandBase extends Command implements CommandExecutor {
         commandList = new CommandList(plugin);
         commandListOwn = new CommandListOwn(plugin);
         commandReload = new CommandReload(plugin);
+        commandRemoveMember = new CommandRemoveMember(plugin);
+        commandRemoveOwner = new CommandRemoveOwner(plugin);
         commandSpawn = new CommandSpawn(plugin);
+        commandTPX = new CommandTPX(plugin);
     }
 
     @Override
@@ -56,14 +66,19 @@ public class CommandBase extends Command implements CommandExecutor {
         }
         if(!command.equals("myst")) return false;
 
-        if(subcommand.equals("claim")) commandClaim.run(cs, argsToSend);
+        if(subcommand.equals("addmember")) commandAddMember.run(cs, argsToSend);
+        else if(subcommand.equals("addowner")) commandAddOwner.run(cs, argsToSend);
+        else if(subcommand.equals("claim")) commandClaim.run(cs, argsToSend);
         else if(subcommand.equals("delete")) commandDelete.run(cs, argsToSend);
         else if(subcommand.equals("info")) commandInfo.run(cs, argsToSend);
         else if(subcommand.equals("kick")) commandKick.run(cs, argsToSend);
         else if(subcommand.equals("list")) commandList.run(cs, argsToSend);
         else if(subcommand.equals("listown")) commandListOwn.run(cs, argsToSend);
         else if(subcommand.equals("reload")) commandReload.run(cs, argsToSend);
+        else if(subcommand.equals("removemember")) commandRemoveMember.run(cs, argsToSend);
+        else if(subcommand.equals("removeowner")) commandRemoveOwner.run(cs, argsToSend);
         else if(subcommand.equals("spawn")) commandSpawn.run(cs, argsToSend);
+        else if(subcommand.equals("tpx")) commandTPX.run(cs, argsToSend);
         else commandHelp.run(cs);
         return true;
     }

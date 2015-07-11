@@ -5,7 +5,6 @@ import net.willsr71.mystcraftutils.MystcraftUtils;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
-import java.util.Set;
 
 public class CommandListOwn {
     private MystcraftUtils plugin;

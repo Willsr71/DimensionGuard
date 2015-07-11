@@ -3,14 +3,13 @@
 ###################################
 
 # World that players spawn in. Most often the overworld
-spawnWorld: "LandOfWarfare"
+spawnWorld: "world"
 
 # Dimensions that players cannot claim and will not be auto-teleported in
 blacklistedDimensions:
  - "world"
  - "Overworld"
- - "Overworld_the_End"
- - "LandOfWarfare"
+ - "DIM1"
 
 # Whether players will get auto-teleported to spawn on logout
 autoSpawnLogin: true
@@ -27,60 +26,82 @@ executeCommandsAsConsole: true
 debugCommands: false
 
 # Called when someone claims a dimension
-onClaim:
-  - "/rg addowner -w %dimension% __global__ %player%"
-  - "/rg flag -w %dimension% __global__ passthrough DENY"
-  - "/rg flag -w %dimension% __global__ build DENY"
-  - "/rg flag -w %dimension% __global__ interact DENY"
-  - "/rg flag -w %dimension% __global__ entry-deny-message This dimension has been claimed by %player%"
+claim:
+  messages:
+    success: "&7You have successfully claimed dimension &6%dimension%"
+    alreadyClaimed: "&7Dimension &6%dimension%&7 is already claimed by %player%"
+  commands:
+    - "/rg addowner -w %dimension% __global__ %player%"
+    - "/rg flag -w %dimension% __global__ passthrough DENY"
+    - "/rg flag -w %dimension% __global__ build DENY"
+    - "/rg flag -w %dimension% __global__ interact DENY"
+    - "/rg flag -w %dimension% __global__ entry-deny-message This dimension has been claimed by %player%"
 
 # Called when a claim (and the dimension along with it) is deleted
-onDelete:
-  - "/rg removeowner -w %dimension% __global__ -a"
-  - "/rg removemember -w %dimension% __global__ -a"
+delete:
+  messages:
+    success: "&7Dimension &6%dimension%&7 has been deleted"
+  commands:
+    - "/rg removeowner -w %dimension% __global__ -a"
+    - "/rg removemember -w %dimension% __global__ -a"
 
 # Called when an owner is added to a dimension
-onAddOwner:
-  - "/rg addowner -w %dimension% __global__ %player%"
+addOwner:
+  messages:
+    toSender: "&6%player% &7has been granted '&6owner&7' for dimension &6%dimension%"
+    toReceiver: "&7You have been granted '&6owner&7' for dimension &6%dimension%"
+    alreadyOwner: "&6%player% &7is already an owner"
+  commands:
+    - "/rg addowner -w %dimension% __global__ %player%"
 
 # Called when an owner is removed from a dimension
-onRemoveOwner:
-  - "/rg removeowner -w %dimension% __global__ %player%"
+removeOwner:
+  messages:
+    toSender: "&7%player has been revoked '&6owner&7' for dimension &6%dimension%"
+    tpReceiver: "&7You have been revoked '&6owner&7' for dimension &6%dimension%"
+    notFound: "&6%player% &7is not an owner"
+  commands:
+    - "/rg removeowner -w %dimension% __global__ %player%"
 
 # Called when a member is added to a dimension
-onAddMember:
-  - "/rg addmember -w %dimension% __global__ %player%"
+addMember:
+  messages:
+    toSender: "&6%player% &7has been granted '&6member&7' for dimension &6%dimension%"
+    toReceiver: "&7You have been granted '&6member&7' for dimension &6%dimension%"
+    alreadyOwner: "&6%player% &7is already an owner"
+    alreadyMember: "&6%player% &7is already a member"
+  commands:
+    - "/rg addmember -w %dimension% __global__ %player%"
 
 # Called when a member is removed from a dimension
-onRemoveMember:
-  - "/rg removemember -w %dimension% __global__ %player%"
+removeMember:
+  messages:
+    toSender: "&6%player% &7has been revoked '&6member&7' for dimension &6%dimension%"
+    toReceiver: "&7You have been revoked '&6member&7' for dimension &6%dimension%"
+    notFound: "&6%player% &7is not a member"
+  commands:
+    - "/rg removemember -w %dimension% __global__ %player%"
+
+# Called when a player is kicked from a dimension
+# %player% in this case is the player being kicked
+kick:
+  messages:
+    toSender: "&6%player% &7has been kicked from dimension &6%dimension%"
+    toReceiver: "&7You have been kicked from dimension &6%dimension%"
+  commands: []
 
 ###################################
-#####        Messages         #####
+#####      Misc Messages      #####
 ###################################
 
-noPermission: "&cYou don't have permission"
-idMessage: "&7Dimension name: &6%dimension%"
-claimMessage: "&7You have successfully claimed dimension &6%dimension%"
-alreadyClaimedMessage: "&7Dimension &6%dimension%&7 is already claimed by %player%"
-deleteMessage: "&7Dimension &6%dimension%&7 has been deleted"
-spawnMessage: "&7You have been sent to spawn from %dimension%"
-blacklistMessage: "&7Blacklisted dimension. Event cancelled"
-reloadMessage: "&7Config has been reloaded"
-noConsoleMessage: "&7Only players can preform this command"
+noPermission: "&4ERR: &cYou don't have permission to execute this command"
+noDimPermission: "&4ERR: &cYou don't have permission in this dimension"
+noConsoleMessage: "&4ERR: &cOnly players can preform this command"
+invalidWorld: "&4ERR: &cThe specified world &6%dimension% &cis invalid"
+playerNotFound: "&4ERR: &cThe specified player could not be found"
+blacklistMessage: "&eWARNING: &7Blacklisted dimension. Event cancelled"
 notRegisteredMessage: "&7The dimension &6%dimension% &7is not registered"
-invalidSpawnWorld: "&7Spawn world %dimension% specified in config is invalid"
-
-sendOwnerAddMessage: "&6%player% &7has been granted '&6owner&7' for dimension &6%dimension%"
-recvOwnerAddMessage: "&7You have been granted '&6owner&7' for dimension &6%dimension%"
-sendOwnerRemoveMessage: "&7%player has been revoked '&6owner&7' for dimension &6%dimension%"
-recvOwnerRemoveMessage: "&7You have been revoked '&6owner&7' for dimension &6%dimension%"
-sendMemberAddMessage: "&6%player% &7has been granted '&6member&7' for dimension &6%dimension%"
-recvMemberAddMessage: "&7You have been granted '&6member&7' for dimension &6%dimension%"
-sendMemberRemoveMessage: "&6%player% &7has been revoked '&6member&7' for dimension &6%dimension%"
-recvMemberRemoveMessage: "&7You have been revoked '&6member&7' for dimension &6%dimension%"
-sendKickMessage: "&6%player% &7has been kicked from dimension &6%dimension%"
-recvKickMessage: "&7You have been kicked from dimension &6%dimension%"
+teleportSuccess: "&7You have been teleported to dimension &6%dimension%"
 
 ###################################
 #####       No Touchie        #####

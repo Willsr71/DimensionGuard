@@ -12,6 +12,6 @@ public class CommandReload {
 
     public void run(CommandSender cs, String[] args){
         MystcraftUtils.instance.reload();
-        cs.sendMessage(plugin.chatUtils.getString("reloadMessage"));
+        cs.sendMessage(plugin.chatUtils.parse("&7Configuration has been reloaded"));
     }
 }

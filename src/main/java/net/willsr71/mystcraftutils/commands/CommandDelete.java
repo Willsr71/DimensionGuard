@@ -17,14 +17,14 @@ public class CommandDelete {
             return;
         }
         Player player = (Player) cs;
-        if(MystcraftUtils.instance.config.getStringList("blacklistedDimensions").contains(player.getWorld().getName())){
+        if(plugin.config.getStringList("blacklistedDimensions").contains(player.getWorld().getName())){
             player.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
             return;
         }
 
         String dimension = player.getWorld().getName();
 
-        if(!MystcraftUtils.instance.dimensions.containsKey(dimension)){
+        if(!plugin.dimensions.containsKey(dimension)){
             player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("notRegisteredMessage"), dimension));
             return;
         }
@@ -32,8 +32,8 @@ public class CommandDelete {
         MystcraftUtils.instance.dimensions.remove(dimension);
         MystcraftUtils.instance.save();
 
-        plugin.commandDispatcher.sendFromConfig("onDelete", player.getName(), dimension);
+        plugin.commandDispatcher.sendFromConfig("delete.commands", player.getName(), dimension);
 
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("deleteMessage"), dimension));
+        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("delete.messages.success"), dimension));
     }
 }

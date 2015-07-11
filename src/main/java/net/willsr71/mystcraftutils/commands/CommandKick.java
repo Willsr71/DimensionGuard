@@ -23,11 +23,13 @@ public class CommandKick {
         }
 
         Player player = Bukkit.getPlayer(args[0]);
-
         String dimension = player.getWorld().getName();
-        cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("sendKickMessage"), player.getName()), dimension));
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("recvKickMessage"), dimension));
 
         plugin.playerManager.sendToSpawn(player);
+
+        plugin.commandDispatcher.sendFromConfig("kick.commands", player.getName(), dimension);
+
+        cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("kick.messages.toSender"), player.getName()), dimension));
+        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("kick.messages.toReceiver"), dimension));
     }
 }

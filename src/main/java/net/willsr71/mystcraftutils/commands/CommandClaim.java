@@ -23,14 +23,14 @@ public class CommandClaim {
         }
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
-        if(MystcraftUtils.instance.config.getStringList("blacklistedDimensions").contains(dimension)){
+        if(plugin.config.getStringList("blacklistedDimensions").contains(dimension)){
             player.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
             return;
         }
-        if(MystcraftUtils.instance.dimensions.containsKey(dimension)){
-            DimensionData dimData = MystcraftUtils.instance.dimensions.get(dimension);
+        if(plugin.dimensions.containsKey(dimension)){
+            DimensionData dimData = plugin.dimensions.get(dimension);
             Player owner = Bukkit.getPlayer(dimData.getOwners().get(0));
-            player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("alreadyClaimedMessage"), owner.getName()), dimension));
+            player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("claim.messages.alreadyClaimed"), owner.getName()), dimension));
             return;
         }
 
@@ -41,8 +41,8 @@ public class CommandClaim {
         MystcraftUtils.instance.dimensions.put(dimension, new DimensionData(dimension, owners, members));
         MystcraftUtils.instance.save();
 
-        plugin.commandDispatcher.sendFromConfig("onClaim", player.getName(), dimension);
+        plugin.commandDispatcher.sendFromConfig("claim.commands", player.getName(), dimension);
 
-        cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("claimMessage"), dimension));
+        cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("claim.messages.success"), dimension));
     }
 }

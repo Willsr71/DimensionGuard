@@ -12,24 +12,26 @@ public class PlayerManager {
         this.plugin = plugin;
     }
 
+    public void sendToWorldSpawn(Player player, String worldName){
+        World world = Bukkit.getWorld(worldName);
+        if(world == null || world.getName() == null){
+            player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("invalidWorld"), worldName));
+            return;
+        }
+        Location spawn = world.getSpawnLocation();
+        tpPos(player, spawn);
+
+        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("teleportSuccess"), worldName));
+
+        if(player.hasPermission("mystcraftutils.lightning")) lightningEffect(world, world.getSpawnLocation());
+    }
+
     public void sendToSpawn(Player player){
         if(plugin.config.getStringList("blacklistedDimensions").contains(player.getWorld().getName())){
             player.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
             return;
         }
-        String olddimension = player.getWorld().getName();
-        World spawnWorld = Bukkit.getWorld(plugin.config.getString("spawnWorld"));
-        if(spawnWorld == null){
-            plugin.getLogger().warning("Invalid spawn world: " + plugin.config.getString("spawnWorld"));
-            player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("invalidSpawnWorld"), plugin.config.getString("spawnWorld")));
-            return;
-        }
-        Location spawn = spawnWorld.getSpawnLocation();
-        tpPos(player, spawn);
-
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("spawnMessage"), olddimension));
-
-        if(player.hasPermission("mystcraftutils.lightning")) lightningEffect(spawnWorld, spawnWorld.getSpawnLocation());
+        sendToWorldSpawn(player, plugin.config.getString("spawnWorld"));
     }
 
     public void tpPos(Player player, Location loc){
@@ -39,14 +41,17 @@ public class PlayerManager {
     }
 
     public void lightningEffect(World world, Location loc){
-        Location toStrike = loc.clone();
-        int s = 5;
+        for(int x = 0; x < 50; x++){
+            world.strikeLightningEffect(loc);
+        }
+        /*Location toStrike = loc.clone();
+        int s = 3;
         for(int x = -s; x < s; x++){
             toStrike.setX(loc.getX() + x);
             for(int z = -s; z < s; z++){
                 toStrike.setZ(loc.getZ() + z);
                 world.strikeLightningEffect(toStrike);
             }
-        }
+        }*/
     }
 }

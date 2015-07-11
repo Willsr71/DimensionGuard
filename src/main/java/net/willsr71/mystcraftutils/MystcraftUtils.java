@@ -67,6 +67,7 @@ public class MystcraftUtils extends JavaPlugin {
         if(configVersion == null || !configVersion.equals(version) || manualOverwrite){
             configManager.replaceConfig();
             config = configManager.getConfig();
+            reload();
         }
 
         Set<String> dims = dimensionConfig.getKeys(false);

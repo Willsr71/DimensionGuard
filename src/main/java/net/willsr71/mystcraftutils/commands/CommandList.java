@@ -34,7 +34,7 @@ public class CommandList {
             }
             if(owners.equals("&7Owners:")) owners = owners + " &6None";
             else owners = owners.substring(0,owners.length()-3);
-            if(!members.equals("&7Members:")) members = members + " &6None";
+            if(members.equals("&7Members:")) members = members + " &6None";
             else members = members.substring(0,members.length()-3);
 
             cs.sendMessage(plugin.chatUtils.parse("&7Dimension name: &6" + dimData.getName()));

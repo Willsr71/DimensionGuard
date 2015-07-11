@@ -4,10 +4,10 @@ import net.willsr71.mystcraftutils.MystcraftUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandSpawn {
+public class CommandTPX {
     private MystcraftUtils plugin;
 
-    public CommandSpawn(MystcraftUtils plugin){
+    public CommandTPX(MystcraftUtils plugin){
         this.plugin = plugin;
     }
 
@@ -16,8 +16,12 @@ public class CommandSpawn {
             cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
             return;
         }
+        if(args.length != 1){
+            cs.sendMessage("/tpx <dimension>");
+            return;
+        }
         Player player = (Player) cs;
 
-        plugin.playerManager.sendToSpawn(player);
+        plugin.playerManager.sendToWorldSpawn(player, args[0]);
     }
 }

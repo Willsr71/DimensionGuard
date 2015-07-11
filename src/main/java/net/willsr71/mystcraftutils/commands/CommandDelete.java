@@ -25,12 +25,14 @@ public class CommandDelete {
         String dimension = player.getWorld().getName();
 
         if(!MystcraftUtils.instance.dimensions.containsKey(dimension)){
-            player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("dimNotRegisteredMessage"), dimension));
+            player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("notRegisteredMessage"), dimension));
             return;
         }
 
         MystcraftUtils.instance.dimensions.remove(dimension);
         MystcraftUtils.instance.save();
+
+        plugin.commandDispatcher.sendFromConfig("onDelete", player.getName(), dimension);
 
         player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("deleteMessage"), dimension));
     }

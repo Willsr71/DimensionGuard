@@ -8,7 +8,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 
 public class MystcraftUtils extends JavaPlugin {
     public static MystcraftUtils instance;
@@ -19,6 +18,7 @@ public class MystcraftUtils extends JavaPlugin {
     public Configuration dimensionConfig;
     public ChatUtils chatUtils;
     public PlayerManager playerManager;
+    public CommandDispatcher commandDispatcher;
 
     public static String version = "1.0";
     public HashMap<String, DimensionData> dimensions = new HashMap<>();
@@ -30,6 +30,7 @@ public class MystcraftUtils extends JavaPlugin {
         commandBase = new CommandBase(this, "myst");
         chatUtils = new ChatUtils(this);
         playerManager = new PlayerManager(this);
+        commandDispatcher = new CommandDispatcher(this);
         reload();
 
         this.getCommand("myst").setExecutor(commandBase);
@@ -69,11 +70,13 @@ public class MystcraftUtils extends JavaPlugin {
         }
 
         Set<String> dims = dimensionConfig.getKeys(false);
+        getLogger().info("Loading " + dims.size() + " dimensions...");
         for(String dim : dims){
             List<String> owners = dimensionConfig.getStringList(dim + ".owners");
             List<String> members = dimensionConfig.getStringList(dim + ".members");
             DimensionData dimData = new DimensionData(dim, owners, members);
             dimensions.put(dim, dimData);
         }
+        getLogger().info("Done");
     }
 }

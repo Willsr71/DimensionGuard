@@ -10,9 +10,10 @@ public class CommandBase extends Command implements CommandExecutor {
     public CommandClaim commandClaim;
     public CommandDelete commandDelete;
     public CommandHelp commandHelp;
-    public CommandID commandID;
+    public CommandInfo commandInfo;
     public CommandKick commandKick;
     public CommandList commandList;
+    public CommandListOwn commandListOwn;
     public CommandReload commandReload;
     public CommandSpawn commandSpawn;
 
@@ -22,9 +23,10 @@ public class CommandBase extends Command implements CommandExecutor {
         commandClaim = new CommandClaim(plugin);
         commandDelete = new CommandDelete(plugin);
         commandHelp = new CommandHelp(plugin);
-        commandID = new CommandID(plugin);
+        commandInfo = new CommandInfo(plugin);
         commandKick = new CommandKick(plugin);
         commandList = new CommandList(plugin);
+        commandListOwn = new CommandListOwn(plugin);
         commandReload = new CommandReload(plugin);
         commandSpawn = new CommandSpawn(plugin);
     }
@@ -56,9 +58,10 @@ public class CommandBase extends Command implements CommandExecutor {
 
         if(subcommand.equals("claim")) commandClaim.run(cs, argsToSend);
         else if(subcommand.equals("delete")) commandDelete.run(cs, argsToSend);
-        else if(subcommand.equals("id")) commandID.run(cs, argsToSend);
+        else if(subcommand.equals("info")) commandInfo.run(cs, argsToSend);
         else if(subcommand.equals("kick")) commandKick.run(cs, argsToSend);
         else if(subcommand.equals("list")) commandList.run(cs, argsToSend);
+        else if(subcommand.equals("listown")) commandListOwn.run(cs, argsToSend);
         else if(subcommand.equals("reload")) commandReload.run(cs, argsToSend);
         else if(subcommand.equals("spawn")) commandSpawn.run(cs, argsToSend);
         else commandHelp.run(cs);

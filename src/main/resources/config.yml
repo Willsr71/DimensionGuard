@@ -19,35 +19,47 @@ autoSpawnLogout: true
 ###################################
 #####         Events          #####
 ###################################
+# Usable variables are %dimension% and %player%
+
+# Executing as console solves some permission issues and keeps the player from recieving unwanted spam
+executeCommandsAsConsole: true
+# Sends you a message containing the command executed.
+debugCommands: false
 
 # Called when someone claims a dimension
 onClaim:
-  - "/rg -w %dimension% addowner __global__ %player%"
-  - "/rg -w %dimension% flag __global__ entry DENY"
-  - "/rg -w %dimension% flag __global__ entry-deny-message This dimension has been claimed by %player%"
+  - "/rg addowner -w %dimension% __global__ %player%"
+  - "/rg flag -w %dimension% __global__ passthrough DENY"
+  - "/rg flag -w %dimension% __global__ build DENY"
+  - "/rg flag -w %dimension% __global__ interact DENY"
+  - "/rg flag -w %dimension% __global__ entry-deny-message This dimension has been claimed by %player%"
+
+# Called when a claim (and the dimension along with it) is deleted
+onDelete:
+  - "/rg removeowner -w %dimension% __global__ -a"
+  - "/rg removemember -w %dimension% __global__ -a"
 
 # Called when an owner is added to a dimension
 onAddOwner:
-  - "/rg -w %dimension% addowner __global__ %player%"
+  - "/rg addowner -w %dimension% __global__ %player%"
 
 # Called when an owner is removed from a dimension
 onRemoveOwner:
-  - "/rg -w %dimension% removeowner __global__ %player%"
+  - "/rg removeowner -w %dimension% __global__ %player%"
 
 # Called when a member is added to a dimension
 onAddMember:
-  - "/rg -w %dimension% addmember __global__ %player%"
+  - "/rg addmember -w %dimension% __global__ %player%"
 
 # Called when a member is removed from a dimension
 onRemoveMember:
-  - "/rg -w %dimension% removemember __global__ %player%"
+  - "/rg removemember -w %dimension% __global__ %player%"
 
 ###################################
 #####        Messages         #####
 ###################################
 
 noPermission: "&cYou don't have permission"
-
 idMessage: "&7Dimension name: &6%dimension%"
 claimMessage: "&7You have successfully claimed dimension &6%dimension%"
 alreadyClaimedMessage: "&7Dimension &6%dimension%&7 is already claimed by %player%"

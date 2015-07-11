@@ -6,7 +6,7 @@ import java.util.List;
 public class DimensionData {
     private ArrayList<String> owners = new ArrayList<>();
     private ArrayList<String> members = new ArrayList<>();
-    public String name;
+    private String name;
 
     public DimensionData(String name, List<String> owners, List<String> members){
         this.name = name;
@@ -48,6 +48,10 @@ public class DimensionData {
 
     public boolean isMember(String player){
         return members.contains(player);
+    }
+
+    public String getName(){
+        return name;
     }
 
     public ArrayList<String> getOwners(){

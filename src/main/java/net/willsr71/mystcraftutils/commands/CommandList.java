@@ -25,26 +25,19 @@ public class CommandList {
             DimensionData dimData = dimensions.get(dim);
 
             String owners = "&7Owners:";
-            if (dimData.getOwners().size() !=0 ) {
-                for (String owner : dimData.getOwners()) {
-                    owners = (owners + " &6" + owner + "&7,").trim();
-                }
-                owners = owners.substring(0,owners.length()-3);
-            }else{
-                owners = owners + " &6None";
-            }
-
             String members = "&7Members:";
-            if (dimData.getOwners().size() !=0 ) {
-                for (String member : dimData.getMembers()) {
-                    members = (members + " &6" + member + "&7,").trim();
-                }
-                members = members.substring(0,members.length()-3);
-            }else{
-                members = members + " &6None";
+            for (String owner : dimData.getOwners()) {
+                owners = (owners + " &6" + owner + "&7,").trim();
             }
+            for (String member : dimData.getMembers()) {
+                members = (members + " &6" + member + "&7,").trim();
+            }
+            if(owners.equals("&7Owners:")) owners = owners + " &6None";
+            else owners = owners.substring(0,owners.length()-3);
+            if(!members.equals("&7Members:")) members = members + " &6None";
+            else members = members.substring(0,members.length()-3);
 
-            cs.sendMessage(plugin.chatUtils.parse("&7Dimension name: &6" + dimData.name));
+            cs.sendMessage(plugin.chatUtils.parse("&7Dimension name: &6" + dimData.getName()));
             cs.sendMessage(plugin.chatUtils.parse(owners));
             cs.sendMessage(plugin.chatUtils.parse(members));
         }

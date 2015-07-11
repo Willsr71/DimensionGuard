@@ -41,6 +41,8 @@ public class CommandClaim {
         MystcraftUtils.instance.dimensions.put(dimension, new DimensionData(dimension, owners, members));
         MystcraftUtils.instance.save();
 
+        plugin.commandDispatcher.sendFromConfig("onClaim", player.getName(), dimension);
+
         cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("claimMessage"), dimension));
     }
 }

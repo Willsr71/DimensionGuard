@@ -9,11 +9,15 @@ public class ChatUtils {
         this.plugin = plugin;
     }
 
-    public String parse(String string) {
+    public String parse(String string, boolean prefix) {
         //if(!string.contains("&a[&cMystcraftUtils&a]&r")) string = "&a[&cMystcraftUtils&a]&r " + string;
-        string = "&a[&cMystcraft&dUtils&a]&r " + string;
+        if(prefix) string = "&a[&cMystcraft&9Utils&a]&r " + string;
         string = ChatColor.translateAlternateColorCodes('&', string);
         return string;
+    }
+
+    public String parse(String string){
+        return parse(string, true);
     }
 
     public String replacePlayer(String message, String player){
@@ -25,11 +29,8 @@ public class ChatUtils {
     }
 
     public String getString(String string) {
-        //return parse(MystcraftUtils.config.getString(string));
         String out = plugin.config.getString(string);
         if(out == null) out = "&7Error fetching \"&6" + string + "&7\" from config.";
-        out = parse(out);
-        plugin.getLogger().info("Response: " + out);
-        return out;
+        return parse(out);
     }
 }

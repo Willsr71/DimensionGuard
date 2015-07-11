@@ -17,6 +17,7 @@ public class MystcraftUtils extends JavaPlugin {
     public Configuration config;
     public Configuration dimensionConfig;
     public ChatUtils chatUtils;
+    public CommandUtils commandUtils;
     public PlayerManager playerManager;
     public CommandDispatcher commandDispatcher;
 
@@ -29,6 +30,7 @@ public class MystcraftUtils extends JavaPlugin {
         dimensionConfigManager = new ConfigManager(this, "dimensions.yml");
         commandBase = new CommandBase(this, "myst");
         chatUtils = new ChatUtils(this);
+        commandUtils = new CommandUtils(this);
         playerManager = new PlayerManager(this);
         commandDispatcher = new CommandDispatcher(this);
         reload();

@@ -12,10 +12,7 @@ public class CommandTPX {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(!(cs instanceof Player)){
-            cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
-            return;
-        }
+        if(plugin.commandUtils.isConsoleSender(cs)) return;
         if(args.length != 1){
             cs.sendMessage("/tpx <dimension>");
             return;

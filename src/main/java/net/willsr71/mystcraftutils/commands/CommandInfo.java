@@ -15,12 +15,11 @@ public class CommandInfo {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(!(cs instanceof Player)){
-            cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
-            return;
-        }
+        if(plugin.commandUtils.isConsoleSender(cs)) return;
+
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
+        if(!plugin.commandUtils.doesDimensionExist(cs, dimension, "notRegisteredMessage")) return;
 
         HashMap<String, DimensionData> dimensions = (HashMap) plugin.dimensions.clone();
 

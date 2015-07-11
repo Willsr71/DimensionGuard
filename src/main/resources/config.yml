@@ -51,6 +51,7 @@ addOwner:
     toSender: "&6%player% &7has been granted '&6owner&7' for dimension &6%dimension%"
     toReceiver: "&7You have been granted '&6owner&7' for dimension &6%dimension%"
     alreadyOwner: "&6%player% &7is already an owner"
+    alreadyMember: "&6%player% &7is already a member. Removing player as a member"
   commands:
     - "/rg addowner -w %dimension% __global__ %player%"
 
@@ -100,7 +101,7 @@ noConsoleMessage: "&4ERR: &cOnly players can preform this command"
 invalidWorld: "&4ERR: &cThe specified world &6%dimension% &cis invalid"
 playerNotFound: "&4ERR: &cThe specified player could not be found"
 blacklistMessage: "&eWARNING: &7Blacklisted dimension. Event cancelled"
-notRegisteredMessage: "&7The dimension &6%dimension% &7is not registered"
+notRegisteredMessage: "&7The dimension &6%dimension% &7is not registered. Have you tried claiming it?"
 teleportSuccess: "&7You have been teleported to dimension &6%dimension%"
 
 ###################################

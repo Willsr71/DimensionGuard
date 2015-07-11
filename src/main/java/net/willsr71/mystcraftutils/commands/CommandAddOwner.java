@@ -13,10 +13,7 @@ public class CommandAddOwner {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(!(cs instanceof Player)){
-            cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
-            return;
-        }
+        if(plugin.commandUtils.isConsoleSender(cs)) return;
         if(args.length != 1){
             cs.sendMessage("/myst addowner <player>");
             return;
@@ -24,28 +21,15 @@ public class CommandAddOwner {
 
         Player csPlayer = (Player) cs;
         String dimension = csPlayer.getWorld().getName();
-        if(plugin.config.getStringList("blacklistedDimensions").contains(dimension)){
-            csPlayer.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
-            return;
-        }
-        if(!plugin.dimensions.containsKey(dimension)){
-            csPlayer.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("notRegisteredMessage"), dimension));
-            return;
-        }
-        if(!plugin.dimensions.get(dimension).isOwner(csPlayer.getName())){
-            csPlayer.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("noDimPermission"), dimension));
-            return;
-        }
+        if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
+        if(!plugin.commandUtils.doesDimensionExist(cs, dimension, "notRegisteredMessage")) return;
+        if(!plugin.commandUtils.isOwner(cs, dimension, cs.getName(), "noDimPermissions")) return;
 
         Player player = Bukkit.getPlayer(args[0]);
-        if(player == null){
-            csPlayer.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("playerNotFound"), args[0]));
-            return;
-        }
-        if(plugin.dimensions.get(dimension).isOwner(player.getName())){
-            csPlayer.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("addOwner.messages.alreadyOwner"), player.getName()));
-            return;
-        }
+        if(!plugin.commandUtils.isPlayer(cs, args[0])) return;
+        if(plugin.commandUtils.isOwner(cs, dimension, player.getName(), "addOwner.messages.alreadyOwner")) return;
+
+        if(plugin.commandUtils.isMember(cs, dimension, player.getName(), "addOwner.messages.alreadyMember")) plugin.dimensions.get(dimension).removeMember(player.getName());
 
         plugin.dimensions.get(dimension).addOwner(player.getName());
     }

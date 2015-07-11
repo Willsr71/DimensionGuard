@@ -19,10 +19,11 @@ public class CommandHelp {
         cs.sendMessage(plugin.chatUtils.parse("&a/myst list &9- List all the dimensions registered", false));
         cs.sendMessage(plugin.chatUtils.parse("&a/myst listown &9- List the dimensions that you are part of", false));
         cs.sendMessage(plugin.chatUtils.parse("&a/myst spawn &9- Teleport to world spawn", false));
-        cs.sendMessage(plugin.chatUtils.parse("&a/myst addowner &9- Add an owner to the dimension you are in", false));
-        cs.sendMessage(plugin.chatUtils.parse("&a/myst addmember &9- Add a member to the dimension you are in", false));
-        cs.sendMessage(plugin.chatUtils.parse("&a/myst removeowner &9- Remove an owner from the dimension you are in", false));
-        cs.sendMessage(plugin.chatUtils.parse("&a/myst removemember &9- Remove a member from the dimension you are in", false));
+        cs.sendMessage(plugin.chatUtils.parse("&a/myst tpx <dimension> &9- Teleport to spawn of world specified", false));
+        cs.sendMessage(plugin.chatUtils.parse("&a/myst addowner <player> &9- Add an owner to the dimension you are in", false));
+        cs.sendMessage(plugin.chatUtils.parse("&a/myst addmember <player> &9- Add a member to the dimension you are in", false));
+        cs.sendMessage(plugin.chatUtils.parse("&a/myst removeowner <player> &9- Remove an owner from the dimension you are in", false));
+        cs.sendMessage(plugin.chatUtils.parse("&a/myst removemember <player> &9- Remove a member from the dimension you are in", false));
         cs.sendMessage(plugin.chatUtils.parse("&a/myst reload &9- Reload the plugin configs (including dimension data)", false));
     }
 }

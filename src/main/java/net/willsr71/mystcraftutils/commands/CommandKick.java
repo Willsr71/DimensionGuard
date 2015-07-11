@@ -13,10 +13,7 @@ public class CommandKick {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(!cs.hasPermission("mystcraftutils.kick")){
-            cs.sendMessage(plugin.chatUtils.getString("noPermission"));
-            return;
-        }
+        if(!plugin.commandUtils.hasPermission(cs, "mystcraftutils.kick")) return;
         if(args.length < 1){
             cs.sendMessage(plugin.chatUtils.parse("/myst kick <player>"));
             return;

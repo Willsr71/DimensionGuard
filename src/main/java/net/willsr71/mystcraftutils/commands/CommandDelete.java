@@ -12,22 +12,13 @@ public class CommandDelete {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(!(cs instanceof Player)){
-            cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
-            return;
-        }
+        if(plugin.commandUtils.isConsoleSender(cs)) return;
+
         Player player = (Player) cs;
-        if(plugin.config.getStringList("blacklistedDimensions").contains(player.getWorld().getName())){
-            player.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
-            return;
-        }
-
         String dimension = player.getWorld().getName();
+        if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
 
-        if(!plugin.dimensions.containsKey(dimension)){
-            player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("notRegisteredMessage"), dimension));
-            return;
-        }
+        if(!plugin.commandUtils.doesDimensionExist(cs, dimension, "notRegisteredMessage")) return;
 
         MystcraftUtils.instance.dimensions.remove(dimension);
         MystcraftUtils.instance.save();

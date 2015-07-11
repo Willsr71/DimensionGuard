@@ -12,10 +12,7 @@ public class CommandSpawn {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(!(cs instanceof Player)){
-            cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
-            return;
-        }
+        if(plugin.commandUtils.isConsoleSender(cs)) return;
         Player player = (Player) cs;
 
         plugin.playerManager.sendToSpawn(player);

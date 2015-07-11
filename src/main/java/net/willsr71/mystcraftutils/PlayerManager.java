@@ -44,14 +44,5 @@ public class PlayerManager {
         for(int x = 0; x < 50; x++){
             world.strikeLightningEffect(loc);
         }
-        /*Location toStrike = loc.clone();
-        int s = 3;
-        for(int x = -s; x < s; x++){
-            toStrike.setX(loc.getX() + x);
-            for(int z = -s; z < s; z++){
-                toStrike.setZ(loc.getZ() + z);
-                world.strikeLightningEffect(toStrike);
-            }
-        }*/
     }
 }

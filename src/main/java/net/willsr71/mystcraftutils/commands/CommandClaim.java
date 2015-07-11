@@ -17,22 +17,12 @@ public class CommandClaim {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(!(cs instanceof Player)){
-            cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
-            return;
-        }
+        if(plugin.commandUtils.isConsoleSender(cs)) return;
+
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
-        if(plugin.config.getStringList("blacklistedDimensions").contains(dimension)){
-            player.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
-            return;
-        }
-        if(plugin.dimensions.containsKey(dimension)){
-            DimensionData dimData = plugin.dimensions.get(dimension);
-            Player owner = Bukkit.getPlayer(dimData.getOwners().get(0));
-            player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("claim.messages.alreadyClaimed"), owner.getName()), dimension));
-            return;
-        }
+        if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
+        if(plugin.commandUtils.doesDimensionExist(cs, dimension, "claim.messages.alreadyClaimed")) return;
 
         List<String> owners = new ArrayList<>();
         List<String> members = new ArrayList<>();

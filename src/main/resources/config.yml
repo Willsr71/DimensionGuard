@@ -7,12 +7,13 @@ spawnWorld: "LandOfWarfare"
 
 # Dimensions that players cannot claim and will not be auto-teleported in
 blacklistedDimensions:
+ - "world"
  - "Overworld"
  - "Overworld_the_End"
  - "LandOfWarfare"
 
 # Whether players will get auto-teleported to spawn on logout
-autoSpawnLogin: false
+autoSpawnLogin: true
 autoSpawnLogout: true
 
 ###################################
@@ -49,13 +50,14 @@ noPermission: "&cYou don't have permission"
 
 idMessage: "&7Dimension name: &6%dimension%"
 claimMessage: "&7You have successfully claimed dimension &6%dimension%"
-alreadyClaimedMessage: "&7Dimension %dimension% is already claimed by %player%"
-deleteMessage: "&7Dimension &6%dimension%&6 has been deleted"
+alreadyClaimedMessage: "&7Dimension &6%dimension%&7 is already claimed by %player%"
+deleteMessage: "&7Dimension &6%dimension%&7 has been deleted"
 spawnMessage: "&7You have been sent to spawn from %dimension%"
 blacklistMessage: "&7Blacklisted dimension. Event cancelled"
 reloadMessage: "&7Config has been reloaded"
 noConsoleMessage: "&7Only players can preform this command"
 notRegisteredMessage: "&7The dimension &6%dimension% &7is not registered"
+invalidSpawnWorld: "&7Spawn world %dimension% specified in config is invalid"
 
 sendOwnerAddMessage: "&6%player% &7has been granted '&6owner&7' for dimension &6%dimension%"
 recvOwnerAddMessage: "&7You have been granted '&6owner&7' for dimension &6%dimension%"
@@ -72,5 +74,6 @@ recvKickMessage: "&7You have been kicked from dimension &6%dimension%"
 #####       No Touchie        #####
 ###################################
 dontTouch:
+  manualConfigReset: false
   version:
     seriouslyThisWillEraseYourConfig: 1.0

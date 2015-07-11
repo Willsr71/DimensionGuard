@@ -56,6 +56,6 @@ public class ConfigManager {
     }
 
     private void deleteConfig(){
-        file.delete();
+        plugin.getLogger().info("Deleted configuration: " + file.delete());
     }
 }

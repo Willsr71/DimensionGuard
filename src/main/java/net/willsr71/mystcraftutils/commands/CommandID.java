@@ -1,18 +1,23 @@
 package net.willsr71.mystcraftutils.commands;
 
-import net.willsr71.mystcraftutils.ChatUtils;
+import net.willsr71.mystcraftutils.MystcraftUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandID {
+    private MystcraftUtils plugin;
 
-    public static void run(CommandSender cs, String[] args){
+    public CommandID(MystcraftUtils plugin){
+        this.plugin = plugin;
+    }
+
+    public void run(CommandSender cs, String[] args){
         if(!(cs instanceof Player)){
-            cs.sendMessage(ChatUtils.getString("noConsoleMessage"));
+            cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
             return;
         }
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
-        cs.sendMessage(ChatUtils.replaceDim(ChatUtils.getString("idMessage"), dimension));
+        cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("idMessage"), dimension));
     }
 }

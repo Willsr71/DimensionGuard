@@ -1,13 +1,17 @@
 package net.willsr71.mystcraftutils.commands;
 
-import net.willsr71.mystcraftutils.ChatUtils;
 import net.willsr71.mystcraftutils.MystcraftUtils;
 import org.bukkit.command.CommandSender;
 
 public class CommandReload {
+    private MystcraftUtils plugin;
 
-    public static void run(CommandSender cs, String[] args){
+    public CommandReload(MystcraftUtils plugin){
+        this.plugin = plugin;
+    }
+
+    public void run(CommandSender cs, String[] args){
         MystcraftUtils.instance.reload();
-        cs.sendMessage(ChatUtils.getString("reloadMessage"));
+        cs.sendMessage(plugin.chatUtils.getString("reloadMessage"));
     }
 }

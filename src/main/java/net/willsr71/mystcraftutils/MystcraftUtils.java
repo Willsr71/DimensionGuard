@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 public class MystcraftUtils extends JavaPlugin {
     public static MystcraftUtils instance;
@@ -16,6 +17,8 @@ public class MystcraftUtils extends JavaPlugin {
     public ConfigManager dimensionConfigManager;
     public Configuration config;
     public Configuration dimensionConfig;
+    public ChatUtils chatUtils;
+    public PlayerManager playerManager;
 
     public static String version = "1.0";
     public HashMap<String, DimensionData> dimensions = new HashMap<>();
@@ -25,6 +28,8 @@ public class MystcraftUtils extends JavaPlugin {
         configManager = new ConfigManager(this, "config.yml");
         dimensionConfigManager = new ConfigManager(this, "dimensions.yml");
         commandBase = new CommandBase(this, "myst");
+        chatUtils = new ChatUtils(this);
+        playerManager = new PlayerManager(this);
         reload();
 
         this.getCommand("myst").setExecutor(commandBase);
@@ -33,10 +38,9 @@ public class MystcraftUtils extends JavaPlugin {
     }
 
     public void onDisable(){
-        instance = null;
-        commandBase = null;
-        configManager = null;
-        dimensionConfigManager = null;
+        // Just in case it didn't save for some reason
+        save();
+
         getLogger().info("Disabled MystcraftUtils v" + version);
     }
 
@@ -46,7 +50,6 @@ public class MystcraftUtils extends JavaPlugin {
             DimensionData dimData = dimensions.get(dim);
 
             dimensionConfig.set(dim, null);
-            dimensionConfig.set(dim + ".name", dimData.name);
             dimensionConfig.set(dim + ".owners", dimData.getOwners());
             dimensionConfig.set(dim + ".members", dimData.getMembers());
         }
@@ -58,8 +61,9 @@ public class MystcraftUtils extends JavaPlugin {
         dimensionConfigManager.reloadConfig();
         config = configManager.getConfig();
         dimensionConfig = dimensionConfigManager.getConfig();
-        String version = config.getString("dontTouch.version.seriouslyThisWillEraseYourConfig");
-        if(version == null || !version.equals(this.version)){
+        String configVersion = config.getString("dontTouch.version.seriouslyThisWillEraseYourConfig");
+        boolean manualOverwrite = config.getBoolean("dontTouch.manualConfigReset");
+        if(configVersion == null || !configVersion.equals(version) || manualOverwrite){
             configManager.replaceConfig();
             config = configManager.getConfig();
         }

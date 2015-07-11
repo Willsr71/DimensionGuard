@@ -1,6 +1,5 @@
 package net.willsr71.mystcraftutils.commands;
 
-import net.willsr71.mystcraftutils.ChatUtils;
 import net.willsr71.mystcraftutils.DimensionData;
 import net.willsr71.mystcraftutils.MystcraftUtils;
 import org.bukkit.command.CommandSender;
@@ -8,12 +7,17 @@ import org.bukkit.command.CommandSender;
 import java.util.HashMap;
 import java.util.Set;
 
-public class CommandDimList {
+public class CommandList {
+    private MystcraftUtils plugin;
 
-    public static void run(CommandSender cs, String[] args){
-        HashMap<String, DimensionData> dimensions = (HashMap) MystcraftUtils.instance.dimensions.clone();
+    public CommandList(MystcraftUtils plugin){
+        this.plugin = plugin;
+    }
+
+    public void run(CommandSender cs, String[] args){
+        HashMap<String, DimensionData> dimensions = (HashMap) plugin.dimensions.clone();
         if(dimensions.size()==0){
-            cs.sendMessage(ChatUtils.parse("&7No dimensions registered"));
+            cs.sendMessage(plugin.chatUtils.parse("&7No dimensions registered"));
             return;
         }
         Set<String> dimList = dimensions.keySet();
@@ -25,23 +29,24 @@ public class CommandDimList {
                 for (String owner : dimData.getOwners()) {
                     owners = (owners + " &6" + owner + "&7,").trim();
                 }
+                owners = owners.substring(0,owners.length()-3);
             }else{
                 owners = owners + " &6None";
             }
-
 
             String members = "&7Members:";
             if (dimData.getOwners().size() !=0 ) {
                 for (String member : dimData.getMembers()) {
                     members = (members + " &6" + member + "&7,").trim();
                 }
+                members = members.substring(0,members.length()-3);
             }else{
                 members = members + " &6None";
             }
 
-            cs.sendMessage(ChatUtils.parse("&7Dimension name: &6" + dimData.name));
-            cs.sendMessage(ChatUtils.parse(owners));
-            cs.sendMessage(ChatUtils.parse(members));
+            cs.sendMessage(plugin.chatUtils.parse("&7Dimension name: &6" + dimData.name));
+            cs.sendMessage(plugin.chatUtils.parse(owners));
+            cs.sendMessage(plugin.chatUtils.parse(members));
         }
     }
 }

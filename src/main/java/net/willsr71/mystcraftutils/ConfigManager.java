@@ -1,7 +1,6 @@
 package net.willsr71.mystcraftutils;
 
 import org.bukkit.configuration.Configuration;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -11,33 +10,38 @@ import java.nio.file.Files;
 public class ConfigManager {
     private MystcraftUtils plugin;
 
+    private YamlConfiguration yamlConfiguration;
     private String configName;
     private File file;
-    private FileConfiguration fileConfig;
+    private File dataFolder;
 
     public ConfigManager(MystcraftUtils plugin, String configName){
         this.plugin = plugin;
         this.configName = configName;
-        File dataFolder = plugin.getDataFolder();
-        if(!dataFolder.exists()) dataFolder.mkdirs();
-
+        dataFolder = plugin.getDataFolder();
         file = new File(dataFolder, configName);
-        if(!file.exists()) createConfig();
+
+        plugin.getLogger().info("Manual Data folder: " + new File("plugins/MystcraftUtils").getAbsolutePath());
+        plugin.getLogger().info("Auto data folder:   " + dataFolder.getAbsolutePath());
+        plugin.getLogger().info("File:               " + file.getAbsolutePath());
+        plugin.getLogger().info(" ");
 
         reloadConfig();
     }
 
     public Configuration getConfig(){
-        return fileConfig;
+        return yamlConfiguration;
     }
 
     public void reloadConfig(){
-        fileConfig = YamlConfiguration.loadConfiguration(file);
+        if(!dataFolder.exists()) dataFolder.mkdirs();
+        if(!file.exists()) createConfig();
+        yamlConfiguration = YamlConfiguration.loadConfiguration(file);
     }
 
     public void saveConfig(){
         try {
-            fileConfig.save(file);
+            yamlConfiguration.save(file);
         }catch (IOException e){
             e.printStackTrace();
         }

@@ -7,10 +7,12 @@ spawnWorld: "world"
 
 # Dimensions that players cannot claim and will not be auto-teleported in
 blacklistedDimensions:
- - "world"
- - "Overworld"
- - "DIM1"
- - "DIM-1"
+  - "world"
+  - "Overworld"
+  - "world_the_Nether"
+  - "world_the_End"
+  - "DIM1"
+  - "DIM-1"
 
 # Whether players will get auto-teleported to spawn on logout
 autoSpawnLogin: true

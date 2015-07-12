@@ -27,8 +27,10 @@ public class MystcraftUtils extends JavaPlugin {
 
     public void onEnable(){
         instance = this;
-        configManager = new ConfigManager(this, "config.yml");
+        getLogger().info("========================================================================================");
+        configManager = new ConfigManager(this, "configuration.yml");
         dimensionConfigManager = new ConfigManager(this, "dimensions.yml");
+        getLogger().info("========================================================================================");
         commandBase = new CommandBase(this, "myst");
         chatUtils = new ChatUtils(this);
         commandUtils = new CommandUtils(this);
@@ -89,10 +91,12 @@ public class MystcraftUtils extends JavaPlugin {
         String configVersion = config.getString("dontTouch.version.seriouslyThisWillEraseYourConfig");
 
         // Try reloading the config up to 25 times, giving a chance to whatever is holding open the files to let go. If this fails then skip replacing them.
-        if(r < 25 && (configVersion == null || !configVersion.equals(version))){
+        if(r < 5 && (configVersion == null || !configVersion.equals(version))){
             configManager.replaceConfig();
             config = configManager.getConfig();
             replaceConfig(r + 1);
+        }else if(r >= 5){
+            getLogger().severe("Error loading MystcraftUtils configs.");
         }
     }
 }

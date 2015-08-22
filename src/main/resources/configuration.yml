@@ -2,6 +2,9 @@
 #####  MystcraftUtils Config  #####
 ###################################
 
+# Location for backups that are made before a dimension is deleted. Please only use forward slashes.
+backupLocation: "MystcraftUtilsBackups/%server%/"
+
 # World that players spawn in. This will be the same as the world location in server.properties
 spawnWorld: "world"
 
@@ -24,8 +27,9 @@ blacklistedDimensions:
   - "DIM-42" # Thaumcraft The Outer Lands
   - "DIM-100" # Extra Utilities Deep Dark
   - "DIM-112" # Extra Utilities The Last Milennium
-  - "DIM9" # Custom stuffs
-  - "DIM16" # Custom stuffs
+  - "DIM_MYST9" # Custom stuffs
+  - "DIM_MYST14" # Custom stuffs
+  - "DIM_MYST16" # Custom stuffs
   - "Overworld" # *sigh*
   - "PP_Overworld" # Why do you do this
   - "DW20_Overworld" # I thought you learned from the Infinity-1 incident

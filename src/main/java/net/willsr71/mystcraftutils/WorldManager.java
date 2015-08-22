@@ -3,6 +3,7 @@ package net.willsr71.mystcraftutils;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,12 +18,11 @@ public class WorldManager {
     public void deleteWorld(String dimension){
         World world = Bukkit.getWorld(dimension);
         File worldFolder = world.getWorldFolder();
-        boolean success = Bukkit.unloadWorld(dimension, true);
-        if(!copyFolder(worldFolder, dimension)){
-            plugin.getLogger().warning("Error copying dimension folder " + worldFolder.getAbsolutePath());
-            return;
-        }
-        deleteFolder(worldFolder);
+        Bukkit.unloadWorld(dimension, true);
+
+        scheduleTask(worldFolder, dimension);
+
+
     }
 
     private boolean deleteFolder(File path) {
@@ -39,8 +39,10 @@ public class WorldManager {
         return(path.delete());
     }
 
-    private boolean copyFolder(File path, String name){
-        File backupFolder = new File("worldBackups/" + name);
+    private boolean copyFolder(File path, String dimension){
+        String backupLocation = plugin.config.getString("backupLocation");
+        backupLocation = backupLocation.replace("%server%", Bukkit.getServer().getName());
+        File backupFolder = new File(backupLocation + dimension);
         backupFolder.mkdirs();
         try{
             FileUtils.copyDirectory(path, backupFolder);
@@ -49,5 +51,20 @@ public class WorldManager {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private void scheduleTask(final File worldFolder, final String dimension) {
+        BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+        scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
+            @Override
+            public void run() {
+                if(!copyFolder(worldFolder, dimension)){
+                    plugin.getLogger().warning("Error copying dimension folder " + worldFolder.getAbsolutePath());
+                    return;
+                }
+                deleteFolder(worldFolder);
+                plugin.getLogger().info("Dimension " + dimension + " has been deleted.");
+            }
+        }, 20L);
     }
 }

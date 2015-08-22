@@ -15,5 +15,6 @@
     <orderEntry type="library" name="Maven: junit:junit:4.4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.milkbowl.vault:VaultAPI:1.5" level="project" />
     <orderEntry type="library" name="Maven: org.mcstats.bukkit:metrics:R7" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:1.3.2" level="project" />
   </component>
 </module>

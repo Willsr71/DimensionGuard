@@ -8,11 +8,30 @@ spawnWorld: "world"
 # Dimensions that players cannot claim and will not be auto-teleported in
 blacklistedDimensions:
   - "world"
-  - "Overworld"
-  - "world_the_Nether"
-  - "world_the_End"
-  - "DIM1"
-  - "DIM-1"
+  - "world_the_nether" # Vanilla *sigh*
+  - "world_the_end" # Vanilla *sigh*
+  - "DIM1" # End
+  - "DIM-1" # Nether
+  - "DIM2" #  SpectreWorld
+  - "DIM3" # Compact Machines
+  - "DIM69" # Pocket Plane Dimension
+  - "DIM-19" # Thaumic Tinkerer Bedrock Dimension
+  - "DIM-28" # Galacticraft Moon
+  - "DIM-29" # Galacticraft Mars
+  - "DIM-30" # Galacticraft Asteroids Dimension
+  - "DIM-38" # Witchery Torment World
+  - "DIM-39" # Witchery Mirror World
+  - "DIM-42" # Thaumcraft The Outer Lands
+  - "DIM-100" # Extra Utilities Deep Dark
+  - "DIM-112" # Extra Utilities The Last Milennium
+  - "DIM9" # Custom stuffs
+  - "DIM16" # Custom stuffs
+  - "Overworld" # *sigh*
+  - "PP_Overworld" # Why do you do this
+  - "DW20_Overworld" # I thought you learned from the Infinity-1 incident
+  - "Infinity_Overworld" # But noooo....
+  - "Lobby_Overworld" # You just had to keep on naming things weirdly.
+  - "AS2_Overworld" # I really dont see the point of this
 
 # Whether players will get auto-teleported to spawn on logout
 autoSpawnLogin: true
@@ -53,6 +72,7 @@ delete:
     - "/rg flag -w %dimension% __global__ passthrough"
     - "/rg flag -w %dimension% __global__ build"
     - "/rg flag -w %dimension% __global__ interact"
+    - "/rg flag -w %dimension% __global__ entry-deny-message"
 
 # Called when an owner is added to a dimension
 addOwner:

@@ -45,7 +45,6 @@ public class MystcraftUtils extends JavaPlugin {
     }
 
     public void onDisable(){
-        // Just in case it didn't save for some reason
         save();
 
         getLogger().info("Disabled MystcraftUtils v" + version);
@@ -90,7 +89,7 @@ public class MystcraftUtils extends JavaPlugin {
     private void replaceConfig(int r){
         String configVersion = config.getString("dontTouch.version.seriouslyThisWillEraseYourConfig");
 
-        // Try reloading the config up to 25 times, giving a chance to whatever is holding open the files to let go. If this fails then skip replacing them.
+        // Try reloading the config up to 5 times, giving a chance to whatever is holding open the files to let go. If this fails then skip replacing them.
         if(r < 5 && (configVersion == null || !configVersion.equals(version))){
             configManager.replaceConfig();
             config = configManager.getConfig();

@@ -35,6 +35,8 @@ public class CommandRemoveOwner {
         plugin.dimensions.get(dimension).removeOwner(args[0]);
         plugin.save();
 
+        plugin.commandDispatcher.sendFromConfig("removeOwner.commands", args[0], dimension);
+
         cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("removeOwner.messages.success"), dimension), args[0]));
     }
 }

@@ -31,6 +31,8 @@ public class CommandRemoveMember {
         plugin.dimensions.get(dimension).removeMember(args[0]);
         plugin.save();
 
+        plugin.commandDispatcher.sendFromConfig("removeMember.commands", args[0], dimension);
+
         cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("removeMember.messages.success"), dimension), args[0]));
     }
 }

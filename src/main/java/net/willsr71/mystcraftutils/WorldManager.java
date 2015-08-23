@@ -21,8 +21,6 @@ public class WorldManager {
         Bukkit.unloadWorld(dimension, true);
 
         scheduleTask(worldFolder, dimension);
-
-
     }
 
     private boolean deleteFolder(File path) {

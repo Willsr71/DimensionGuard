@@ -56,5 +56,7 @@ public class CommandAddOwner {
 
         plugin.dimensions.get(dimension).addOwner(player.getName());
         plugin.save();
+
+        plugin.commandDispatcher.sendFromConfig("addOwner.commands", player.getName(), dimension);
     }
 }

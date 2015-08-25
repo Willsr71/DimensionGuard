@@ -44,7 +44,7 @@ public class CommandUtils {
     }
 
     public boolean isBlacklistedDimension(CommandSender cs, String dimension){
-        if(plugin.config.getStringList("blacklistedDimensions").contains(dimension)) {
+        if(Bukkit.getWorlds().get(0).getName().equals(dimension)|| plugin.config.getStringList("blacklistedDimensions").contains(dimension)) {
             cs.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
             return true;
         }

@@ -33,12 +33,17 @@ public class PlayerManager {
         if(player.hasPermission("mystcraftutils.lightning")) lightningEffect(world, world.getSpawnLocation());
     }
 
-    public void sendToSpawn(Player player){
-        if(plugin.config.getStringList("blacklistedDimensions").contains(player.getWorld().getName())){
+    public void sendToSpawn(Player player, boolean forced){
+        if(!forced && plugin.config.getStringList("blacklistedDimensions").contains(player.getWorld().getName())){
             player.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
             return;
         }
-        sendToWorldSpawn(player, plugin.config.getString("spawnWorld"));
+        sendToWorldSpawn(player, Bukkit.getWorlds().get(0).getName());
+        //sendToWorldSpawn(player, plugin.config.getString("spawnWorld"));
+    }
+
+    public void sendToSpawn(Player player){
+        sendToSpawn(player, false);
     }
 
     public void sendAllToSpawn(String dimension){

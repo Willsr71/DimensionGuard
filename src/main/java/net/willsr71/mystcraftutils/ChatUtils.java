@@ -10,7 +10,6 @@ public class ChatUtils {
     }
 
     public String parse(String string, boolean prefix) {
-        //if(!string.contains("&a[&cMystcraftUtils&a]&r")) string = "&a[&cMystcraftUtils&a]&r " + string;
         if(prefix) string = "&a[&cMystcraft&9Utils&a]&r " + string;
         string = ChatColor.translateAlternateColorCodes('&', string);
         return string;

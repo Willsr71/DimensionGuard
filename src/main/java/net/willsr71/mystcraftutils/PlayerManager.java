@@ -39,7 +39,6 @@ public class PlayerManager {
             return;
         }
         sendToWorldSpawn(player, Bukkit.getWorlds().get(0).getName());
-        //sendToWorldSpawn(player, plugin.config.getString("spawnWorld"));
     }
 
     public void sendToSpawn(Player player){

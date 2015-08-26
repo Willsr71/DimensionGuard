@@ -11,16 +11,17 @@ import java.util.Set;
 
 public class MystcraftUtils extends JavaPlugin {
     public static MystcraftUtils instance;
+
+    public ChatUtils chatUtils;
+    public CommandDispatcher commandDispatcher;
+    public CommandUtils commandUtils;
     public CommandBase commandBase;
     public ConfigManager configManager;
     public ConfigManager dimensionConfigManager;
     public Configuration config;
     public Configuration dimensionConfig;
-    public ChatUtils chatUtils;
-    public CommandUtils commandUtils;
-    public PlayerManager playerManager;
-    public CommandDispatcher commandDispatcher;
     public WorldManager worldManager;
+    public PlayerManager playerManager;
 
     public static String version = "1.0";
     public HashMap<String, DimensionData> dimensions = new HashMap<>();

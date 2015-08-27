@@ -47,7 +47,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.mcstats</pattern>
-                            <shadedPattern>net.willsr71.bungeechatplus</shadedPattern>
+                            <shadedPattern>net.willsr71.mystcraftutils</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

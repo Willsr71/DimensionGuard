@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +42,14 @@ public class MystcraftUtils extends JavaPlugin {
         this.getCommand("myst").setExecutor(commandBase);
 
         Bukkit.getPluginManager().registerEvents(new EventListener(this), this);
+
+        try {
+            BukkitMetrics metrics = new BukkitMetrics(this);
+            metrics.start();
+        } catch (IOException e) {
+            getLogger().warning("Failed to load BukkitMetrics");
+            e.printStackTrace();
+        }
     }
 
     public void onDisable(){

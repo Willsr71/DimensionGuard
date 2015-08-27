@@ -21,11 +21,6 @@ public class ConfigManager {
         dataFolder = plugin.getDataFolder();
         file = new File(dataFolder, configName);
 
-        plugin.getLogger().info("Manual Data folder: " + new File("plugins/MystcraftUtils").getAbsolutePath());
-        plugin.getLogger().info("Auto data folder:   " + dataFolder.getAbsolutePath());
-        plugin.getLogger().info("File:               " + file.getAbsolutePath());
-        plugin.getLogger().info(" ");
-
         reloadConfig();
     }
 

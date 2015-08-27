@@ -35,16 +35,8 @@ public class EventListener implements Listener{
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onBlockPlace(BlockPlaceEvent event){
-        if(!event.getBlockPlaced().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
-        if(!plugin.commandUtils.isAnyOwner(event.getPlayer())) return;
-        event.setCancelled(true);
-        plugin.chatUtils.sendMessage(event.getPlayer().getName(), "alreadyOwnDimension", "", "");
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onOpenInventory(PlayerInteractEvent event){
-        if(event.getClickedBlock().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
+    public void onPlayerInteract(PlayerInteractEvent event){
+        if(!event.getClickedBlock().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
         if(!plugin.commandUtils.isAnyOwner(event.getPlayer())) return;
         event.setCancelled(true);
         plugin.chatUtils.sendMessage(event.getPlayer().getName(), "alreadyOwnDimension", "", "");

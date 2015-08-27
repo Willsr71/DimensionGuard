@@ -148,7 +148,7 @@ errSelf: "&4ERR: &cYou cannot preform this action on yourself"
 blacklistMessage: "&eWARNING: &7Blacklisted dimension. Event cancelled"
 notRegisteredMessage: "&7The dimension &6%dimension% &7is not registered. Have you tried claiming it?"
 teleportSuccess: "&7You have been teleported to dimension &6%dimension%"
-alreadyOwnDimension: "&4ERR: &7You already own a dimension\, you cannot create another one."
+alreadyOwnDimension: "&4ERR: &7You already own a dimension you cannot create another one."
 
 ###################################
 #####       No Touchie        #####

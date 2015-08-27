@@ -61,6 +61,7 @@ public class PlayerManager {
 
     public String getValidOptions(Player player, String worldName){
         if(isValidDimension(worldName)) return worldName;
+        if(worldName.equals("0")) return Bukkit.getWorlds().get(0).getName();
         for(String prefix : plugin.config.getStringList("dimensionPrefixes")){
             if(isValidDimension(prefix + worldName)) return prefix + worldName;
         }

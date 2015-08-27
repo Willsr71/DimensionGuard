@@ -28,10 +28,8 @@ public class MystcraftUtils extends JavaPlugin {
 
     public void onEnable(){
         instance = this;
-        getLogger().info("========================================================================================");
         configManager = new ConfigManager(this, "configuration.yml");
         dimensionConfigManager = new ConfigManager(this, "dimensions.yml");
-        getLogger().info("========================================================================================");
         commandBase = new CommandBase(this, "myst");
         chatUtils = new ChatUtils(this);
         commandUtils = new CommandUtils(this);

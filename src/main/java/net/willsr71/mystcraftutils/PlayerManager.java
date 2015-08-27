@@ -33,10 +33,7 @@ public class PlayerManager {
     }
 
     public void autoSendPlayerToSpawn(Player player){
-        if(plugin.config.getStringList("antiTeleportDimensions").contains(player.getWorld().getName())){
-            player.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
-            return;
-        }
+        if(plugin.commandUtils.isDimensionTeleportBlacklisted(player, player.getWorld().getName())) return;
         sendPlayerToSpawn(player);
     }
 

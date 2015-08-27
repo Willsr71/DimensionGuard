@@ -20,7 +20,7 @@ public class CommandRemoveOwner {
 
         Player csPlayer = (Player) cs;
         String dimension = csPlayer.getWorld().getName();
-        if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
+        if(plugin.commandUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
         if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
         if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
         if(!plugin.commandUtils.isOwner(dimension, args[0])){

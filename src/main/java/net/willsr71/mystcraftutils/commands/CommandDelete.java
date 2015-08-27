@@ -17,7 +17,7 @@ public class CommandDelete {
 
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
-        if(plugin.commandUtils.isBlacklistedDimension(cs, dimension)) return;
+        if(plugin.commandUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
         if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
         if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
 

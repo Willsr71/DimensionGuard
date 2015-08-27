@@ -23,7 +23,7 @@ public class CommandClaim {
 
     public void claim(Player player){
         String dimension = player.getWorld().getName();
-        if(plugin.commandUtils.isBlacklistedDimension(player, dimension)) return;
+        if(plugin.commandUtils.isDimensionClaimBlacklisted(player, dimension)) return;
         if(plugin.commandUtils.isDimensionClaimed(player, dimension)) return;
         if(plugin.commandUtils.isAnyOwner(player)){
             plugin.chatUtils.sendMessage(player.getName(), "dimensionMaxExceeded", player.getName(), dimension);

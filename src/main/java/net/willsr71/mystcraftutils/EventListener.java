@@ -4,10 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerKickEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 
 public class EventListener implements Listener{
     MystcraftUtils plugin;
@@ -40,6 +37,14 @@ public class EventListener implements Listener{
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onBlockPlace(BlockPlaceEvent event){
         if(!event.getBlockPlaced().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
+        if(!plugin.commandUtils.isAnyOwner(event.getPlayer())) return;
+        event.setCancelled(true);
+        plugin.chatUtils.sendMessage(event.getPlayer().getName(), "alreadyOwnDimension", "", "");
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onOpenInventory(PlayerInteractEvent event){
+        if(event.getClickedBlock().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
         if(!plugin.commandUtils.isAnyOwner(event.getPlayer())) return;
         event.setCancelled(true);
         plugin.chatUtils.sendMessage(event.getPlayer().getName(), "alreadyOwnDimension", "", "");

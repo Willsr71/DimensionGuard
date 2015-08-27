@@ -26,7 +26,7 @@ public class CommandClaim {
         if(plugin.commandUtils.isBlacklistedDimension(player, dimension)) return;
         if(plugin.commandUtils.isDimensionClaimed(player, dimension)) return;
         if(plugin.commandUtils.isAnyOwner(player)){
-            plugin.commandUtils.sendMessage(player.getName(), "dimensionMaxExceeded", player.getName(), dimension);
+            plugin.chatUtils.sendMessage(player.getName(), "dimensionMaxExceeded", player.getName(), dimension);
             return;
         }
 

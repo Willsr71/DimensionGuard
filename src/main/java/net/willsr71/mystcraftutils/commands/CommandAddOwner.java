@@ -28,15 +28,15 @@ public class CommandAddOwner {
         Player player = Bukkit.getPlayer(args[0]);
         if(!plugin.commandUtils.isPlayer(cs, args[0])) return;
         if(plugin.commandUtils.isAnyOwner(player)){
-            plugin.commandUtils.sendMessage(player.getName(), "addOwner.messages.alreadyOwnerOtherDim", player.getName(), dimension);
+            plugin.chatUtils.sendMessage(player.getName(), "addOwner.messages.alreadyOwnerOtherDim", player.getName(), dimension);
             return;
         }
         if(plugin.commandUtils.isOwner(dimension, args[0])){
-            plugin.commandUtils.sendMessage(cs.getName(), "addOwner.messages.alreadyOwner", args[0], dimension);
+            plugin.chatUtils.sendMessage(cs.getName(), "addOwner.messages.alreadyOwner", args[0], dimension);
             return;
         }
         if(plugin.commandUtils.isMember(dimension, args[0])) {
-            plugin.commandUtils.sendMessage(cs.getName(), "addOwner.messages.alreadyMember", args[0], dimension);
+            plugin.chatUtils.sendMessage(cs.getName(), "addOwner.messages.alreadyMember", args[0], dimension);
             plugin.dimensions.get(dimension).removeMember(player.getName());
         }
 

@@ -17,22 +17,22 @@ public class EventListener implements Listener{
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onQuit(PlayerQuitEvent event){
-        if(plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.sendToSpawn(event.getPlayer());
+    public void onPlayerQuit(PlayerQuitEvent event){
+        if(plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.autoSendPlayerToSpawn(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onKick(PlayerKickEvent event){
-        if(plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.sendToSpawn(event.getPlayer());
+    public void onPlayerKick(PlayerKickEvent event){
+        if(plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.autoSendPlayerToSpawn(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onJoin(PlayerJoinEvent event){
-        if(plugin.config.getBoolean("autoSpawnLogin")) plugin.playerManager.sendToSpawn(event.getPlayer());
+    public void onPlayerJoin(PlayerJoinEvent event){
+        if(plugin.config.getBoolean("autoSpawnLogin")) plugin.playerManager.autoSendPlayerToSpawn(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onDimensionChange(PlayerChangedWorldEvent event){
+    public void onPlayerChangedWorld(PlayerChangedWorldEvent event){
         plugin.commandBase.commandClaim.claim(event.getPlayer());
         plugin.playerManager.autoKick(event.getPlayer());
     }
@@ -42,6 +42,6 @@ public class EventListener implements Listener{
         if(!event.getBlockPlaced().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
         if(!plugin.commandUtils.isAnyOwner(event.getPlayer())) return;
         event.setCancelled(true);
-        plugin.commandUtils.sendMessage(event.getPlayer().getName(), "alreadyOwnDimension", "", "");
+        plugin.chatUtils.sendMessage(event.getPlayer().getName(), "alreadyOwnDimension", "", "");
     }
 }

@@ -1,5 +1,6 @@
 package net.willsr71.mystcraftutils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 public class ChatUtils {
@@ -7,6 +8,13 @@ public class ChatUtils {
 
     public ChatUtils(MystcraftUtils plugin){
         this.plugin = plugin;
+    }
+
+    public void sendMessage(String target, String configEntry, String player, String dimension){
+        String message = plugin.chatUtils.getString(configEntry);
+        message = plugin.chatUtils.replacePlayer(message, player);
+        message = plugin.chatUtils.replaceDim(message, dimension);
+        Bukkit.getPlayer(target).sendMessage(message);
     }
 
     public String parse(String string, boolean prefix) {

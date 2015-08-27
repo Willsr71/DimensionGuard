@@ -5,9 +5,18 @@
 # Location for backups that are made before a dimension is deleted. Please only use forward slashes.
 backupLocation: "MystcraftUtilsBackups/%server%/"
 
-# Dimensions that players cannot claim and will not be auto-teleported in
+# Dimensions that players will not be auto-teleported in
 # The overworld is blacklisted by default
-blacklistedDimensions:
+antiTeleportDimensions:
+  - "world_nether" # Vanilla *sigh*
+  - "world_the_nether" # Vanilla *sigh*
+  - "world_the_end" # Vanilla *sigh*
+  - "DIM1" # End
+  - "DIM-1" # Nether
+
+# Dimensions that players cannot claim
+# The overworld is blacklisted by default
+antiClaimDimensions:
   - "world_nether" # Vanilla *sigh*
   - "world_the_nether" # Vanilla *sigh*
   - "world_the_end" # Vanilla *sigh*
@@ -29,9 +38,18 @@ blacklistedDimensions:
   - "DIM_MYST14" # Custom stuffs
   - "DIM_MYST16" # Custom stuffs
 
+# Dimension prefixes, Ex: DIM, DIM_MYST, DIM_SPACESTATION
+dimensionPrefixes:
+  - "DIM"
+  - "DIM_MYST"
+  - "DIM_SPACESTATION"
+
 # Whether players will get auto-teleported to spawn on logout
 autoSpawnLogin: true
 autoSpawnLogout: true
+
+# Amount of times lightning will strike on teleport
+lightningCount: 20
 
 ###################################
 #####         Events          #####
@@ -130,7 +148,7 @@ errSelf: "&4ERR: &cYou cannot preform this action on yourself"
 blacklistMessage: "&eWARNING: &7Blacklisted dimension. Event cancelled"
 notRegisteredMessage: "&7The dimension &6%dimension% &7is not registered. Have you tried claiming it?"
 teleportSuccess: "&7You have been teleported to dimension &6%dimension%"
-alreadyOwnDimension: "&4ERR: &7You already own a dimension \, you cannot create another one."
+alreadyOwnDimension: "&4ERR: &7You already own a dimension\, you cannot create another one."
 
 ###################################
 #####       No Touchie        #####

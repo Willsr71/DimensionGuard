@@ -24,7 +24,7 @@ public class CommandRemoveMember {
         if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
         if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
         if(!plugin.commandUtils.isMember(dimension, args[0])){
-            plugin.commandUtils.sendMessage(cs.getName(), "removeMember.messages.notFound", args[0], dimension);
+            plugin.chatUtils.sendMessage(cs.getName(), "removeMember.messages.notFound", args[0], dimension);
             return;
         }
 

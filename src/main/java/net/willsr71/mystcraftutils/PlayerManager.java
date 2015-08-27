@@ -15,41 +15,36 @@ public class PlayerManager {
     }
 
     public void sendToWorldSpawn(Player player, String worldName){
-        String modifiedWorldName;
-        if(isValidDimension(worldName)) modifiedWorldName = worldName;
-        else if(isValidDimension("DIM" + worldName)) modifiedWorldName = "DIM" + worldName;
-        else if(isValidDimension("DIM_MYST" + worldName)) modifiedWorldName = "DIM_MYST" + worldName;
-        else{
-            player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("invalidWorld"), worldName));
-            return;
-        }
+        worldName = getValidOptions(player, worldName);
+        if(worldName.equals("invalid")) return;
 
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("teleportSuccess"), modifiedWorldName));
+        plugin.chatUtils.sendMessage(player.getName(), "teleportSuccess", player.getName(), worldName);
+        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("teleportSuccess"), worldName));
 
-        World world = Bukkit.getWorld(modifiedWorldName);
+        World world = Bukkit.getWorld(worldName);
         Location spawn = world.getSpawnLocation();
         tpPos(player, spawn);
 
         if(player.hasPermission("mystcraftutils.lightning")) lightningEffect(world, world.getSpawnLocation());
     }
 
-    public void sendToSpawn(Player player, boolean forced){
-        if(!forced && plugin.config.getStringList("blacklistedDimensions").contains(player.getWorld().getName())){
-            player.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
-            return;
-        }
+    public void sendPlayerToSpawn(Player player){
         sendToWorldSpawn(player, Bukkit.getWorlds().get(0).getName());
     }
 
-    public void sendToSpawn(Player player){
-        sendToSpawn(player, false);
+    public void autoSendPlayerToSpawn(Player player){
+        if(plugin.config.getStringList("antiTeleportDimensions").contains(player.getWorld().getName())){
+            player.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
+            return;
+        }
+        sendPlayerToSpawn(player);
     }
 
     public void sendAllToSpawn(String dimension){
         World world = Bukkit.getWorld(dimension);
         List<Player> players = world.getPlayers();
         for(Player player : players){
-            sendToSpawn(player);
+            sendPlayerToSpawn(player);
         }
     }
 
@@ -57,7 +52,7 @@ public class PlayerManager {
         String world = player.getWorld().getName();
         String name = player.getName();
         if(!(plugin.commandUtils.hasOwnerPermission(player, world, name) || plugin.commandUtils.hasMemberPermission(player, world, name))){
-            sendToSpawn(player);
+            sendPlayerToSpawn(player);
         }
     }
 
@@ -67,12 +62,21 @@ public class PlayerManager {
         player.teleport(loc);
     }
 
+    public String getValidOptions(Player player, String worldName){
+        if(isValidDimension(worldName)) return worldName;
+        for(String prefix : plugin.config.getStringList("dimensionPrefixes")){
+            if(isValidDimension(prefix + worldName)) return prefix + worldName;
+        }
+        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("invalidWorld"), worldName));
+        return "invalid";
+    }
+
     public boolean isValidDimension(String worldName){
         return Bukkit.getWorld(worldName) != null;
     }
 
     public void lightningEffect(World world, Location loc){
-        for(int x = 0; x < 50; x++){
+        for(int x = 0; x < plugin.config.getInt("lightningCount"); x++){
             world.strikeLightningEffect(loc);
         }
     }

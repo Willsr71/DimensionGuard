@@ -25,7 +25,7 @@ public class CommandKick {
         Player player = Bukkit.getPlayer(args[0]);
         String dimension = player.getWorld().getName();
 
-        plugin.playerManager.sendToSpawn(player);
+        plugin.playerManager.sendPlayerToSpawn(player);
 
         plugin.commandDispatcher.sendFromConfig("kick.commands", player.getName(), dimension);
 

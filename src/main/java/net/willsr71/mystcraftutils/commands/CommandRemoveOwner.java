@@ -24,7 +24,7 @@ public class CommandRemoveOwner {
         if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
         if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
         if(!plugin.commandUtils.isOwner(dimension, args[0])){
-            plugin.commandUtils.sendMessage(cs.getName(), "removeOwner.messages.notFound", args[0], dimension);
+            plugin.chatUtils.sendMessage(cs.getName(), "removeOwner.messages.notFound", args[0], dimension);
             return;
         }
         if(cs.getName().equals(args[0])){

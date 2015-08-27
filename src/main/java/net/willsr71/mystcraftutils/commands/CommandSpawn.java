@@ -15,6 +15,6 @@ public class CommandSpawn {
         if(plugin.commandUtils.isConsoleSender(cs)) return;
         Player player = (Player) cs;
 
-        plugin.playerManager.sendToSpawn(player, true);
+        plugin.playerManager.sendPlayerToSpawn(player);
     }
 }

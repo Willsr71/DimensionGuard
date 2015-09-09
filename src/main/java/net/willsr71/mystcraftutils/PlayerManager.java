@@ -48,9 +48,10 @@ public class PlayerManager {
     public void autoKick(Player player){
         String world = player.getWorld().getName();
         String name = player.getName();
-        if(!(plugin.commandUtils.hasOwnerPermission(player, world, name) || plugin.commandUtils.hasMemberPermission(player, world, name))){
-            sendPlayerToSpawn(player);
-        }
+        if(plugin.commandUtils.isDimensionTeleportBlacklisted(player, world)) return;
+        if(plugin.commandUtils.hasOwnerPermission(player, world, name)) return;
+        if(plugin.commandUtils.hasMemberPermission(player, world, name)) return;
+        sendPlayerToSpawn(player);
     }
 
     public void tpPos(Player player, Location loc){

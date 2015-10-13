@@ -1,19 +1,36 @@
 package net.willsr71.mystcraftutils;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandUtils {
+public class MiscUtils {
     private MystcraftUtils plugin;
 
-    public CommandUtils(MystcraftUtils plugin){
+    public MiscUtils(MystcraftUtils plugin){
         this.plugin = plugin;
+    }
+
+    public String getString(String string) {
+        String out = plugin.config.getString(string);
+        if(out == null) out = "&7Error fetching \"&6" + string + "&7\" from config.";
+        return parse(out);
+    }
+
+    public String parse(String string, boolean prefix) {
+        if(prefix) string = "&a[&cMystcraft&9Utils&a]&r " + string;
+        string = ChatColor.translateAlternateColorCodes('&', string);
+        return string;
+    }
+
+    public String parse(String string){
+        return parse(string, true);
     }
 
     public boolean isConsoleSender(CommandSender cs){
         if(!(cs instanceof Player)) {
-            cs.sendMessage(plugin.chatUtils.getString("noConsoleMessage"));
+            cs.sendMessage(getString("noConsoleMessage"));
             return true;
         }
         return false;
@@ -24,7 +41,7 @@ public class CommandUtils {
         if(player != null){
             return true;
         }
-        cs.sendMessage(plugin.chatUtils.getString("playerNotFound").replace("%player%", name));
+        cs.sendMessage(getString("playerNotFound").replace("%player%", name));
         return false;
     }
 
@@ -32,13 +49,13 @@ public class CommandUtils {
         if(cs.hasPermission(permission)){
             return true;
         }
-        cs.sendMessage(plugin.chatUtils.getString("noPermission"));
+        cs.sendMessage(getString("noPermission"));
         return false;
     }
 
     public boolean isDimensionClaimBlacklisted(CommandSender cs, String dimension){
         if(Bukkit.getWorlds().get(0).getName().equals(dimension) || plugin.config.getStringList("antiClaimDimensions").contains(dimension)){
-            cs.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
+            cs.sendMessage(getString("blacklistMessage"));
             return true;
         }
         return false;
@@ -46,7 +63,7 @@ public class CommandUtils {
 
     public boolean isDimensionTeleportBlacklisted(CommandSender cs, String dimension){
         if(Bukkit.getWorlds().get(0).getName().equals(dimension) || plugin.config.getStringList("antiTeleportDimensions").contains(dimension)){
-            cs.sendMessage(plugin.chatUtils.getString("blacklistMessage"));
+            cs.sendMessage(getString("blacklistMessage"));
             return true;
         }
         return false;
@@ -56,14 +73,14 @@ public class CommandUtils {
         if(plugin.dimensions.containsKey(dimension)){
             return true;
         }
-        cs.sendMessage(plugin.chatUtils.getString("notRegisteredMessage").replace("%dimension%", dimension));
+        cs.sendMessage(getString("notRegisteredMessage").replace("%dimension%", dimension));
         return false;
     }
 
     public boolean isDimensionClaimed(CommandSender cs, String dimension){
         if(plugin.dimensions.containsKey(dimension)){
             String owner = plugin.dimensions.get(dimension).getOwners().get(0);
-            cs.sendMessage(plugin.chatUtils.getString("claim.messages.alreadyClaimed").replace("%dimension%", dimension).replace("%player%", owner));
+            cs.sendMessage(getString("claim.messages.alreadyClaimed").replace("%dimension%", dimension).replace("%player%", owner));
             return true;
         }
         return false;
@@ -83,7 +100,7 @@ public class CommandUtils {
     public boolean hasOwnerPermission(CommandSender cs, String dimension, String player){
         if(hasPermission(cs, "mystcraftutils.overrideowner")) return true;
         boolean owner = isOwner(dimension, player);
-        if(!owner) cs.sendMessage(plugin.chatUtils.getString("noDimPermission").replace("%player%", player).replace("%dimension%", dimension));
+        if(!owner) cs.sendMessage(getString("noDimPermission").replace("%player%", player).replace("%dimension%", dimension));
         return owner;
     }
 
@@ -94,7 +111,7 @@ public class CommandUtils {
     public boolean hasMemberPermission(CommandSender cs, String dimension, String player){
         if(hasPermission(cs, "mystcraftutils.overridemember")) return true;
         boolean member = isMember(dimension, player);
-        if(!member) cs.sendMessage(plugin.chatUtils.getString("noDimPermission").replace("%player%", player).replace("%dimension%", dimension));
+        if(!member) cs.sendMessage(getString("noDimPermission").replace("%player%", player).replace("%dimension%", dimension));
         return member;
     }
 }

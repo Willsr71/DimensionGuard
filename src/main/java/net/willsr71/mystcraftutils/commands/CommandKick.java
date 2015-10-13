@@ -13,14 +13,14 @@ public class CommandKick {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(plugin.commandUtils.isConsoleSender(cs)) return;
+        if(plugin.miscUtils.isConsoleSender(cs)) return;
         if(args.length < 1){
-            cs.sendMessage(plugin.chatUtils.parse("/myst kick <player>"));
+            cs.sendMessage(plugin.miscUtils.parse("/myst kick <player>"));
             return;
         }
 
         Player csPlayer= (Player) cs;
-        if(!(plugin.commandUtils.hasOwnerPermission(cs, csPlayer.getWorld().getName(), cs.getName()) || plugin.commandUtils.hasPermission(cs, "mystcraftutils.kick"))) return;
+        if(!(plugin.miscUtils.hasOwnerPermission(cs, csPlayer.getWorld().getName(), cs.getName()) || plugin.miscUtils.hasPermission(cs, "mystcraftutils.kick"))) return;
 
         Player player = Bukkit.getPlayer(args[0]);
         String dimension = player.getWorld().getName();
@@ -29,7 +29,7 @@ public class CommandKick {
 
         plugin.commandDispatcher.sendFromConfig("kick.commands", player.getName(), dimension);
 
-        cs.sendMessage(plugin.chatUtils.getString("kick.messages.toSender").replace("%dimension%", dimension).replace("%player%", player.getName()));
-        player.sendMessage(plugin.chatUtils.getString("kick.messages.toReceiver").replace("%dimension%", dimension));
+        cs.sendMessage(plugin.miscUtils.getString("kick.messages.toSender").replace("%dimension%", dimension).replace("%player%", player.getName()));
+        player.sendMessage(plugin.miscUtils.getString("kick.messages.toReceiver").replace("%dimension%", dimension));
     }
 }

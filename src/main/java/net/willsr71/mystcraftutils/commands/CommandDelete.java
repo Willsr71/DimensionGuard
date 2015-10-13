@@ -13,13 +13,13 @@ public class CommandDelete {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(plugin.commandUtils.isConsoleSender(cs)) return;
+        if(plugin.miscUtils.isConsoleSender(cs)) return;
 
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
-        if(plugin.commandUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
-        if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
-        if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
+        if(plugin.miscUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
+        if(!plugin.miscUtils.doesDimensionExist(cs, dimension)) return;
+        if(!plugin.miscUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
 
         boolean success = true;
         String uid = "";
@@ -30,12 +30,12 @@ public class CommandDelete {
         else if(!args[1].equals(dimension)) success = false;
         else if(!args[2].equals(uid)) success = false;
         if(!success){
-            cs.sendMessage(plugin.chatUtils.getString("delete.messages.confirm").replace("%uid%", uid));
+            cs.sendMessage(plugin.miscUtils.getString("delete.messages.confirm").replace("%uid%", uid));
             return;
         }
 
         for(Player p : Bukkit.getOnlinePlayers()){
-            p.sendMessage(plugin.chatUtils.getString("delete.messages.success").replace("%dimension%", dimension));
+            p.sendMessage(plugin.miscUtils.getString("delete.messages.success").replace("%dimension%", dimension));
         }
 
         plugin.commandDispatcher.sendFromConfig("delete.commands", player.getName(), dimension);

@@ -12,7 +12,7 @@ public class CommandRemoveOwner {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(plugin.commandUtils.isConsoleSender(cs)) return;
+        if(plugin.miscUtils.isConsoleSender(cs)) return;
         if(args.length != 1){
             cs.sendMessage("/myst removeowner <player>");
             return;
@@ -20,15 +20,15 @@ public class CommandRemoveOwner {
 
         Player csPlayer = (Player) cs;
         String dimension = csPlayer.getWorld().getName();
-        if(plugin.commandUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
-        if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
-        if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
-        if(!plugin.commandUtils.isOwner(dimension, args[0])){
-            cs.sendMessage(plugin.chatUtils.getString("removeOwner.messages.notFound").replace("%dimension%", dimension).replace("%player%", args[0]));
+        if(plugin.miscUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
+        if(!plugin.miscUtils.doesDimensionExist(cs, dimension)) return;
+        if(!plugin.miscUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
+        if(!plugin.miscUtils.isOwner(dimension, args[0])){
+            cs.sendMessage(plugin.miscUtils.getString("removeOwner.messages.notFound").replace("%dimension%", dimension).replace("%player%", args[0]));
             return;
         }
         if(cs.getName().equals(args[0])){
-            cs.sendMessage(plugin.chatUtils.getString("errSelf"));
+            cs.sendMessage(plugin.miscUtils.getString("errSelf"));
             return;
         }
 
@@ -37,6 +37,6 @@ public class CommandRemoveOwner {
 
         plugin.commandDispatcher.sendFromConfig("removeOwner.commands", args[0], dimension);
 
-        cs.sendMessage(plugin.chatUtils.getString("removeOwner.messages.success").replace("%dimension%", dimension).replace("%player%", args[0]));
+        cs.sendMessage(plugin.miscUtils.getString("removeOwner.messages.success").replace("%dimension%", dimension).replace("%player%", args[0]));
     }
 }

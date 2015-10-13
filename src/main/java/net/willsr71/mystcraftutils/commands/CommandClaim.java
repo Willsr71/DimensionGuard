@@ -16,17 +16,17 @@ public class CommandClaim {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(plugin.commandUtils.isConsoleSender(cs)) return;
+        if(plugin.miscUtils.isConsoleSender(cs)) return;
         Player player = (Player) cs;
         claim(player);
     }
 
     public void claim(Player player){
         String dimension = player.getWorld().getName();
-        if(plugin.commandUtils.isDimensionClaimBlacklisted(player, dimension)) return;
-        if(plugin.commandUtils.isDimensionClaimed(player, dimension)) return;
-        if(plugin.commandUtils.isAnyOwner(player)){
-            player.sendMessage(plugin.chatUtils.getString("dimensionMaxExceeded").replace("%dimension%", dimension).replace("%player%", player.getName()));
+        if(plugin.miscUtils.isDimensionClaimBlacklisted(player, dimension)) return;
+        if(plugin.miscUtils.isDimensionClaimed(player, dimension)) return;
+        if(plugin.miscUtils.isAnyOwner(player)){
+            player.sendMessage(plugin.miscUtils.getString("dimensionMaxExceeded").replace("%dimension%", dimension).replace("%player%", player.getName()));
             return;
         }
 
@@ -39,6 +39,6 @@ public class CommandClaim {
 
         plugin.commandDispatcher.sendFromConfig("claim.commands", player.getName(), dimension);
 
-        player.sendMessage(plugin.chatUtils.getString("claim.messages.success").replace("%dimension%", dimension));
+        player.sendMessage(plugin.miscUtils.getString("claim.messages.success").replace("%dimension%", dimension));
     }
 }

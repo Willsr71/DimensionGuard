@@ -17,7 +17,7 @@ public class CommandList {
     public void run(CommandSender cs, String[] args){
         HashMap<String, DimensionData> dimensions = (HashMap) plugin.dimensions.clone();
         if(dimensions.size()==0){
-            cs.sendMessage(plugin.chatUtils.parse("&7No dimensions registered"));
+            cs.sendMessage(plugin.miscUtils.parse("&7No dimensions registered"));
             return;
         }
         Set<String> dimList = dimensions.keySet();
@@ -37,9 +37,9 @@ public class CommandList {
             if(members.equals("&7Members:")) members = members + " &6None";
             else members = members.substring(0,members.length()-3);
 
-            cs.sendMessage(plugin.chatUtils.parse("&7Dimension name: &6" + dimData.getName()));
-            cs.sendMessage(plugin.chatUtils.parse(owners));
-            cs.sendMessage(plugin.chatUtils.parse(members));
+            cs.sendMessage(plugin.miscUtils.parse("&7Dimension name: &6" + dimData.getName()));
+            cs.sendMessage(plugin.miscUtils.parse(owners));
+            cs.sendMessage(plugin.miscUtils.parse(members));
         }
     }
 }

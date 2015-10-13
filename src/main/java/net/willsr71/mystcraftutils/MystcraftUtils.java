@@ -13,9 +13,8 @@ import java.util.Set;
 public class MystcraftUtils extends JavaPlugin {
     public static MystcraftUtils instance;
 
-    public ChatUtils chatUtils;
+    public MiscUtils miscUtils;
     public CommandDispatcher commandDispatcher;
-    public CommandUtils commandUtils;
     public CommandBase commandBase;
     public ConfigManager configManager;
     public ConfigManager dimensionConfigManager;
@@ -32,8 +31,7 @@ public class MystcraftUtils extends JavaPlugin {
         configManager = new ConfigManager(this, "configuration.yml");
         dimensionConfigManager = new ConfigManager(this, "dimensions.yml");
         commandBase = new CommandBase(this, "myst");
-        chatUtils = new ChatUtils(this);
-        commandUtils = new CommandUtils(this);
+        miscUtils = new MiscUtils(this);
         playerManager = new PlayerManager(this);
         commandDispatcher = new CommandDispatcher(this);
         worldManager = new WorldManager(this);

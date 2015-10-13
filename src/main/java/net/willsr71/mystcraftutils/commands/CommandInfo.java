@@ -15,12 +15,12 @@ public class CommandInfo {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(plugin.commandUtils.isConsoleSender(cs)) return;
+        if(plugin.miscUtils.isConsoleSender(cs)) return;
 
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
-        if(plugin.commandUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
-        if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
+        if(plugin.miscUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
+        if(!plugin.miscUtils.doesDimensionExist(cs, dimension)) return;
 
         HashMap<String, DimensionData> dimensions = (HashMap) plugin.dimensions.clone();
 
@@ -38,9 +38,9 @@ public class CommandInfo {
         if(members.equals("&7Members:")) members = members + " &6None";
         else members = members.substring(0, members.length() - 3);
 
-        cs.sendMessage(plugin.chatUtils.parse("&7Dimension info for dimension &6" + dimData.getName() + "&7:"));
-        cs.sendMessage(plugin.chatUtils.parse(owners));
-        cs.sendMessage(plugin.chatUtils.parse(members));
+        cs.sendMessage(plugin.miscUtils.parse("&7Dimension info for dimension &6" + dimData.getName() + "&7:"));
+        cs.sendMessage(plugin.miscUtils.parse(owners));
+        cs.sendMessage(plugin.miscUtils.parse(members));
     }
 
 }

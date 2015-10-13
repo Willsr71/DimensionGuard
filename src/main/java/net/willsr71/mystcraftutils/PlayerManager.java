@@ -18,7 +18,7 @@ public class PlayerManager {
         worldName = getValidOptions(player, worldName);
         if(worldName.equals("invalid")) return;
 
-        player.sendMessage(plugin.chatUtils.getString("teleportSuccess").replace("%dimension%", worldName));
+        player.sendMessage(plugin.miscUtils.getString("teleportSuccess").replace("%dimension%", worldName));
 
         World world = Bukkit.getWorld(worldName);
         Location spawn = world.getSpawnLocation();
@@ -32,7 +32,7 @@ public class PlayerManager {
     }
 
     public void autoSendPlayerToSpawn(Player player){
-        if(plugin.commandUtils.isDimensionTeleportBlacklisted(player, player.getWorld().getName())) return;
+        if(plugin.miscUtils.isDimensionTeleportBlacklisted(player, player.getWorld().getName())) return;
         sendPlayerToSpawn(player);
     }
 
@@ -47,9 +47,9 @@ public class PlayerManager {
     public void autoKick(Player player){
         String world = player.getWorld().getName();
         String name = player.getName();
-        if(plugin.commandUtils.isDimensionTeleportBlacklisted(player, world)) return;
-        if(plugin.commandUtils.hasOwnerPermission(player, world, name)) return;
-        if(plugin.commandUtils.hasMemberPermission(player, world, name)) return;
+        if(plugin.miscUtils.isDimensionTeleportBlacklisted(player, world)) return;
+        if(plugin.miscUtils.hasOwnerPermission(player, world, name)) return;
+        if(plugin.miscUtils.hasMemberPermission(player, world, name)) return;
         sendPlayerToSpawn(player);
     }
 
@@ -65,7 +65,7 @@ public class PlayerManager {
         for(String prefix : plugin.config.getStringList("dimensionPrefixes")){
             if(isValidDimension(prefix + worldName)) return prefix + worldName;
         }
-        player.sendMessage(plugin.chatUtils.getString("invalidWorld").replace("%dimemsion%", worldName));
+        player.sendMessage(plugin.miscUtils.getString("invalidWorld").replace("%dimemsion%", worldName));
         return "invalid";
     }
 

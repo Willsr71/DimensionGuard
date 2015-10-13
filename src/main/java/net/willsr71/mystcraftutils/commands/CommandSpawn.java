@@ -12,7 +12,7 @@ public class CommandSpawn {
     }
 
     public void run(CommandSender cs, String[] args){
-        if(plugin.commandUtils.isConsoleSender(cs)) return;
+        if(plugin.miscUtils.isConsoleSender(cs)) return;
         Player player = (Player) cs;
 
         plugin.playerManager.sendPlayerToSpawn(player);

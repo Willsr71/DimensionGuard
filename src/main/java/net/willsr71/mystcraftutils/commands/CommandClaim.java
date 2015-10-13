@@ -26,7 +26,7 @@ public class CommandClaim {
         if(plugin.commandUtils.isDimensionClaimBlacklisted(player, dimension)) return;
         if(plugin.commandUtils.isDimensionClaimed(player, dimension)) return;
         if(plugin.commandUtils.isAnyOwner(player)){
-            plugin.chatUtils.sendMessage(player.getName(), "dimensionMaxExceeded", player.getName(), dimension);
+            player.sendMessage(plugin.chatUtils.getString("dimensionMaxExceeded").replace("%dimension%", dimension).replace("%player%", player.getName()));
             return;
         }
 
@@ -39,6 +39,6 @@ public class CommandClaim {
 
         plugin.commandDispatcher.sendFromConfig("claim.commands", player.getName(), dimension);
 
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("claim.messages.success"), dimension));
+        player.sendMessage(plugin.chatUtils.getString("claim.messages.success").replace("%dimension%", dimension));
     }
 }

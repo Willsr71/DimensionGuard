@@ -18,8 +18,7 @@ public class PlayerManager {
         worldName = getValidOptions(player, worldName);
         if(worldName.equals("invalid")) return;
 
-        plugin.chatUtils.sendMessage(player.getName(), "teleportSuccess", player.getName(), worldName);
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("teleportSuccess"), worldName));
+        player.sendMessage(plugin.chatUtils.getString("teleportSuccess").replace("%dimension%", worldName));
 
         World world = Bukkit.getWorld(worldName);
         Location spawn = world.getSpawnLocation();
@@ -66,7 +65,7 @@ public class PlayerManager {
         for(String prefix : plugin.config.getStringList("dimensionPrefixes")){
             if(isValidDimension(prefix + worldName)) return prefix + worldName;
         }
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("invalidWorld"), worldName));
+        player.sendMessage(plugin.chatUtils.getString("invalidWorld").replace("%dimemsion%", worldName));
         return "invalid";
     }
 

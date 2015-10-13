@@ -29,7 +29,7 @@ public class CommandKick {
 
         plugin.commandDispatcher.sendFromConfig("kick.commands", player.getName(), dimension);
 
-        cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("kick.messages.toSender"), player.getName()), dimension));
-        player.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("kick.messages.toReceiver"), dimension));
+        cs.sendMessage(plugin.chatUtils.getString("kick.messages.toSender").replace("%dimension%", dimension).replace("%player%", player.getName()));
+        player.sendMessage(plugin.chatUtils.getString("kick.messages.toReceiver").replace("%dimension%", dimension));
     }
 }

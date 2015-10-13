@@ -40,6 +40,6 @@ public class EventListener implements Listener{
         if(!event.getClickedBlock().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
         if(!plugin.commandUtils.isAnyOwner(event.getPlayer())) return;
         event.setCancelled(true);
-        plugin.chatUtils.sendMessage(event.getPlayer().getName(), "alreadyOwnDimension", "", "");
+        event.getPlayer().sendMessage("alreadyOwnDimension");
     }
 }

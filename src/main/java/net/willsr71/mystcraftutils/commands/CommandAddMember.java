@@ -28,15 +28,15 @@ public class CommandAddMember {
         Player player = Bukkit.getPlayer(args[0]);
         if(!plugin.commandUtils.isPlayer(cs, args[0])) return;
         if(plugin.commandUtils.isOwner(dimension, args[0])){
-            plugin.chatUtils.sendMessage(cs.getName(), "addMember.messages.alreadyOwner", args[0], dimension);
+            cs.sendMessage(plugin.chatUtils.getString("addMember.messages.alreadyOwner").replace("%dimension%", dimension).replace("%player%", args[0]));
             return;
         }
         if(plugin.commandUtils.isMember(dimension, args[0])){
-            plugin.chatUtils.sendMessage(cs.getName(), "addMember.messages.alreadyMember", args[0], dimension);
+            cs.sendMessage(plugin.chatUtils.getString("addMember.messages.alreadyMember").replace("%dimension%", dimension).replace("%player%", args[0]));
         }
 
-        cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("addMember.messages.toSender"), dimension), player.getName()));
-        player.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("addMember.messages.toReceiver"), dimension), player.getName()));
+        cs.sendMessage(plugin.chatUtils.getString("addMember.messages.toSender").replace("%dimension%", dimension).replace("%player%", player.getName()));
+        player.sendMessage(plugin.chatUtils.getString("addMember.messages.toReveiver").replace("%dimension%", dimension).replace("%player%", player.getName()));
 
         plugin.dimensions.get(dimension).addMember(player.getName());
         plugin.save();

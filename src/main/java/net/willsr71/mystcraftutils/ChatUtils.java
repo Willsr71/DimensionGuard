@@ -10,13 +10,6 @@ public class ChatUtils {
         this.plugin = plugin;
     }
 
-    public void sendMessage(String target, String configEntry, String player, String dimension){
-        String message = plugin.chatUtils.getString(configEntry);
-        message = plugin.chatUtils.replacePlayer(message, player);
-        message = plugin.chatUtils.replaceDim(message, dimension);
-        Bukkit.getPlayer(target).sendMessage(message);
-    }
-
     public String parse(String string, boolean prefix) {
         if(prefix) string = "&a[&cMystcraft&9Utils&a]&r " + string;
         string = ChatColor.translateAlternateColorCodes('&', string);
@@ -25,14 +18,6 @@ public class ChatUtils {
 
     public String parse(String string){
         return parse(string, true);
-    }
-
-    public String replacePlayer(String message, String player){
-        return message.replace("%player%", player);
-    }
-
-    public String replaceDim(String message, String dimension){
-        return message.replace("%dimension%", dimension);
     }
 
     public String getString(String string) {

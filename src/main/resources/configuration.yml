@@ -49,7 +49,7 @@ autoSpawnLogin: true
 autoSpawnLogout: true
 
 # Amount of times lightning will strike on teleport
-lightningCount: 20
+lightningCount: 1
 
 ###################################
 #####         Events          #####

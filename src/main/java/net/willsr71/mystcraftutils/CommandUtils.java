@@ -24,7 +24,7 @@ public class CommandUtils {
         if(player != null){
             return true;
         }
-        cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.getString("playerNotFound"), name));
+        cs.sendMessage(plugin.chatUtils.getString("playerNotFound").replace("%player%", name));
         return false;
     }
 
@@ -56,14 +56,14 @@ public class CommandUtils {
         if(plugin.dimensions.containsKey(dimension)){
             return true;
         }
-        cs.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("notRegisteredMessage"), dimension));
+        cs.sendMessage(plugin.chatUtils.getString("notRegisteredMessage").replace("%dimension%", dimension));
         return false;
     }
 
     public boolean isDimensionClaimed(CommandSender cs, String dimension){
         if(plugin.dimensions.containsKey(dimension)){
             String owner = plugin.dimensions.get(dimension).getOwners().get(0);
-            cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("claim.messages.alreadyClaimed"), dimension), owner));
+            cs.sendMessage(plugin.chatUtils.getString("claim.messages.alreadyClaimed").replace("%dimension%", dimension).replace("%player%", owner));
             return true;
         }
         return false;
@@ -83,7 +83,7 @@ public class CommandUtils {
     public boolean hasOwnerPermission(CommandSender cs, String dimension, String player){
         if(hasPermission(cs, "mystcraftutils.overrideowner")) return true;
         boolean owner = isOwner(dimension, player);
-        if(!owner) plugin.chatUtils.sendMessage(cs.getName(), "noDimPermission", player, dimension);
+        if(!owner) cs.sendMessage(plugin.chatUtils.getString("noDimPermission").replace("%player%", player).replace("%dimension%", dimension));
         return owner;
     }
 
@@ -94,7 +94,7 @@ public class CommandUtils {
     public boolean hasMemberPermission(CommandSender cs, String dimension, String player){
         if(hasPermission(cs, "mystcraftutils.overridemember")) return true;
         boolean member = isMember(dimension, player);
-        if(!member) plugin.chatUtils.sendMessage(cs.getName(), "noDimPermission", player, dimension);
+        if(!member) cs.sendMessage(plugin.chatUtils.getString("noDimPermission").replace("%player%", player).replace("%dimension%", dimension));
         return member;
     }
 }

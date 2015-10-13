@@ -24,7 +24,7 @@ public class CommandRemoveOwner {
         if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
         if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
         if(!plugin.commandUtils.isOwner(dimension, args[0])){
-            plugin.chatUtils.sendMessage(cs.getName(), "removeOwner.messages.notFound", args[0], dimension);
+            cs.sendMessage(plugin.chatUtils.getString("removeOwner.messages.notFound").replace("%dimension%", dimension).replace("%player%", args[0]));
             return;
         }
         if(cs.getName().equals(args[0])){
@@ -37,6 +37,6 @@ public class CommandRemoveOwner {
 
         plugin.commandDispatcher.sendFromConfig("removeOwner.commands", args[0], dimension);
 
-        cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("removeOwner.messages.success"), dimension), args[0]));
+        cs.sendMessage(plugin.chatUtils.getString("removeOwner.messages.success").replace("%dimension%", dimension).replace("%player%", args[0]));
     }
 }

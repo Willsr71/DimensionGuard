@@ -28,15 +28,15 @@ public class CommandAddOwner {
         Player player = Bukkit.getPlayer(args[0]);
         if(!plugin.commandUtils.isPlayer(cs, args[0])) return;
         if(plugin.commandUtils.isAnyOwner(player)){
-            plugin.chatUtils.sendMessage(player.getName(), "addOwner.messages.alreadyOwnerOtherDim", player.getName(), dimension);
+            cs.sendMessage(plugin.chatUtils.getString("addOwner.messages.alreadyOwnerOtherDim").replace("%player%", args[0]).replace("%dimension%", dimension));
             return;
         }
         if(plugin.commandUtils.isOwner(dimension, args[0])){
-            plugin.chatUtils.sendMessage(cs.getName(), "addOwner.messages.alreadyOwner", args[0], dimension);
+            cs.sendMessage(plugin.chatUtils.getString("addOwner.messages.alreadyOwner").replace("%player%", args[0]).replace("%dimension%", dimension));
             return;
         }
         if(plugin.commandUtils.isMember(dimension, args[0])) {
-            plugin.chatUtils.sendMessage(cs.getName(), "addOwner.messages.alreadyMember", args[0], dimension);
+            cs.sendMessage(plugin.chatUtils.getString("addOwner.messages.alreadyMember").replace("%player%", args[0]).replace("%dimension%", dimension));
             plugin.dimensions.get(dimension).removeMember(player.getName());
         }
 
@@ -51,8 +51,8 @@ public class CommandAddOwner {
             return;
         }
 
-        cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("addOwner.messages.toSender"), dimension), player.getName()));
-        player.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("addOwner.messages.toReceiver"), dimension), player.getName()));
+        cs.sendMessage(plugin.chatUtils.getString("addOwner.messages.toSender").replace("%dimension%", dimension).replace("%player%", player.getName()));
+        player.sendMessage(plugin.chatUtils.getString("addOwner.messages.toReceiver").replace("%dimension%", dimension).replace("%player%", player.getName()));
 
         plugin.dimensions.get(dimension).addOwner(player.getName());
         plugin.save();

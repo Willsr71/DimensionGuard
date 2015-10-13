@@ -35,7 +35,7 @@ public class CommandDelete {
         }
 
         for(Player p : Bukkit.getOnlinePlayers()){
-            p.sendMessage(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("delete.messages.success"), dimension));
+            p.sendMessage(plugin.chatUtils.getString("delete.messages.success").replace("%dimension%", dimension));
         }
 
         plugin.commandDispatcher.sendFromConfig("delete.commands", player.getName(), dimension);

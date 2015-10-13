@@ -24,7 +24,7 @@ public class CommandRemoveMember {
         if(!plugin.commandUtils.doesDimensionExist(cs, dimension)) return;
         if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
         if(!plugin.commandUtils.isMember(dimension, args[0])){
-            plugin.chatUtils.sendMessage(cs.getName(), "removeMember.messages.notFound", args[0], dimension);
+            cs.sendMessage(plugin.chatUtils.getString("removeMember.messages.notFound").replace("%dimension%", dimension).replace("%player%", args[0]));
             return;
         }
 
@@ -33,6 +33,6 @@ public class CommandRemoveMember {
 
         plugin.commandDispatcher.sendFromConfig("removeMember.commands", args[0], dimension);
 
-        cs.sendMessage(plugin.chatUtils.replacePlayer(plugin.chatUtils.replaceDim(plugin.chatUtils.getString("removeMember.messages.success"), dimension), args[0]));
+        cs.sendMessage(plugin.chatUtils.getString("removeMember.messages.success").replace("%dimension%", dimension).replace("%player%", args[0]));
     }
 }

@@ -22,9 +22,11 @@ public class CommandDelete {
         if(!plugin.commandUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
 
         boolean success = true;
-        String uid = player.getWorld().getUID().toString().substring(0, plugin.config.getInt("delete.uidchars"));
-        if(!(args.length == 3)) success = false;
-        else if(!args[0].equals("confirm")) success = false;
+        String uid = "";
+        if(plugin.config.getInt("delete.uidchars") == 0) uid = player.getWorld().getUID().toString().substring(0, plugin.config.getInt("delete.uidchars"));
+
+        //if(!(args.length == 3)) success = false;
+        if(!args[0].equals("confirm")) success = false;
         else if(!args[1].equals(dimension)) success = false;
         else if(!args[2].equals(uid)) success = false;
         if(!success){

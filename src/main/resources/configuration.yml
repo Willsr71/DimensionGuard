@@ -74,6 +74,7 @@ claim:
 # Called when a claim (and the dimension along with it) is deleted
 delete:
   # Number of letters of the UID a player must enter before they can delete a world. The longer the less chance of accidential deletion
+  # If this is set as 0 then there will be no UID confirmation
   uidchars: 16
   messages:
     success: "&7Dimension &6%dimension%&7 has been deleted"

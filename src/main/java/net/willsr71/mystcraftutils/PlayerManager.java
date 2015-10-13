@@ -65,7 +65,7 @@ public class PlayerManager {
         for(String prefix : plugin.config.getStringList("dimensionPrefixes")){
             if(isValidDimension(prefix + worldName)) return prefix + worldName;
         }
-        player.sendMessage(plugin.miscUtils.getString("invalidWorld").replace("%dimemsion%", worldName));
+        player.sendMessage(plugin.miscUtils.getString("invalidWorld").replace("%dimension%", worldName));
         return "invalid";
     }
 

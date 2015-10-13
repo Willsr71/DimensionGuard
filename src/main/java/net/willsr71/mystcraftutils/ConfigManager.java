@@ -31,8 +31,7 @@ public class ConfigManager {
     public void reloadConfig(){
         if(!dataFolder.exists()) dataFolder.mkdirs();
         if(!file.exists()) createConfig();
-        yamlConfiguration = new YamlConfiguration();
-        yamlConfiguration = yamlConfiguration.loadConfiguration(file);
+        yamlConfiguration = YamlConfiguration.loadConfiguration(file);
     }
 
     public void saveConfig(){

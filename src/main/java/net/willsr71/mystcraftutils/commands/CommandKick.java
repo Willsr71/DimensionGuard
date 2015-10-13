@@ -27,7 +27,7 @@ public class CommandKick {
 
         plugin.playerManager.sendPlayerToSpawn(player);
 
-        plugin.commandDispatcher.sendFromConfig("kick.commands", player.getName(), dimension);
+        plugin.miscUtils.sendCommandsFromConfig("kick.commands", player.getName(), dimension);
 
         cs.sendMessage(plugin.miscUtils.getString("kick.messages.toSender").replace("%dimension%", dimension).replace("%player%", player.getName()));
         player.sendMessage(plugin.miscUtils.getString("kick.messages.toReceiver").replace("%dimension%", dimension));

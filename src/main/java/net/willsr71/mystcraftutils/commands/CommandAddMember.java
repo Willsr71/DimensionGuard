@@ -41,6 +41,6 @@ public class CommandAddMember {
         plugin.dimensions.get(dimension).addMember(player.getName());
         plugin.save();
 
-        plugin.commandDispatcher.sendFromConfig("addMember.commands", player.getName(), dimension);
+        plugin.miscUtils.sendCommandsFromConfig("addMember.commands", player.getName(), dimension);
     }
 }

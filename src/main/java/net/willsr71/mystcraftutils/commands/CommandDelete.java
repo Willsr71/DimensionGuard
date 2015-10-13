@@ -38,7 +38,7 @@ public class CommandDelete {
             p.sendMessage(plugin.miscUtils.getString("delete.messages.success").replace("%dimension%", dimension));
         }
 
-        plugin.commandDispatcher.sendFromConfig("delete.commands", player.getName(), dimension);
+        plugin.miscUtils.sendCommandsFromConfig("delete.commands", player.getName(), dimension);
         plugin.playerManager.sendAllToSpawn(dimension);
         plugin.dimensions.remove(dimension);
         plugin.worldManager.deleteWorld(dimension);

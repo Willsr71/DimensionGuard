@@ -31,7 +31,7 @@ public class CommandRemoveMember {
         plugin.dimensions.get(dimension).removeMember(args[0]);
         plugin.save();
 
-        plugin.commandDispatcher.sendFromConfig("removeMember.commands", args[0], dimension);
+        plugin.miscUtils.sendCommandsFromConfig("removeMember.commands", args[0], dimension);
 
         cs.sendMessage(plugin.miscUtils.getString("removeMember.messages.success").replace("%dimension%", dimension).replace("%player%", args[0]));
     }

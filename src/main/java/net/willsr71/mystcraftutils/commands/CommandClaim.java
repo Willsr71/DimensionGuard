@@ -37,7 +37,7 @@ public class CommandClaim {
         plugin.dimensions.put(dimension, new DimensionData(dimension, owners, members));
         plugin.save();
 
-        plugin.commandDispatcher.sendFromConfig("claim.commands", player.getName(), dimension);
+        plugin.miscUtils.sendCommandsFromConfig("claim.commands", player.getName(), dimension);
 
         player.sendMessage(plugin.miscUtils.getString("claim.messages.success").replace("%dimension%", dimension));
     }

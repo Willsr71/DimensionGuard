@@ -14,7 +14,6 @@ public class MystcraftUtils extends JavaPlugin {
     public static MystcraftUtils instance;
 
     public MiscUtils miscUtils;
-    public CommandDispatcher commandDispatcher;
     public CommandBase commandBase;
     public ConfigManager configManager;
     public ConfigManager dimensionConfigManager;
@@ -33,7 +32,6 @@ public class MystcraftUtils extends JavaPlugin {
         commandBase = new CommandBase(this, "myst");
         miscUtils = new MiscUtils(this);
         playerManager = new PlayerManager(this);
-        commandDispatcher = new CommandDispatcher(this);
         worldManager = new WorldManager(this);
         reload();
 

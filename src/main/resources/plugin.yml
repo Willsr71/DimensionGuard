@@ -1,7 +1,7 @@
 name: MystcraftUtils
 main: net.willsr71.mystcraftutils.MystcraftUtils
 version: 1.0
-description: Something something edit this please
+description: The ultimate dimension and mystcraft age manager.
 author: Willsr71
 website: http://willsr71.net/
 commands:

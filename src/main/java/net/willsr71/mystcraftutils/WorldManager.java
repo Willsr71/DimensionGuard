@@ -20,7 +20,7 @@ public class WorldManager {
         File worldFolder = world.getWorldFolder();
         Bukkit.unloadWorld(dimension, true);
 
-        scheduleTask(worldFolder, dimension);
+        scheduleWorldDeletion(worldFolder, dimension);
     }
 
     private boolean deleteFolder(File path) {
@@ -51,7 +51,7 @@ public class WorldManager {
         return false;
     }
 
-    private void scheduleTask(final File worldFolder, final String dimension) {
+    private void scheduleWorldDeletion(final File worldFolder, final String dimension) {
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
             @Override

@@ -45,7 +45,6 @@ permissions:
       mystcraftutils.reload: true
       mystcraftutils.tpx: true
       mystcraftutils.tp.others: true
-      mystcraftutils.lightning: true
       mystcraftutils.kick: true
   mystcraftutils.overrideowner:
     default: op
@@ -65,6 +64,3 @@ permissions:
   mystcraft.kick:
     default: op
     description: The ability to kick players from a dimension
-  mystcraftutils.lightning:
-    default: true
-    description: Fancy(ish) lightning effects on teleportation

@@ -20,6 +20,6 @@ public class CommandTPX {
         }
         Player player = (Player) cs;
 
-        plugin.playerManager.sendToWorldSpawn(player, args[0]);
+        plugin.playerManager.sendPlayerToWorldSpawn(player, args[0]);
     }
 }

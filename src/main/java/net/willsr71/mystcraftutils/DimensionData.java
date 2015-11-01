@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DimensionData {
-    private ArrayList<String> owners = new ArrayList<String>();
-    private ArrayList<String> members = new ArrayList<String>();
+    private ArrayList<String> owners = new ArrayList<>();
+    private ArrayList<String> members = new ArrayList<>();
     private String name;
 
     public DimensionData(String name, List<String> owners, List<String> members) {

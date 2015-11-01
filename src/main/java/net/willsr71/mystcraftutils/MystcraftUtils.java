@@ -21,7 +21,7 @@ public class MystcraftUtils extends JavaPlugin {
     public Configuration dimensionConfig;
     public WorldManager worldManager;
     public PlayerManager playerManager;
-    public HashMap<String, DimensionData> dimensions = new HashMap<String, DimensionData>();
+    public HashMap<String, DimensionData> dimensions = new HashMap<>();
 
     public void onEnable() {
         instance = this;

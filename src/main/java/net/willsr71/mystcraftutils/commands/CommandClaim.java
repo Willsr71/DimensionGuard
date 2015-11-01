@@ -30,8 +30,8 @@ public class CommandClaim {
             return;
         }
 
-        List<String> owners = new ArrayList<String>();
-        List<String> members = new ArrayList<String>();
+        List<String> owners = new ArrayList<>();
+        List<String> members = new ArrayList<>();
         owners.add(player.getName());
 
         plugin.dimensions.put(dimension, new DimensionData(dimension, owners, members));

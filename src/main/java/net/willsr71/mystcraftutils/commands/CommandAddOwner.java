@@ -8,45 +8,45 @@ import org.bukkit.entity.Player;
 public class CommandAddOwner {
     private MystcraftUtils plugin;
 
-    public CommandAddOwner(MystcraftUtils plugin){
+    public CommandAddOwner(MystcraftUtils plugin) {
         this.plugin = plugin;
     }
 
-    public void run(CommandSender cs, String[] args){
-        if(plugin.miscUtils.isConsoleSender(cs)) return;
-        if(args.length < 1){
+    public void run(CommandSender cs, String[] args) {
+        if (plugin.miscUtils.isConsoleSender(cs)) return;
+        if (args.length < 1) {
             cs.sendMessage("/myst addowner <player>");
             return;
         }
 
         Player csPlayer = (Player) cs;
         String dimension = csPlayer.getWorld().getName();
-        if(plugin.miscUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
-        if(!plugin.miscUtils.doesDimensionExist(cs, dimension)) return;
-        if(!plugin.miscUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
+        if (plugin.miscUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
+        if (!plugin.miscUtils.doesDimensionExist(cs, dimension)) return;
+        if (!plugin.miscUtils.hasOwnerPermission(cs, dimension, cs.getName())) return;
 
         Player player = Bukkit.getPlayer(args[0]);
-        if(!plugin.miscUtils.isPlayer(cs, args[0])) return;
-        if(plugin.miscUtils.isAnyOwner(player)){
+        if (!plugin.miscUtils.isPlayer(cs, args[0])) return;
+        if (plugin.miscUtils.isAnyOwner(player)) {
             cs.sendMessage(plugin.miscUtils.getString("addOwner.messages.alreadyOwnerOtherDim").replace("%player%", args[0]).replace("%dimension%", dimension));
             return;
         }
-        if(plugin.miscUtils.isOwner(dimension, args[0])){
+        if (plugin.miscUtils.isOwner(dimension, args[0])) {
             cs.sendMessage(plugin.miscUtils.getString("addOwner.messages.alreadyOwner").replace("%player%", args[0]).replace("%dimension%", dimension));
             return;
         }
-        if(plugin.miscUtils.isMember(dimension, args[0])) {
+        if (plugin.miscUtils.isMember(dimension, args[0])) {
             cs.sendMessage(plugin.miscUtils.getString("addOwner.messages.alreadyMember").replace("%player%", args[0]).replace("%dimension%", dimension));
             plugin.dimensions.get(dimension).removeMember(player.getName());
         }
 
         boolean success = true;
         String uid = player.getWorld().getUID().toString().substring(0, plugin.config.getInt("addOwner.uidchars"));
-        if(!(args.length == 4)) success = false;
-        else if(!args[1].equals("confirm")) success = false;
-        else if(!args[2].equals(dimension)) success = false;
-        else if(!args[3].equals(uid)) success = false;
-        if(!success){
+        if (!(args.length == 4)) success = false;
+        else if (!args[1].equals("confirm")) success = false;
+        else if (!args[2].equals(dimension)) success = false;
+        else if (!args[3].equals(uid)) success = false;
+        if (!success) {
             cs.sendMessage(plugin.miscUtils.getString("addOwner.messages.confirm").replace("%uid%", uid));
             return;
         }

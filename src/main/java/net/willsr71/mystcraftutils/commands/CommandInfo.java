@@ -10,17 +10,17 @@ import java.util.HashMap;
 public class CommandInfo {
     private MystcraftUtils plugin;
 
-    public CommandInfo(MystcraftUtils plugin){
+    public CommandInfo(MystcraftUtils plugin) {
         this.plugin = plugin;
     }
 
-    public void run(CommandSender cs, String[] args){
-        if(plugin.miscUtils.isConsoleSender(cs)) return;
+    public void run(CommandSender cs, String[] args) {
+        if (plugin.miscUtils.isConsoleSender(cs)) return;
 
         Player player = (Player) cs;
         String dimension = player.getWorld().getName();
-        if(plugin.miscUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
-        if(!plugin.miscUtils.doesDimensionExist(cs, dimension)) return;
+        if (plugin.miscUtils.isDimensionClaimBlacklisted(cs, dimension)) return;
+        if (!plugin.miscUtils.doesDimensionExist(cs, dimension)) return;
 
         HashMap<String, DimensionData> dimensions = (HashMap) plugin.dimensions.clone();
 
@@ -33,9 +33,9 @@ public class CommandInfo {
         for (String member : dimData.getMembers()) {
             members = (members + " &6" + member + "&7,").trim();
         }
-        if(owners.equals("&7Owners:")) owners = owners + " &6None";
+        if (owners.equals("&7Owners:")) owners = owners + " &6None";
         else owners = owners.substring(0, owners.length() - 3);
-        if(members.equals("&7Members:")) members = members + " &6None";
+        if (members.equals("&7Members:")) members = members + " &6None";
         else members = members.substring(0, members.length() - 3);
 
         cs.sendMessage(plugin.miscUtils.parse("&7Dimension info for dimension &6" + dimData.getName() + "&7:"));

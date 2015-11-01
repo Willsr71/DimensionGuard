@@ -11,11 +11,11 @@ import java.io.IOException;
 public class WorldManager {
     private MystcraftUtils plugin;
 
-    public WorldManager(MystcraftUtils plugin){
+    public WorldManager(MystcraftUtils plugin) {
         this.plugin = plugin;
     }
 
-    public void deleteWorld(String dimension){
+    public void deleteWorld(String dimension) {
         World world = Bukkit.getWorld(dimension);
         File worldFolder = world.getWorldFolder();
         Bukkit.unloadWorld(dimension, true);
@@ -24,7 +24,7 @@ public class WorldManager {
     }
 
     private boolean deleteFolder(File path) {
-        if(path.exists()) {
+        if (path.exists()) {
             File files[] = path.listFiles();
             for (File file : files) {
                 if (file.isDirectory()) {
@@ -34,18 +34,18 @@ public class WorldManager {
                 }
             }
         }
-        return(path.delete());
+        return (path.delete());
     }
 
-    private boolean copyFolder(File path, String dimension){
+    private boolean copyFolder(File path, String dimension) {
         String backupLocation = plugin.config.getString("backupLocation");
         backupLocation = backupLocation.replace("%server%", Bukkit.getServer().getName());
         File backupFolder = new File(backupLocation + dimension);
         backupFolder.mkdirs();
-        try{
+        try {
             FileUtils.copyDirectory(path, backupFolder);
             return true;
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return false;
@@ -54,9 +54,8 @@ public class WorldManager {
     private void scheduleWorldDeletion(final File worldFolder, final String dimension) {
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
-            @Override
             public void run() {
-                if(!copyFolder(worldFolder, dimension)){
+                if (!copyFolder(worldFolder, dimension)) {
                     plugin.getLogger().warning("Error copying dimension folder " + worldFolder.getAbsolutePath());
                     return;
                 }

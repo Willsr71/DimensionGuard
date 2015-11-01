@@ -6,39 +6,39 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.*;
 
-public class EventListener implements Listener{
+public class EventListener implements Listener {
     MystcraftUtils plugin;
 
-    public EventListener(MystcraftUtils plugin){
+    public EventListener(MystcraftUtils plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onPlayerQuit(PlayerQuitEvent event){
-        if(plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.autoSendPlayerToSpawn(event.getPlayer());
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        if (plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.autoSendPlayerToSpawn(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onPlayerKick(PlayerKickEvent event){
-        if(plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.autoSendPlayerToSpawn(event.getPlayer());
+    public void onPlayerKick(PlayerKickEvent event) {
+        if (plugin.config.getBoolean("autoSpawnLogout")) plugin.playerManager.autoSendPlayerToSpawn(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onPlayerJoin(PlayerJoinEvent event){
-        if(plugin.config.getBoolean("autoSpawnLogin")) plugin.playerManager.autoSendPlayerToSpawn(event.getPlayer());
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        if (plugin.config.getBoolean("autoSpawnLogin")) plugin.playerManager.autoSendPlayerToSpawn(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onPlayerChangedWorld(PlayerChangedWorldEvent event){
+    public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
         plugin.commandBase.commandClaim.claim(event.getPlayer());
         plugin.playerManager.autoKick(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerInteract(PlayerInteractEvent event){
-        if(event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        if(!event.getClickedBlock().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
-        if(!plugin.miscUtils.isAnyOwner(event.getPlayer())) return;
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        if (!event.getClickedBlock().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
+        if (!plugin.miscUtils.isAnyOwner(event.getPlayer())) return;
         event.setCancelled(true);
         event.getPlayer().sendMessage("alreadyOwnDimension");
     }

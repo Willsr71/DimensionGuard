@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class MystcraftUtils extends JavaPlugin {
     public static MystcraftUtils instance;
-
+    public static String version = "1.0";
     public MiscUtils miscUtils;
     public CommandBase commandBase;
     public ConfigManager configManager;
@@ -21,11 +21,9 @@ public class MystcraftUtils extends JavaPlugin {
     public Configuration dimensionConfig;
     public WorldManager worldManager;
     public PlayerManager playerManager;
+    public HashMap<String, DimensionData> dimensions = new HashMap<String, DimensionData>();
 
-    public static String version = "1.0";
-    public HashMap<String, DimensionData> dimensions = new HashMap<>();
-
-    public void onEnable(){
+    public void onEnable() {
         instance = this;
         configManager = new ConfigManager(this, "configuration.yml");
         dimensionConfigManager = new ConfigManager(this, "dimensions.yml");
@@ -48,16 +46,16 @@ public class MystcraftUtils extends JavaPlugin {
         }
     }
 
-    public void onDisable(){
+    public void onDisable() {
         save();
 
         getLogger().info("Disabled MystcraftUtils v" + version);
     }
 
-    public void save(){
+    public void save() {
         Set<String> dims = dimensions.keySet();
         getLogger().info("Saving " + dims.size() + " dimensions...");
-        for (String dim : dimensionConfig.getKeys(false)){
+        for (String dim : dimensionConfig.getKeys(false)) {
             dimensionConfig.set(dim, null);
         }
 
@@ -72,7 +70,7 @@ public class MystcraftUtils extends JavaPlugin {
         getLogger().info("Done");
     }
 
-    public void reload(){
+    public void reload() {
         configManager.reloadConfig();
         dimensionConfigManager.reloadConfig();
         config = configManager.getConfig();
@@ -81,7 +79,7 @@ public class MystcraftUtils extends JavaPlugin {
 
         Set<String> dims = dimensionConfig.getKeys(false);
         getLogger().info("Loading " + dims.size() + " dimensions...");
-        for(String dim : dims){
+        for (String dim : dims) {
             List<String> owners = dimensionConfig.getStringList(dim + ".owners");
             List<String> members = dimensionConfig.getStringList(dim + ".members");
             DimensionData dimData = new DimensionData(dim, owners, members);
@@ -90,15 +88,15 @@ public class MystcraftUtils extends JavaPlugin {
         getLogger().info("Done");
     }
 
-    private void replaceConfig(int r){
+    private void replaceConfig(int r) {
         String configVersion = config.getString("dontTouch.version.seriouslyThisWillEraseYourConfig");
 
         // Try reloading the config up to 5 times, giving a chance to whatever is holding open the files to let go. If this fails then skip replacing them.
-        if(r < 5 && (configVersion == null || !configVersion.equals(version))){
+        if (r < 5 && (configVersion == null || !configVersion.equals(version))) {
             configManager.replaceConfig();
             config = configManager.getConfig();
             replaceConfig(r + 1);
-        }else if(r >= 5){
+        } else if (r >= 5) {
             getLogger().severe("Error loading MystcraftUtils configs.");
         }
     }

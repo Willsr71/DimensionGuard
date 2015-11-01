@@ -8,19 +8,20 @@ import org.bukkit.entity.Player;
 public class CommandKick {
     private MystcraftUtils plugin;
 
-    public CommandKick(MystcraftUtils plugin){
+    public CommandKick(MystcraftUtils plugin) {
         this.plugin = plugin;
     }
 
-    public void run(CommandSender cs, String[] args){
-        if(plugin.miscUtils.isConsoleSender(cs)) return;
-        if(args.length < 1){
+    public void run(CommandSender cs, String[] args) {
+        if (plugin.miscUtils.isConsoleSender(cs)) return;
+        if (args.length < 1) {
             cs.sendMessage(plugin.miscUtils.parse("/myst kick <player>"));
             return;
         }
 
-        Player csPlayer= (Player) cs;
-        if(!(plugin.miscUtils.hasOwnerPermission(cs, csPlayer.getWorld().getName(), cs.getName()) || plugin.miscUtils.hasPermission(cs, "mystcraftutils.kick"))) return;
+        Player csPlayer = (Player) cs;
+        if (!(plugin.miscUtils.hasOwnerPermission(cs, csPlayer.getWorld().getName(), cs.getName()) || plugin.miscUtils.hasPermission(cs, "mystcraftutils.kick")))
+            return;
 
         Player player = Bukkit.getPlayer(args[0]);
         String dimension = player.getWorld().getName();

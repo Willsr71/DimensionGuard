@@ -10,13 +10,13 @@ import java.util.Set;
 public class CommandList {
     private MystcraftUtils plugin;
 
-    public CommandList(MystcraftUtils plugin){
+    public CommandList(MystcraftUtils plugin) {
         this.plugin = plugin;
     }
 
-    public void run(CommandSender cs, String[] args){
+    public void run(CommandSender cs, String[] args) {
         HashMap<String, DimensionData> dimensions = (HashMap) plugin.dimensions.clone();
-        if(dimensions.size()==0){
+        if (dimensions.size() == 0) {
             cs.sendMessage(plugin.miscUtils.parse("&7No dimensions registered"));
             return;
         }
@@ -32,10 +32,10 @@ public class CommandList {
             for (String member : dimData.getMembers()) {
                 members = (members + " &6" + member + "&7,").trim();
             }
-            if(owners.equals("&7Owners:")) owners = owners + " &6None";
-            else owners = owners.substring(0,owners.length()-3);
-            if(members.equals("&7Members:")) members = members + " &6None";
-            else members = members.substring(0,members.length()-3);
+            if (owners.equals("&7Owners:")) owners = owners + " &6None";
+            else owners = owners.substring(0, owners.length() - 3);
+            if (members.equals("&7Members:")) members = members + " &6None";
+            else members = members.substring(0, members.length() - 3);
 
             cs.sendMessage(plugin.miscUtils.parse("&7Dimension name: &6" + dimData.getName()));
             cs.sendMessage(plugin.miscUtils.parse(owners));

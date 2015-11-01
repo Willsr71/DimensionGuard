@@ -6,11 +6,11 @@ import org.bukkit.command.CommandSender;
 public class CommandHelp {
     private MystcraftUtils plugin;
 
-    public CommandHelp(MystcraftUtils plugin){
+    public CommandHelp(MystcraftUtils plugin) {
         this.plugin = plugin;
     }
 
-    public void run(CommandSender cs){
+    public void run(CommandSender cs) {
         cs.sendMessage(plugin.miscUtils.parse("&a ______ Help ______ "));
         cs.sendMessage(plugin.miscUtils.parse("&a/myst claim &9- Claim the dimension you are in", false));
         cs.sendMessage(plugin.miscUtils.parse("&a/myst delete &9- Delete the dimension you are in", false));

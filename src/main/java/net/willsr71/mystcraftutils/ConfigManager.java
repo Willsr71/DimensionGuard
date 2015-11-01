@@ -15,7 +15,7 @@ public class ConfigManager {
     private File file;
     private File dataFolder;
 
-    public ConfigManager(MystcraftUtils plugin, String configName){
+    public ConfigManager(MystcraftUtils plugin, String configName) {
         this.plugin = plugin;
         this.configName = configName;
         dataFolder = plugin.getDataFolder();
@@ -24,38 +24,38 @@ public class ConfigManager {
         reloadConfig();
     }
 
-    public Configuration getConfig(){
+    public Configuration getConfig() {
         return yamlConfiguration;
     }
 
-    public void reloadConfig(){
-        if(!dataFolder.exists()) dataFolder.mkdirs();
-        if(!file.exists()) createConfig();
+    public void reloadConfig() {
+        if (!dataFolder.exists()) dataFolder.mkdirs();
+        if (!file.exists()) createConfig();
         yamlConfiguration = YamlConfiguration.loadConfiguration(file);
     }
 
-    public void saveConfig(){
+    public void saveConfig() {
         try {
             yamlConfiguration.save(file);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void replaceConfig(){
+    public void replaceConfig() {
         deleteConfig();
         createConfig();
     }
 
-    private void createConfig(){
+    private void createConfig() {
         try {
             Files.copy(plugin.getResource(configName), file.toPath());
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void deleteConfig(){
+    private void deleteConfig() {
         plugin.getLogger().info("Deleted configuration: " + file.delete());
     }
 }

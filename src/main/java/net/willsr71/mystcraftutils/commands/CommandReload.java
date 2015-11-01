@@ -6,11 +6,11 @@ import org.bukkit.command.CommandSender;
 public class CommandReload {
     private MystcraftUtils plugin;
 
-    public CommandReload(MystcraftUtils plugin){
+    public CommandReload(MystcraftUtils plugin) {
         this.plugin = plugin;
     }
 
-    public void run(CommandSender cs, String[] args){
+    public void run(CommandSender cs, String[] args) {
         MystcraftUtils.instance.reload();
         cs.sendMessage(plugin.miscUtils.parse("&7Configuration has been reloaded"));
     }

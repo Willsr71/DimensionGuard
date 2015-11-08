@@ -1,14 +1,14 @@
-package net.willsr71.mystcraftutils.commands;
+package net.willsr71.worldmanager.commands;
 
-import net.willsr71.mystcraftutils.MystcraftUtils;
+import net.willsr71.worldmanager.WorldManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandAddOwner {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public CommandAddOwner(MystcraftUtils plugin) {
+    public CommandAddOwner(WorldManager plugin) {
         this.plugin = plugin;
     }
 

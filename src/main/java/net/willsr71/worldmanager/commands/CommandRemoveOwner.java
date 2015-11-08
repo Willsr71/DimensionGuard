@@ -1,13 +1,13 @@
-package net.willsr71.mystcraftutils.commands;
+package net.willsr71.worldmanager.commands;
 
-import net.willsr71.mystcraftutils.MystcraftUtils;
+import net.willsr71.worldmanager.WorldManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandRemoveOwner {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public CommandRemoveOwner(MystcraftUtils plugin) {
+    public CommandRemoveOwner(WorldManager plugin) {
         this.plugin = plugin;
     }
 

@@ -1,4 +1,4 @@
-package net.willsr71.mystcraftutils;
+package net.willsr71.worldmanager;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -7,9 +7,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.*;
 
 public class EventListener implements Listener {
-    MystcraftUtils plugin;
+    WorldManager plugin;
 
-    public EventListener(MystcraftUtils plugin) {
+    public EventListener(WorldManager plugin) {
         this.plugin = plugin;
     }
 

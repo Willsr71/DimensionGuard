@@ -1,4 +1,4 @@
-# MystcraftUtils
+# WorldManager
 The ultimate dimension and mystcraft age manager
 <br/>
 Originally developed for use on the PreludeCraft server, it has developed into more then just a Mystcraft dimension manager, but an all around dimension manager compatible with almost everything
@@ -24,9 +24,9 @@ Originally developed for use on the PreludeCraft server, it has developed into m
 <b>/myst reload</b> - Reload the plugin configs (including dimension data)<br/>
 
 # Permissions
-<b>mystcraftutils.overrideowner</b> - Override dimension owner, useful for non-opped players<br/>
-<b>mystcraftutils.overridemember</b> - Override dimension member, useful for non-opped players<br/>
-<b>mystcraftutils.reload</b> - The ability to reload plugin configs, needed for /myst reload<br/>
-<b>mystcraftutils.tpx</b> - The ability to teleport to dimensions, needed for /myst tpx<br/>
-<b>mystcraftutils.tp.others</b> - The ability to teleport others to spawn<br/>
-<b>mystcraftutils.kick</b> - The ability to kick players from a dimension, this is given ti dimension owners by default<br/>
+<b>worldmanager.overrideowner</b> - Override dimension owner, useful for non-opped players<br/>
+<b>worldmanager.overridemember</b> - Override dimension member, useful for non-opped players<br/>
+<b>worldmanager.reload</b> - The ability to reload plugin configs, needed for /myst reload<br/>
+<b>worldmanager.tpx</b> - The ability to teleport to dimensions, needed for /myst tpx<br/>
+<b>worldmanager.tp.others</b> - The ability to teleport others to spawn<br/>
+<b>worldmanager.kick</b> - The ability to kick players from a dimension, this is given ti dimension owners by default<br/>

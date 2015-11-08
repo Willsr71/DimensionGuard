@@ -1,4 +1,4 @@
-package net.willsr71.mystcraftutils;
+package net.willsr71.worldmanager;
 
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class ConfigManager {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
     private YamlConfiguration yamlConfiguration;
     private String configName;
     private File file;
     private File dataFolder;
 
-    public ConfigManager(MystcraftUtils plugin, String configName) {
+    public ConfigManager(WorldManager plugin, String configName) {
         this.plugin = plugin;
         this.configName = configName;
         dataFolder = plugin.getDataFolder();

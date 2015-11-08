@@ -1,4 +1,4 @@
-package net.willsr71.mystcraftutils;
+package net.willsr71.worldmanager;
 
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
@@ -8,10 +8,10 @@ import org.bukkit.scheduler.BukkitScheduler;
 import java.io.File;
 import java.io.IOException;
 
-public class WorldManager {
-    private MystcraftUtils plugin;
+public class FileManager {
+    private WorldManager plugin;
 
-    public WorldManager(MystcraftUtils plugin) {
+    public FileManager(WorldManager plugin) {
         this.plugin = plugin;
     }
 

@@ -1,7 +1,7 @@
-package net.willsr71.mystcraftutils.commands;
+package net.willsr71.worldmanager.commands;
 
-import net.willsr71.mystcraftutils.DimensionData;
-import net.willsr71.mystcraftutils.MystcraftUtils;
+import net.willsr71.worldmanager.DimensionData;
+import net.willsr71.worldmanager.WorldManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandClaim {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public CommandClaim(MystcraftUtils plugin) {
+    public CommandClaim(WorldManager plugin) {
         this.plugin = plugin;
     }
 

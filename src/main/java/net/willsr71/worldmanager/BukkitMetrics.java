@@ -25,7 +25,7 @@
  * authors and contributors and should not be interpreted as representing official policies,
  * either expressed or implied, of anybody else.
  */
-package net.willsr71.mystcraftutils;
+package net.willsr71.worldmanager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Server;

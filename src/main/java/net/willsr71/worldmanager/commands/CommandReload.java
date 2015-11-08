@@ -1,17 +1,17 @@
-package net.willsr71.mystcraftutils.commands;
+package net.willsr71.worldmanager.commands;
 
-import net.willsr71.mystcraftutils.MystcraftUtils;
+import net.willsr71.worldmanager.WorldManager;
 import org.bukkit.command.CommandSender;
 
 public class CommandReload {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public CommandReload(MystcraftUtils plugin) {
+    public CommandReload(WorldManager plugin) {
         this.plugin = plugin;
     }
 
     public void run(CommandSender cs, String[] args) {
-        MystcraftUtils.instance.reload();
+        WorldManager.instance.reload();
         cs.sendMessage(plugin.miscUtils.parse("&7Configuration has been reloaded"));
     }
 }

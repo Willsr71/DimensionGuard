@@ -1,4 +1,4 @@
-package net.willsr71.mystcraftutils;
+package net.willsr71.worldmanager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class PlayerManager {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public PlayerManager(MystcraftUtils plugin) {
+    public PlayerManager(WorldManager plugin) {
         this.plugin = plugin;
     }
 

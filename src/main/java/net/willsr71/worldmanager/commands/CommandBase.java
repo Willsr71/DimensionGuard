@@ -1,6 +1,6 @@
-package net.willsr71.mystcraftutils.commands;
+package net.willsr71.worldmanager.commands;
 
-import net.willsr71.mystcraftutils.MystcraftUtils;
+import net.willsr71.worldmanager.WorldManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,9 +20,9 @@ public class CommandBase extends Command implements CommandExecutor {
     public CommandRemoveOwner commandRemoveOwner;
     public CommandSpawn commandSpawn;
     public CommandTPX commandTPX;
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public CommandBase(MystcraftUtils plugin, String name) {
+    public CommandBase(WorldManager plugin, String name) {
         super(name);
         this.plugin = plugin;
         commandAddMember = new CommandAddMember(plugin);

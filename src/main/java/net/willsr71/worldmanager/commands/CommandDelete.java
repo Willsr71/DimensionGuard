@@ -1,14 +1,14 @@
-package net.willsr71.mystcraftutils.commands;
+package net.willsr71.worldmanager.commands;
 
-import net.willsr71.mystcraftutils.MystcraftUtils;
+import net.willsr71.worldmanager.WorldManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandDelete {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public CommandDelete(MystcraftUtils plugin) {
+    public CommandDelete(WorldManager plugin) {
         this.plugin = plugin;
     }
 
@@ -41,7 +41,7 @@ public class CommandDelete {
         plugin.miscUtils.sendCommandsFromConfig("delete.commands", player.getName(), dimension);
         plugin.playerManager.sendAllToSpawn(dimension);
         plugin.dimensions.remove(dimension);
-        plugin.worldManager.deleteWorld(dimension);
+        plugin.fileManager.deleteWorld(dimension);
         plugin.save();
     }
 }

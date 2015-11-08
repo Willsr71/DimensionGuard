@@ -1,5 +1,5 @@
 name: MystcraftUtils
-main: net.willsr71.mystcraftutils.MystcraftUtils
+main: net.willsr71.worldmanager.WorldManager
 version: 1.0
 description: The ultimate dimension and mystcraft age manager.
 author: Willsr71

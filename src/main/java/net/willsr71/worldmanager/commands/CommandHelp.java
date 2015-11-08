@@ -1,12 +1,12 @@
-package net.willsr71.mystcraftutils.commands;
+package net.willsr71.worldmanager.commands;
 
-import net.willsr71.mystcraftutils.MystcraftUtils;
+import net.willsr71.worldmanager.WorldManager;
 import org.bukkit.command.CommandSender;
 
 public class CommandHelp {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public CommandHelp(MystcraftUtils plugin) {
+    public CommandHelp(WorldManager plugin) {
         this.plugin = plugin;
     }
 

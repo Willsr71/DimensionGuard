@@ -1,15 +1,15 @@
-package net.willsr71.mystcraftutils.commands;
+package net.willsr71.worldmanager.commands;
 
-import net.willsr71.mystcraftutils.DimensionData;
-import net.willsr71.mystcraftutils.MystcraftUtils;
+import net.willsr71.worldmanager.DimensionData;
+import net.willsr71.worldmanager.WorldManager;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
 
 public class CommandListOwn {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public CommandListOwn(MystcraftUtils plugin) {
+    public CommandListOwn(WorldManager plugin) {
         this.plugin = plugin;
     }
 

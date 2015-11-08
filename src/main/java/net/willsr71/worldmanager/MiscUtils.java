@@ -1,4 +1,4 @@
-package net.willsr71.mystcraftutils;
+package net.willsr71.worldmanager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class MiscUtils {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public MiscUtils(MystcraftUtils plugin) {
+    public MiscUtils(WorldManager plugin) {
         this.plugin = plugin;
     }
 
@@ -117,7 +117,7 @@ public class MiscUtils {
     }
 
     public boolean hasOwnerPermission(CommandSender cs, String dimension, String player) {
-        if (hasPermission(cs, "mystcraftutils.overrideowner")) return true;
+        if (hasPermission(cs, "worldmanager.overrideowner")) return true;
         boolean owner = isOwner(dimension, player);
         if (!owner)
             cs.sendMessage(getString("noDimPermission").replace("%player%", player).replace("%dimension%", dimension));
@@ -129,7 +129,7 @@ public class MiscUtils {
     }
 
     public boolean hasMemberPermission(CommandSender cs, String dimension, String player) {
-        if (hasPermission(cs, "mystcraftutils.overridemember")) return true;
+        if (hasPermission(cs, "worldmanager.overridemember")) return true;
         boolean member = isMember(dimension, player);
         if (!member)
             cs.sendMessage(getString("noDimPermission").replace("%player%", player).replace("%dimension%", dimension));

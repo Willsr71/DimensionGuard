@@ -1,6 +1,6 @@
-package net.willsr71.mystcraftutils;
+package net.willsr71.worldmanager;
 
-import net.willsr71.mystcraftutils.commands.CommandBase;
+import net.willsr71.worldmanager.commands.CommandBase;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class MystcraftUtils extends JavaPlugin {
-    public static MystcraftUtils instance;
+public class WorldManager extends JavaPlugin {
+    public static WorldManager instance;
     public static String version = "1.0";
     public MiscUtils miscUtils;
     public CommandBase commandBase;
@@ -19,7 +19,7 @@ public class MystcraftUtils extends JavaPlugin {
     public ConfigManager dimensionConfigManager;
     public Configuration config;
     public Configuration dimensionConfig;
-    public WorldManager worldManager;
+    public FileManager fileManager;
     public PlayerManager playerManager;
     public HashMap<String, DimensionData> dimensions = new HashMap<>();
 
@@ -30,7 +30,7 @@ public class MystcraftUtils extends JavaPlugin {
         commandBase = new CommandBase(this, "myst");
         miscUtils = new MiscUtils(this);
         playerManager = new PlayerManager(this);
-        worldManager = new WorldManager(this);
+        fileManager = new FileManager(this);
         reload();
 
         this.getCommand("myst").setExecutor(commandBase);
@@ -49,7 +49,7 @@ public class MystcraftUtils extends JavaPlugin {
     public void onDisable() {
         save();
 
-        getLogger().info("Disabled MystcraftUtils v" + version);
+        getLogger().info("Disabled WorldManager v" + version);
     }
 
     public void save() {
@@ -97,7 +97,7 @@ public class MystcraftUtils extends JavaPlugin {
             config = configManager.getConfig();
             replaceConfig(r + 1);
         } else if (r >= 5) {
-            getLogger().severe("Error loading MystcraftUtils configs.");
+            getLogger().severe("Error loading WorldManager configs.");
         }
     }
 }

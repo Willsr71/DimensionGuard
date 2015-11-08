@@ -1,14 +1,14 @@
-package net.willsr71.mystcraftutils.commands;
+package net.willsr71.worldmanager.commands;
 
-import net.willsr71.mystcraftutils.MystcraftUtils;
+import net.willsr71.worldmanager.WorldManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandKick {
-    private MystcraftUtils plugin;
+    private WorldManager plugin;
 
-    public CommandKick(MystcraftUtils plugin) {
+    public CommandKick(WorldManager plugin) {
         this.plugin = plugin;
     }
 
@@ -20,7 +20,7 @@ public class CommandKick {
         }
 
         Player csPlayer = (Player) cs;
-        if (!(plugin.miscUtils.hasOwnerPermission(cs, csPlayer.getWorld().getName(), cs.getName()) || plugin.miscUtils.hasPermission(cs, "mystcraftutils.kick")))
+        if (!(plugin.miscUtils.hasOwnerPermission(cs, csPlayer.getWorld().getName(), cs.getName()) || plugin.miscUtils.hasPermission(cs, "worldmanager.kick")))
             return;
 
         Player player = Bukkit.getPlayer(args[0]);

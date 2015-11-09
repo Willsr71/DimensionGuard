@@ -1,14 +1,14 @@
-package net.willsr71.worldmanager.commands;
+package net.willsr71.dimensionguard.commands;
 
-import net.willsr71.worldmanager.WorldManager;
+import net.willsr71.dimensionguard.DimensionGuard;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandAddMember {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public CommandAddMember(WorldManager plugin) {
+    public CommandAddMember(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 

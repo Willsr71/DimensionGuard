@@ -1,13 +1,13 @@
-package net.willsr71.worldmanager.commands;
+package net.willsr71.dimensionguard.commands;
 
-import net.willsr71.worldmanager.WorldManager;
+import net.willsr71.dimensionguard.DimensionGuard;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandSpawn {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public CommandSpawn(WorldManager plugin) {
+    public CommandSpawn(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 

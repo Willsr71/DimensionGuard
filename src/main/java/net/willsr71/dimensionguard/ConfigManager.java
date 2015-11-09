@@ -1,4 +1,4 @@
-package net.willsr71.worldmanager;
+package net.willsr71.dimensionguard;
 
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class ConfigManager {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
     private YamlConfiguration yamlConfiguration;
     private String configName;
     private File file;
     private File dataFolder;
 
-    public ConfigManager(WorldManager plugin, String configName) {
+    public ConfigManager(DimensionGuard plugin, String configName) {
         this.plugin = plugin;
         this.configName = configName;
         dataFolder = plugin.getDataFolder();

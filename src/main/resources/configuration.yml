@@ -3,7 +3,7 @@
 ###################################
 
 # Location for backups that are made before a dimension is deleted. Please only use forward slashes.
-backupLocation: "MystcraftUtilsBackups/%server%/"
+backupLocation: "DimensionGuardBackups/%server%/"
 
 # Dimensions that players will not be auto-teleported in
 # The overworld is blacklisted by default
@@ -47,9 +47,6 @@ dimensionPrefixes:
 # Whether players will get auto-teleported to spawn on logout
 autoSpawnLogin: true
 autoSpawnLogout: true
-
-# Amount of times lightning will strike on teleport
-lightningCount: 1
 
 ###################################
 #####         Events          #####

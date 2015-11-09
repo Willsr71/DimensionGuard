@@ -1,4 +1,4 @@
-package net.willsr71.worldmanager;
+package net.willsr71.dimensionguard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class PlayerManager {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public PlayerManager(WorldManager plugin) {
+    public PlayerManager(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 

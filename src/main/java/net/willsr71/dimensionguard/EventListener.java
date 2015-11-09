@@ -1,4 +1,4 @@
-package net.willsr71.worldmanager;
+package net.willsr71.dimensionguard;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -7,9 +7,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.*;
 
 public class EventListener implements Listener {
-    WorldManager plugin;
+    DimensionGuard plugin;
 
-    public EventListener(WorldManager plugin) {
+    public EventListener(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 

@@ -1,7 +1,7 @@
-package net.willsr71.worldmanager.commands;
+package net.willsr71.dimensionguard.commands;
 
-import net.willsr71.worldmanager.DimensionData;
-import net.willsr71.worldmanager.WorldManager;
+import net.willsr71.dimensionguard.DimensionData;
+import net.willsr71.dimensionguard.DimensionGuard;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandClaim {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public CommandClaim(WorldManager plugin) {
+    public CommandClaim(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 

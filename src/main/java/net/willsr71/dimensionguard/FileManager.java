@@ -1,4 +1,4 @@
-package net.willsr71.worldmanager;
+package net.willsr71.dimensionguard;
 
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
@@ -9,9 +9,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class FileManager {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public FileManager(WorldManager plugin) {
+    public FileManager(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 

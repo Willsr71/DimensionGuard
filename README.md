@@ -1,4 +1,4 @@
-# WorldManager
+# DimensionGuard
 The ultimate dimension and mystcraft age manager
 <br/>
 Originally developed for use on the PreludeCraft server, it has developed into more then just a Mystcraft dimension manager, but an all around dimension manager compatible with almost everything

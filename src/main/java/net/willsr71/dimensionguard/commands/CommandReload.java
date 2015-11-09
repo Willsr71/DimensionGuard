@@ -1,17 +1,17 @@
-package net.willsr71.worldmanager.commands;
+package net.willsr71.dimensionguard.commands;
 
-import net.willsr71.worldmanager.WorldManager;
+import net.willsr71.dimensionguard.DimensionGuard;
 import org.bukkit.command.CommandSender;
 
 public class CommandReload {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public CommandReload(WorldManager plugin) {
+    public CommandReload(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 
     public void run(CommandSender cs, String[] args) {
-        WorldManager.instance.reload();
+        DimensionGuard.instance.reload();
         cs.sendMessage(plugin.miscUtils.parse("&7Configuration has been reloaded"));
     }
 }

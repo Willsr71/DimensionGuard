@@ -1,19 +1,19 @@
-package net.willsr71.worldmanager.commands;
+package net.willsr71.dimensionguard.commands;
 
-import net.willsr71.worldmanager.WorldManager;
+import net.willsr71.dimensionguard.DimensionGuard;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandTPX {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public CommandTPX(WorldManager plugin) {
+    public CommandTPX(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 
     public void run(CommandSender cs, String[] args) {
         if (plugin.miscUtils.isConsoleSender(cs)) return;
-        if (!plugin.miscUtils.hasPermission(cs, "worldmanager.tpx")) return;
+        if (!plugin.miscUtils.hasPermission(cs, "dimensionguard.tpx")) return;
         if (args.length != 1) {
             cs.sendMessage("/tpx <dimension>");
             return;

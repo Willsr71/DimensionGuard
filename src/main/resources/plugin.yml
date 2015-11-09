@@ -1,66 +1,66 @@
-name: MystcraftUtils
-main: net.willsr71.worldmanager.WorldManager
+name: DimensionGuard
+main: net.willsr71.dimensionguard.DimensionGuard
 version: 1.0
 description: The ultimate dimension and mystcraft age manager.
 author: Willsr71
 website: http://willsr71.net/
 commands:
-  myst:
-    description: Core command for MystcraftUtils
-    usage: /myst
-    aliases: [myst]
-  mystclaim:
-    usage: /myst claim
-  mystdelete:
-    usage: /myst delete
-  mystinfo:
-    usage: /myst info
-  mystkick:
-    usage: /myst kick <player>
-  mystlist:
-    usage: /myst list
-  mystlistown:
-    usage: /myst listown
-  mystspawn:
-    usage: /myst spawn
-  mysttpx:
-    usage: /myst tpx <dimension>
-  mystaddowner:
-    usage: /myst addowner <player>
-  mystaddmember:
-    usage: /myst addmember <player>
-  mystremoveowner:
-    usage: /myst removeowner <player>
-  mystremovemember:
-    usage: /myst removemember <player>
-  mystreload:
-    usage: /myst reload
+  dg:
+    description: Core command for DimensionGuard
+    usage: /dg
+    aliases: [dimensionguard]
+  dgclaim:
+    usage: /dg claim
+  dgdelete:
+    usage: /dg delete
+  dginfo:
+    usage: /dg info
+  dgkick:
+    usage: /dg kick <player>
+  dglist:
+    usage: /dg list
+  dglistown:
+    usage: /dg listown
+  dgspawn:
+    usage: /dg spawn
+  dgtpx:
+    usage: /dg tpx <dimension>
+  dgaddowner:
+    usage: /dg addowner <player>
+  dgaddmember:
+    usage: /dg addmember <player>
+  dgremoveowner:
+    usage: /dg removeowner <player>
+  dgremovemember:
+    usage: /dg removemember <player>
+  dgreload:
+    usage: /dg reload
 permissions:
-  mystcraftutils.*:
+  dgcraftutils.*:
     default: op
     description: Give access to all of everything
     children:
-      mystcraftutils.overrideowner: true
-      mystcraftutils.overridemember: false
-      mystcraftutils.reload: true
-      mystcraftutils.tpx: true
-      mystcraftutils.tp.others: true
-      mystcraftutils.kick: true
-  mystcraftutils.overrideowner:
+      dgcraftutils.overrideowner: true
+      dgcraftutils.overridemember: false
+      dgcraftutils.reload: true
+      dgcraftutils.tpx: true
+      dgcraftutils.tp.others: true
+      dgcraftutils.kick: true
+  dgcraftutils.overrideowner:
     default: op
     description: Override dimension owner
-  mystcraftutils.overridemember:
+  dgcraftutils.overridemember:
     default: false
     description: Override dimension member
-  mystcraftutils.reload:
+  dgcraftutils.reload:
     desfault: op
     description: The ability to reload plugin configs
-  mystcraft.tpx:
+  dgcraft.tpx:
       default: op
       description: The ability to teleport to dimensions
-  mystcraftutils.tp.others:
+  dgcraftutils.tp.others:
     default: op
     description: The ability to teleport others to spawn
-  mystcraft.kick:
+  dgcraft.kick:
     default: op
     description: The ability to kick players from a dimension

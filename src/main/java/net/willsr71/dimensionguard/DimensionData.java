@@ -1,4 +1,4 @@
-package net.willsr71.worldmanager;
+package net.willsr71.dimensionguard;
 
 import java.util.ArrayList;
 import java.util.List;

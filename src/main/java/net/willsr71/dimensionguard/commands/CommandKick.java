@@ -1,14 +1,14 @@
-package net.willsr71.worldmanager.commands;
+package net.willsr71.dimensionguard.commands;
 
-import net.willsr71.worldmanager.WorldManager;
+import net.willsr71.dimensionguard.DimensionGuard;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandKick {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public CommandKick(WorldManager plugin) {
+    public CommandKick(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 
@@ -20,7 +20,7 @@ public class CommandKick {
         }
 
         Player csPlayer = (Player) cs;
-        if (!(plugin.miscUtils.hasOwnerPermission(cs, csPlayer.getWorld().getName(), cs.getName()) || plugin.miscUtils.hasPermission(cs, "worldmanager.kick")))
+        if (!(plugin.miscUtils.hasOwnerPermission(cs, csPlayer.getWorld().getName(), cs.getName()) || plugin.miscUtils.hasPermission(cs, "dimensionguard.kick")))
             return;
 
         Player player = Bukkit.getPlayer(args[0]);

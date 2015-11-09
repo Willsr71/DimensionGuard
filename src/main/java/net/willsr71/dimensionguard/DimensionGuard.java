@@ -1,6 +1,6 @@
-package net.willsr71.worldmanager;
+package net.willsr71.dimensionguard;
 
-import net.willsr71.worldmanager.commands.CommandBase;
+import net.willsr71.dimensionguard.commands.CommandBase;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class WorldManager extends JavaPlugin {
-    public static WorldManager instance;
+public class DimensionGuard extends JavaPlugin {
+    public static DimensionGuard instance;
     public static String version = "1.0";
     public MiscUtils miscUtils;
     public CommandBase commandBase;
@@ -27,13 +27,14 @@ public class WorldManager extends JavaPlugin {
         instance = this;
         configManager = new ConfigManager(this, "configuration.yml");
         dimensionConfigManager = new ConfigManager(this, "dimensions.yml");
-        commandBase = new CommandBase(this, "myst");
+        commandBase = new CommandBase(this, "dg");
         miscUtils = new MiscUtils(this);
         playerManager = new PlayerManager(this);
         fileManager = new FileManager(this);
         reload();
 
-        this.getCommand("myst").setExecutor(commandBase);
+        this.getCommand("dg").setExecutor(commandBase);
+        this.getCommand("dimensionguard").setExecutor(commandBase);
 
         Bukkit.getPluginManager().registerEvents(new EventListener(this), this);
 
@@ -49,7 +50,7 @@ public class WorldManager extends JavaPlugin {
     public void onDisable() {
         save();
 
-        getLogger().info("Disabled WorldManager v" + version);
+        getLogger().info("Disabled DimensionGuard v" + version);
     }
 
     public void save() {
@@ -97,7 +98,7 @@ public class WorldManager extends JavaPlugin {
             config = configManager.getConfig();
             replaceConfig(r + 1);
         } else if (r >= 5) {
-            getLogger().severe("Error loading WorldManager configs.");
+            getLogger().severe("Error loading DimensionGuard configs.");
         }
     }
 }

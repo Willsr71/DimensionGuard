@@ -1,6 +1,6 @@
-package net.willsr71.worldmanager.commands;
+package net.willsr71.dimensionguard.commands;
 
-import net.willsr71.worldmanager.WorldManager;
+import net.willsr71.dimensionguard.DimensionGuard;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,9 +20,9 @@ public class CommandBase extends Command implements CommandExecutor {
     public CommandRemoveOwner commandRemoveOwner;
     public CommandSpawn commandSpawn;
     public CommandTPX commandTPX;
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public CommandBase(WorldManager plugin, String name) {
+    public CommandBase(DimensionGuard plugin, String name) {
         super(name);
         this.plugin = plugin;
         commandAddMember = new CommandAddMember(plugin);
@@ -63,7 +63,7 @@ public class CommandBase extends Command implements CommandExecutor {
             if (x != 0) argsToSend[x - 1] = args[x];
             argsToString = (argsToString + " " + args[x]).trim();
         }
-        if (!command.equals("myst")) return false;
+        if (!command.equals("dg")) return false;
 
         if (subcommand.equals("addmember")) commandAddMember.run(cs, argsToSend);
         else if (subcommand.equals("addowner")) commandAddOwner.run(cs, argsToSend);

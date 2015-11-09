@@ -1,16 +1,16 @@
-package net.willsr71.worldmanager.commands;
+package net.willsr71.dimensionguard.commands;
 
-import net.willsr71.worldmanager.DimensionData;
-import net.willsr71.worldmanager.WorldManager;
+import net.willsr71.dimensionguard.DimensionData;
+import net.willsr71.dimensionguard.DimensionGuard;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
 import java.util.Set;
 
 public class CommandList {
-    private WorldManager plugin;
+    private DimensionGuard plugin;
 
-    public CommandList(WorldManager plugin) {
+    public CommandList(DimensionGuard plugin) {
         this.plugin = plugin;
     }
 

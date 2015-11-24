@@ -33,9 +33,9 @@ public class DimensionGuard extends JavaPlugin {
         fileManager = new FileManager(this);
         reload();
 
-        this.getCommand("dg").setExecutor(commandBase);
-        this.getCommand("dimensionguard").setExecutor(commandBase);
-        this.getCommand("myst").setExecutor(commandBase);
+        getCommand("dg").setExecutor(commandBase);
+        getCommand("dimensionguard").setExecutor(commandBase);
+        //getCommand("myst").setExecutor(commandBase);
 
         Bukkit.getPluginManager().registerEvents(new EventListener(this), this);
 

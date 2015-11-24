@@ -36,7 +36,7 @@ public class MiscUtils {
     }
 
     public String parse(String string, boolean prefix) {
-        if (prefix) string = "&a[&cMystcraft&9Utils&a]&r " + string;
+        if (prefix) string = "&a[&cDimension&9Guard&a]&r " + string;
         string = ChatColor.translateAlternateColorCodes('&', string);
         return string;
     }

@@ -15,7 +15,7 @@ public class CommandAddOwner {
     public void run(CommandSender cs, String[] args) {
         if (plugin.miscUtils.isConsoleSender(cs)) return;
         if (args.length < 1) {
-            cs.sendMessage("/myst addowner <player>");
+            cs.sendMessage("/dg addowner <player>");
             return;
         }
 

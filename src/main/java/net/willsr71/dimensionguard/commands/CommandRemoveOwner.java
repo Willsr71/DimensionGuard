@@ -14,7 +14,7 @@ public class CommandRemoveOwner {
     public void run(CommandSender cs, String[] args) {
         if (plugin.miscUtils.isConsoleSender(cs)) return;
         if (args.length != 1) {
-            cs.sendMessage("/myst removeowner <player>");
+            cs.sendMessage("/dg removeowner <player>");
             return;
         }
 

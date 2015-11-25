@@ -15,7 +15,7 @@ public class CommandAddMember {
     public void run(CommandSender cs, String[] args) {
         if (plugin.miscUtils.isConsoleSender(cs)) return;
         if (args.length != 1) {
-            cs.sendMessage("/myst addmember <player>");
+            cs.sendMessage("/dg addmember <player>");
             return;
         }
 

@@ -14,7 +14,7 @@ public class CommandRemoveMember {
     public void run(CommandSender cs, String[] args) {
         if (plugin.miscUtils.isConsoleSender(cs)) return;
         if (args.length != 1) {
-            cs.sendMessage("/myst removemember <player>");
+            cs.sendMessage("/dg removemember <player>");
             return;
         }
 

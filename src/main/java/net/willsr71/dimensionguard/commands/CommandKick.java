@@ -15,7 +15,7 @@ public class CommandKick {
     public void run(CommandSender cs, String[] args) {
         if (plugin.miscUtils.isConsoleSender(cs)) return;
         if (args.length < 1) {
-            cs.sendMessage(plugin.miscUtils.parse("/myst kick <player>"));
+            cs.sendMessage(plugin.miscUtils.parse("/dg kick <player>"));
             return;
         }
 

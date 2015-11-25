@@ -11,7 +11,7 @@ public class CommandHelp {
     }
 
     public void run(CommandSender cs) {
-        cs.sendMessage(plugin.miscUtils.parse(" &3▬▬▬▬▬▬ &a[&3DimensionGuard Commands&a] &3▬▬▬▬▬▬ "));
+        cs.sendMessage(plugin.miscUtils.parse(" &3----- &a[&3DimensionGuard Commands&a] &3------ "));
         cs.sendMessage(plugin.miscUtils.parse("&f/dg claim &a- &3Claim the dimension you are in.", false));
         cs.sendMessage(plugin.miscUtils.parse("&f/dg delete &a- &3Delete the dimension you are in.", false));
         cs.sendMessage(plugin.miscUtils.parse("&f/dg info &a- &3Get info about the dimension you are in.", false));

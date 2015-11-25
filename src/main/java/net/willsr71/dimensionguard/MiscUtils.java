@@ -36,7 +36,7 @@ public class MiscUtils {
     }
 
     public String parse(String string, boolean prefix) {
-        if (prefix) string = "&a[&3DimensionGuard&a]&r " + string;
+        if (prefix) string = plugin.config.getString("messagePrefix") + string;
         string = ChatColor.translateAlternateColorCodes('&', string);
         return string;
     }

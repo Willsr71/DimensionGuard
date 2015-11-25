@@ -28,7 +28,7 @@ public class CommandListOwn {
         if (members.equals("&7Member:")) members = members + " &fNone";
         else members = members.substring(0, members.length() - 3);
 
-        cs.sendMessage(plugin.miscUtils.parse("&a[&3!&a] &3Dimensions that you are part of:"));
+        cs.sendMessage(plugin.miscUtils.parse("&3Dimensions that you are part of:"));
         cs.sendMessage(plugin.miscUtils.parse(owners));
         cs.sendMessage(plugin.miscUtils.parse(members));
     }

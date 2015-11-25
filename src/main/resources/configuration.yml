@@ -136,6 +136,9 @@ kick:
 #####      Misc Messages      #####
 ###################################
 
+# Placed at the beginning of most messages in DimensionGuard
+messagePrefix: "&a[&3DimensionGuard&a]&r "
+
 noPermission: "&4ERR: &cYou don't have permission"
 noDimPermission: "&4ERR: &cYou don't have permission in this dimension"
 noConsoleMessage: "&4ERR: &cOnly players can preform this command"

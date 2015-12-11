@@ -117,7 +117,7 @@ public class MiscUtils {
     }
 
     public boolean hasOwnerPermission(CommandSender cs, String dimension, String player) {
-        if (hasPermission(cs, "dimensionguard.overrideowner")) return true;
+        if (cs.hasPermission("dimensionguard.overrideowner")) return true;
         boolean owner = isOwner(dimension, player);
         if (!owner)
             cs.sendMessage(getString("noDimPermission").replace("%player%", player).replace("%dimension%", dimension));

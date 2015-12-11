@@ -38,6 +38,7 @@ public class EventListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if (!event.getClickedBlock().getType().name().equals("MYSTCRAFT_BLOCKBOOKBINDER")) return;
+        else if (!event.getClickedBlock().getType().name().equals("RFTOOLS_DIMENSIONENSCRIBERBLOCK")) return;
         if (!plugin.miscUtils.isAnyOwner(event.getPlayer())) return;
         event.setCancelled(true);
         event.getPlayer().sendMessage("alreadyOwnDimension");

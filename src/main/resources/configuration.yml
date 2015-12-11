@@ -75,7 +75,7 @@ delete:
   uidchars: 16
   messages:
     success: "&7Dimension &6%dimension%&7 has been deleted"
-    confirm: "&eWARNING: &cYou are about to delete this age. Type\n'/myst delete confirm <age_name> %uid%' to delete this age."
+    confirm: "&eWARNING: &cYou are about to delete this age. Type\n'/dg delete confirm <age_name> %uid%' to delete this age."
   commands:
     - "/rg removeowner -w %dimension% __global__ -a"
     - "/rg removemember -w %dimension% __global__ -a"
@@ -146,7 +146,7 @@ invalidWorld: "&4ERR: &cThe specified world &6%dimension% &cis invalid"
 dimensionMaxExceeded: "&4ERR: &cYou have exceeded your maximum number of dimensions"
 playerNotFound: "&4ERR: &cThe specified player could not be found"
 errSelf: "&4ERR: &cYou cannot preform this action on yourself"
-blacklistMessage: "&eWARNING: &7Blacklisted dimension. Event cancelled"
+blacklistMessage: "&7Blacklisted dimension. Event cancelled"
 notRegisteredMessage: "&7The dimension &6%dimension% &7is not registered. Have you tried claiming it?"
 teleportSuccess: "&7You have been teleported to dimension &6%dimension%"
 alreadyOwnDimension: "&4ERR: &7You already own a dimension you cannot create another one."

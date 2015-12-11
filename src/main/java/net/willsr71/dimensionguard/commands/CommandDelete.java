@@ -25,8 +25,8 @@ public class CommandDelete {
         String uid = "";
         if (plugin.config.getInt("delete.uidchars") != 0)
             uid = player.getWorld().getUID().toString().substring(0, plugin.config.getInt("delete.uidchars"));
-
-        if (!args[0].equals("confirm")) success = false;
+        if (args.length != 3) success = false;
+        else if (!args[0].equals("confirm")) success = false;
         else if (!args[1].equals(dimension)) success = false;
         else if (!args[2].equals(uid)) success = false;
         if (!success) {

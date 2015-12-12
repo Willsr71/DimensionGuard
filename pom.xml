@@ -11,7 +11,7 @@
     <repositories>
         <repository>
             <id>willsr71-repo</id>
-            <url>http://repo.willsr71.net/nexus/content/groups/public/</url>
+            <url>http://repo.willsr71.net/content/groups/public/</url>
         </repository>
     </repositories>
 

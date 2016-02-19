@@ -71,8 +71,12 @@ public class MiscUtils {
     }
 
     public boolean isDimensionClaimBlacklisted(CommandSender cs, String dimension) {
+        return isDimensionClaimBlacklisted(cs, dimension, true);
+    }
+
+    public boolean isDimensionClaimBlacklisted(CommandSender cs, String dimension, boolean sendMessage) {
         if (Bukkit.getWorlds().get(0).getName().equals(dimension) || plugin.config.getStringList("antiClaimDimensions").contains(dimension)) {
-            cs.sendMessage(getString("blacklistMessage"));
+            if (sendMessage) cs.sendMessage(getString("blacklistMessage"));
             return true;
         }
         return false;

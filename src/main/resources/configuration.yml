@@ -51,7 +51,7 @@ autoSpawnLogout: true
 ###################################
 #####         Events          #####
 ###################################
-# Usable variables are %dimension% and %player%
+# Usable variables are %dimension%, %dimensionnumber%, and %player%
 
 # Executing as console solves some permission issues and keeps the player from recieving unwanted spam
 executeCommandsAsConsole: true
@@ -130,6 +130,12 @@ kick:
   messages:
     toSender: "&6%player% &7has been kicked from dimension &6%dimension%"
     toReceiver: "&7You have been kicked from dimension &6%dimension%"
+  commands: []
+
+login:
+  commands: []
+
+logout:
   commands: []
 
 ###################################

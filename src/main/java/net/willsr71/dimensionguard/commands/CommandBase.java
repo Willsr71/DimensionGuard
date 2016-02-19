@@ -10,6 +10,7 @@ public class CommandBase extends Command implements CommandExecutor {
     public CommandAddOwner commandAddOwner;
     public CommandClaim commandClaim;
     public CommandDelete commandDelete;
+    public CommandForceDelete commandForceDelete;
     public CommandHelp commandHelp;
     public CommandInfo commandInfo;
     public CommandKick commandKick;
@@ -29,6 +30,7 @@ public class CommandBase extends Command implements CommandExecutor {
         commandAddOwner = new CommandAddOwner(plugin);
         commandClaim = new CommandClaim(plugin);
         commandDelete = new CommandDelete(plugin);
+        commandForceDelete = new CommandForceDelete(plugin);
         commandHelp = new CommandHelp(plugin);
         commandInfo = new CommandInfo(plugin);
         commandKick = new CommandKick(plugin);
@@ -69,6 +71,7 @@ public class CommandBase extends Command implements CommandExecutor {
         else if (subcommand.equals("addowner")) commandAddOwner.run(cs, argsToSend);
         else if (subcommand.equals("claim")) commandClaim.run(cs, argsToSend);
         else if (subcommand.equals("delete")) commandDelete.run(cs, argsToSend);
+        else if (subcommand.equals("forcedelete")) commandForceDelete.run(cs, argsToSend);
         else if (subcommand.equals("info")) commandInfo.run(cs, argsToSend);
         else if (subcommand.equals("kick")) commandKick.run(cs, argsToSend);
         else if (subcommand.equals("list")) commandList.run(cs, argsToSend);
